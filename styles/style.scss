@@ -1,0 +1,38 @@
+/*-- GENERAL --*/
+* {
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+}
+
+a { text-decoration: none; }
+
+/*-- VARIABLES --*/
+$primary-color : #901c1c;
+$secondary-color: #d3573c;
+$font-gray: #525252;
+$background-gray: #fafafa;
+
+/*-- MIXINS --*/
+@mixin flex ($flex-direction: row, $justify-content: center, $align-items: center, $flex-wrap: nowrap) {
+    display: flex;
+    flex-direction: $flex-direction;
+    justify-content: $justify-content;
+    align-items: $align-items;
+    flex-wrap: $flex-wrap;
+}
+
+.logo {
+    &__container {
+        @include flex(row, center, center, nowrap);
+        font-size: 5rem;
+        color: $primary-color;
+    }
+
+    &__icon {
+        margin: 0 5px;
+        font-size: 3rem;
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke: 4px $primary-color;
+    }
+}
