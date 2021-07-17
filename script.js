@@ -1,13 +1,27 @@
-const main = document.querySelector('main');
+/* -- DOM Selectors -- */
+const navButton = document.querySelector('.header__button');
 
-/* The fetch API will enable loading the data from the JSON file as soon as the page loads */
-fetch('https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/Front-End+V2/P5+Javascript+%26+Accessibility/FishEyeData.json')
-  .then(function(response) {
+// Making the button visible as soon as the user scrolls down
+window.onscroll = function stick() {
+  const sticky = navButton.offsetTop;
+  if (window.pageYOffset >= sticky) {
+    navButton.classList.add('sticky');
+  }
+};
+
+// The fetch API will enable loading the data from the JSON file as soon as the page loads
+fetch('fisheye_data.json')
+  .then((response) => {
     return response.json();
   })
-  .then(function(data) {
-    appendPhotographer(data);
+  .then((data) => {
+    console.log(data['media'][2].title);
+    data.media.forEach(element => {
+      const foo = document.createElement('p');
+      foo.innerText = element.title;
+      document.getElementById('test').appendChild(foo);
+    });
   })
-  .catch(function(err) {
+  .catch(function (err) {
     console.log(err);
   });

@@ -32,17 +32,18 @@ h1 {
 
 /*-- HEADER --*/
 .header {
-    @include flex(inline-flex, row, space-between, center, nowrap);
+    @include flex(inline-flex, row, space-between, center, wrap);
     width: 68%;
 
     &__logo-container {
         img {
             width: 200px; height: 50px;
-            padding-right: 15px;
+            margin: 0 15px;
         }
     }
 
     &__button {
+        visibility: hidden;
         position: absolute;
         top: 5px; left: 50vw;
         transform: translate(-50%, 0);
@@ -51,9 +52,24 @@ h1 {
         background-color: $secondary-background;
         font-size: 1.1rem; font-weight: 700;
         border: none; border-radius: 5px;
+        transition: visibility 2s;
+    }
+
+    .sticky { 
+        position: fixed;
+        animation: fade-in 0.6s ease-in-out forwards;
+
+        @keyframes fade-in {
+            from { visibility: hidden;
+                   opacity: 0; }
+        
+            to { visibility: visible;
+                 opacity: 1; }
+        }
     }
 
     &__nav {
+        margin: 15px 0;
         .photographer_tags {
             @include flex(flex, row, center, center, nowrap);
 
@@ -67,9 +83,9 @@ h1 {
     }
 }
 
-.main-title { 
+#main-title { 
     position: absolute;
     top: 3.3rem; right: 7rem;
 }
 
-.test { height: 900px; }
+#test { height: 900px; }

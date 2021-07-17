@@ -43,18 +43,19 @@ h1 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   width: 68%;
 }
 
 .header__logo-container img {
   width: 200px;
   height: 50px;
-  padding-right: 15px;
+  margin: 0 15px;
 }
 
 .header__button {
+  visibility: hidden;
   position: absolute;
   top: 5px;
   left: 50vw;
@@ -66,6 +67,40 @@ h1 {
   font-weight: 700;
   border: none;
   border-radius: 5px;
+  -webkit-transition: visibility 2s;
+  transition: visibility 2s;
+}
+
+.header .sticky {
+  position: fixed;
+  -webkit-animation: fade-in 0.6s ease-in-out forwards;
+          animation: fade-in 0.6s ease-in-out forwards;
+}
+
+@-webkit-keyframes fade-in {
+  from {
+    visibility: hidden;
+    opacity: 0;
+  }
+  to {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    visibility: hidden;
+    opacity: 0;
+  }
+  to {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.header__nav {
+  margin: 15px 0;
 }
 
 .header__nav .photographer_tags {
@@ -96,13 +131,13 @@ h1 {
   border-radius: 15px;
 }
 
-.main-title {
+#main-title {
   position: absolute;
   top: 3.3rem;
   right: 7rem;
 }
 
-.test {
+#test {
   height: 900px;
 }
 /*# sourceMappingURL=style.css.map */
