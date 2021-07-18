@@ -22,7 +22,7 @@ $background-gray: #fafafa;
     flex-wrap: $flex-wrap;
 }
 
-body { margin: 3rem 5rem 0; }
+body { margin: 2.7rem 4.6rem 0; }
 a { text-decoration: none; }
 ul { list-style: none; }
 h1 {
@@ -33,13 +33,14 @@ h1 {
 /*-- HEADER --*/
 .header {
     @include flex(inline-flex, row, space-between, center, wrap);
-    width: 68%;
+    width: 68%; max-width: 68%;
 
     &__logo-container {
-        img {
-            width: 200px; height: 50px;
-            margin: 0 15px;
-        }
+        width: 200px; height: 63px;
+        margin: 0 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     &__button {
@@ -70,22 +71,42 @@ h1 {
 
     &__nav {
         margin: 15px 0;
-        .photographer_tags {
-            @include flex(flex, row, center, center, nowrap);
 
-            & li {
-                margin: 0 5px; padding: 4px 7px;
+        .photographer_tags-list {
+            @include flex(flex, row, center, center, wrap);
+            line-height: 2.1;
+
+            & .tags {
+                margin: 0 3px; padding: 4px 7px;
                 font-size: 0.75rem; font-weight: 500;
                 color: $primary-color;
-                border: 0.5px solid #c4c4c4; border-radius: 15px;
+                border: 1px solid #c4c4c4; border-radius: 15px;
+                transition: 0.3s ease-in-out;
+            }
+
+            .tags:hover,
+            .tags:focus {
+                color: #fff;
+                background-color: $primary-color;
+                border: 1px solid transparent;
             }
         }
     }
 }
 
+@media screen and (max-width: 1337px){
+    .header {
+        width: 100%; max-width: 100%;
+
+        &__logo-container { margin-right: 80%; }
+
+        nav { width: 100%; }
+    }
+}
+
 #main-title { 
     position: absolute;
-    top: 3.3rem; right: 7rem;
+    top: 3.4rem; right: 7rem;
 }
 
 #test { height: 900px; }

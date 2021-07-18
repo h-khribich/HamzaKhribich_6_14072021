@@ -10,6 +10,7 @@ window.onscroll = function stick() {
 };
 
 // The fetch API will enable loading the data from the JSON file as soon as the page loads
+/*
 fetch('fisheye_data.json')
   .then((response) => {
     return response.json();
@@ -25,3 +26,4 @@ fetch('fisheye_data.json')
   .catch(function (err) {
     console.log(err);
   });
+  */
