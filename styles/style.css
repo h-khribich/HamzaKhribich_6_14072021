@@ -45,15 +45,15 @@ h1 {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  width: 68%;
-  max-width: 68%;
+  width: 66%;
+  max-width: 900px;
   /*-- NAV --*/
 }
 
 .header__logo-container {
   width: 200px;
   height: 63px;
-  margin: 0 15px;
+  margin: 0 15px 0 35px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -154,7 +154,7 @@ h1 {
 }
 
 /*-- HEADER MEDIA QUERY --*/
-@media screen and (max-width: 1337px) {
+@media screen and (max-width: 1365px) {
   .header {
     width: 100%;
     max-width: 100%;
@@ -171,7 +171,7 @@ h1 {
 #main-title {
   position: absolute;
   top: 3.4rem;
-  right: 7rem;
+  right: 8rem;
 }
 
 #main-grid {
