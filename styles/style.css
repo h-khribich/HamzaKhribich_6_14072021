@@ -1,3 +1,5 @@
+/*-- VARIABLES --*/
+/*-- MIXINS --*/
 /*-- GENERAL --*/
 * {
   margin: 0;
@@ -8,8 +10,10 @@
   font-size: 16px;
 }
 
-/*-- VARIABLES --*/
-/*-- MIXINS --*/
+*:focus {
+  outline-color: #901c1c;
+}
+
 body {
   margin: 2.7rem 4.6rem 0;
 }
@@ -45,7 +49,7 @@ h1 {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  width: 66%;
+  width: 67%;
   max-width: 900px;
   /*-- NAV --*/
 }
@@ -53,7 +57,7 @@ h1 {
 .header__logo-container {
   width: 200px;
   height: 63px;
-  margin: 0 15px 0 35px;
+  margin: 0 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -130,13 +134,12 @@ h1 {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  line-height: 2.1;
 }
 
 .tag {
   margin: 0 3px;
   padding: 4px 7px;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 500;
   cursor: pointer;
   color: #901c1c;
@@ -171,11 +174,11 @@ h1 {
 #main-title {
   position: absolute;
   top: 3.4rem;
-  right: 8rem;
+  right: 7.5rem;
 }
 
 #main-grid {
-  margin: 5rem 0;
+  margin: 4.5rem 0;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[3];

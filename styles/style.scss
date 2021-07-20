@@ -1,11 +1,3 @@
-/*-- GENERAL --*/
-* {
-    margin: 0; padding: 0;
-    box-sizing: border-box;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-}
-
 /*-- VARIABLES --*/
 $primary-color : #901c1c;
 $secondary-color: #d3573c;
@@ -23,6 +15,15 @@ $price-color: rgba(117, 117, 117, 1);
     flex-wrap: $flex-wrap;
 }
 
+/*-- GENERAL --*/
+* {
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+}
+*:focus { outline-color: $primary-color; }
+
 body { margin: 2.7rem 4.6rem 0; }
 a { text-decoration: none; }
 ul { list-style: none; }
@@ -34,11 +35,11 @@ h1 {
 /*-- HEADER --*/
 .header {
     @include flex(inline-flex, row, space-between, center, wrap);
-    width: 66%; max-width: 900px;
+    width: 67%; max-width: 900px;
 
     &__logo-container {
         width: 200px; height: 63px;
-        margin: 0 15px 0 35px;
+        margin: 0 15px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -74,16 +75,13 @@ h1 {
     &__nav {
         margin: 15px 0;
 
-        .photographer_tags-list {
-            @include flex(flex, row, center, center, wrap);
-            line-height: 2.1;
-        }
+        .photographer_tags-list { @include flex(flex, row, center, center, wrap); }
     }
 }
 
 .tag {
     margin: 0 3px; padding: 4px 7px;
-    font-size: 0.7rem; font-weight: 500;
+    font-size: 0.75rem; font-weight: 500;
     cursor: pointer;
     color: $primary-color;
     border: 1px solid #c4c4c4; border-radius: 15px;
@@ -111,11 +109,11 @@ h1 {
 /*-- MAIN CONTENT--*/
 #main-title { 
     position: absolute;
-    top: 3.4rem; right: 8rem;
+    top: 3.4rem; right: 7.5rem;
 }
 
 #main-grid {
-    margin: 5rem 0;
+    margin: 4.5rem 0;
     display: grid; grid-template-columns: repeat(3, 1fr);
 }
 

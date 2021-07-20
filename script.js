@@ -21,7 +21,7 @@ function addPhotographerPreview(element) {
 
   const photographerImage = photographerContainer.appendChild(document.createElement('img'));
   photographerImage.classList.add('photographer__img');
-  photographerImage.setAttribute('src', `assets/Photographers ID Photos/${element.portrait}`)
+  photographerImage.setAttribute('src', `assets/Photographers ID Photos/${element.portrait}`);
 
   const photographerName = photographerContainer.appendChild(document.createElement('p'));
   photographerName.innerHTML = element.name;
