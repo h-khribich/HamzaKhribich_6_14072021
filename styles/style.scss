@@ -5,6 +5,7 @@ $secondary-background: #db8876;
 $font-gray: #525252;
 $background-gray: #fafafa;
 $price-color: rgba(117, 117, 117, 1);
+$font-black: rgb(24, 24, 24); // Regular black color is too saturated for screens
 
 /*-- MIXINS --*/
 @mixin flex ($flex: flex, $flex-direction: row, $justify-content: center, $align-items: center, $flex-wrap: nowrap) {
@@ -13,6 +14,21 @@ $price-color: rgba(117, 117, 117, 1);
     justify-content: $justify-content;
     align-items: $align-items;
     flex-wrap: $flex-wrap;
+}
+
+@mixin active-tag {
+    color: #fff;
+    background-color: $primary-color;
+    border: 1px solid transparent;
+}
+
+@mixin screen-reader-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    white-space: nowrap; 
+    border: 0;
 }
 
 /*-- GENERAL --*/
@@ -24,7 +40,7 @@ $price-color: rgba(117, 117, 117, 1);
 }
 *:focus { outline-color: $primary-color; }
 
-body { margin: 2.7rem 4.6rem 0; }
+body { margin: 2.7rem 4.6rem 1rem; }
 a { text-decoration: none; }
 ul { list-style: none; }
 h1 {
@@ -45,13 +61,14 @@ h1 {
         align-items: center;
     }
 
-    &__button {
+    &__link {
         visibility: hidden;
         position: absolute;
         top: 5px; left: 50vw;
         transform: translate(-50%, 0);
         -webkit-transform: translate(-50%, 0);
         padding: .4rem .8rem;
+        color: $font-black;
         background-color: $secondary-background;
         font-size: 1.1rem; font-weight: 700;
         border: none; border-radius: 5px;
@@ -60,7 +77,7 @@ h1 {
 
     .sticky { 
         position: fixed;
-        animation: fade-in 0.6s ease-in-out forwards;
+        animation: fade-in .6s ease-in-out forwards;
 
         @keyframes fade-in {
             from { visibility: hidden;
@@ -81,29 +98,18 @@ h1 {
 
 .tag {
     margin: 0 3px; padding: 4px 7px;
-    font-size: 0.75rem; font-weight: 500;
-    cursor: pointer;
+    font-size: .75rem; font-weight: 500;
     color: $primary-color;
     border: 1px solid #c4c4c4; border-radius: 15px;
-    transition: 0.2s ease-in-out;
+    transition: .2s ease-in-out;
 }
 
 .tag:hover,
-.tag:focus {
-    color: #fff;
-    background-color: $primary-color;
-    border: 1px solid transparent;
-}
+.tag:focus,
+.active-tag { @include active-tag(); }
 
-/*-- HEADER MEDIA QUERY --*/
-@media screen and (max-width: 1365px){
-    .header {
-        width: 100%; max-width: 100%;
-
-        &__logo-container { margin-right: 80%; }
-
-        nav { width: 100%; }
-    }
+.screen-reader-only {
+    @include screen-reader-only();
 }
 
 /*-- MAIN CONTENT--*/
@@ -115,12 +121,12 @@ h1 {
 #main-grid {
     margin: 4.5rem 0;
     display: grid; grid-template-columns: repeat(3, 1fr);
+    row-gap: 3.5rem;
 }
 
 .photographer {
     &__section { 
         @include flex(flex, row, center, center, wrap);
-        padding: 1rem 0; 
         
         // Flex-end and flex-start on first column and last column respectively
         &:nth-child(3n - 2) { @include flex(flex, row, flex-start, center, nowrap); }
@@ -141,27 +147,109 @@ h1 {
 
     &__name {
         font-size: 2.1rem;
+        font-weight: 400;
         color: $secondary-color;
     }
 
     &__location {
-        font-size: 0.9rem;
-        padding-bottom: 0.2rem;
+        font-size: .9rem;
+        padding-bottom: .2rem;
         color: $primary-color;
     }
 
     &__tagline {
-        font-size: 0.7rem;
-        color: rgb(24, 24, 24); // Normal black color is too saturated for screens
+        font-size: .7rem;
+        color: $font-black;
     }
 
     &__price {
-        font-size: 0.6rem;
-        padding: 0.2rem 0 0.4rem;
+        font-size: .6rem;
+        padding: .2rem 0 .5rem;
         color: $price-color;
     }
 
     &__taglist {
         @include flex(flex, row, flex-start, center, wrap)
     }
+}
+
+/*--  MEDIA QUERIES --*/
+@media screen and (max-width: 1365px){
+    .header {
+        width: 100%; max-width: 100%;
+
+        &__logo-container { margin-right: 80%; }
+
+        nav { width: 100%; }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #main-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+
+        .photographer__section { 
+            @include flex(flex, row, center, center, wrap); 
+    
+            &:nth-child(3n - 2),
+            &:nth-child(3n - 3)
+            { @include flex(flex, row, center, center, nowrap); }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body { margin: 2.2rem 1.5rem 1rem; }
+
+    #main-title { right: 2rem; top: 2.9rem; }
+
+    .header__link { display: none; }
+}
+
+@media screen and (max-width: 680px) {
+    #main-grid { 
+        margin: 1.5rem 0;
+        grid-template-columns: 1fr; 
+    }
+
+    nav { line-height: 2.5; }
+}
+
+@media screen and (max-width: 625px) {
+    #main-title { 
+        font-size: 1.5rem;
+        top: 3.2rem;
+    }
+
+    .header__logo-container img {
+        width: 160px; height: 53px;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    body { margin: 2.2rem 0 1rem; }
+    
+    #main-title { 
+        font-size: .9rem;
+        top: 3.6rem;
+    }
+
+    .header {
+        padding: 0 1rem;
+
+        &__logo-container img { width: 150px; height: 37px; }
+    }
+}
+
+@media screen and (max-width: 374px) {
+    body { margin: 1.2rem 0 1rem; }
+
+    .header { 
+        height: 200px;
+        padding: 0;
+
+        &__logo-container { margin: 0; }
+    }
+
+    #main-title { top: 5.4rem; left: 1.7rem; }
 }
