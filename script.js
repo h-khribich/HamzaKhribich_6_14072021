@@ -2,13 +2,21 @@
 const navLink = document.querySelector('.header__link');
 const mainGrid = document.getElementById('main-grid');
 
-mainGrid.addEventListener('DOMContentLoaded', (event) => {
-  if (event.target.classList.contains('tag')) {
-    event.target.addEventListener('click', () => {
-      alert('test');
-    });
-  }
-});
+const activeTagsArray = [];
+
+// Toggling the 'active-tag' CSS class
+function activeTag(element) {
+  element.addEventListener('click', () => {
+    if (element.classList.contains('active-tag')) {
+      element.classList.remove('active-tag');
+      element.blur();
+      activeTagsArray.pop();
+    } else {
+      element.classList.add('active-tag');
+      activeTagsArray.push(element);
+    }
+  });
+}
 
 // Each photographer object into HTML elements with classes for styling
 function addPhotographerPreview(element) {
@@ -58,6 +66,10 @@ fetch('fisheye_data.json')
     data.photographers.forEach((photographer) => {
       addPhotographerPreview(photographer);
     });
+    const tags = document.querySelectorAll('.tag');
+    tags.forEach((tag) => {
+      activeTag(tag);
+    });
   })
   .catch((err) => (err));
 
@@ -74,32 +86,3 @@ navLink.addEventListener('click', (event) => {
   event.preventDefault();
   // mainGrid.focus();
 });
-
-const activeTagsArray = [];
-
-const tags = document.getElementsByClassName('tag');
-const tagsArray = Array.from(tags);
-
-document.addEventListener('DOMContentLoaded', () => {
-  tagsArray.forEach((tag) => {
-    tag.addEventListener('click', () => {
-      alert('test');
-    });
-  });
-});
-
-// Toggling the 'active-tag' CSS class
-tagsArray.forEach((tag) => {
-  tag.addEventListener('click', () => {
-    if (tag.classList.contains('active-tag')) {
-      tag.classList.remove('active-tag');
-      tag.blur();
-      activeTagsArray.pop();
-    } else {
-      tag.classList.add('active-tag');
-      activeTagsArray.push(tag);
-    }
-  });
-});
-
-console.log(document.querySelectorAll('.tag'));

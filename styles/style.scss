@@ -87,6 +87,11 @@ h1 {
                  opacity: 1; }
         }
     }
+    .sticky:active,
+    .sticky:focus { 
+        font-size: 1.15rem;
+        color: #fafafa;
+    }
 
     /*-- NAV --*/
     &__nav {
