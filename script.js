@@ -27,8 +27,9 @@ function addPhotographerPreview(element) {
   photographerSection.classList.add('photographer__section');
 
   const photographerLinkContainer = photographerSection.appendChild(document.createElement('a'));
-  photographerLinkContainer.classList.add('photographer__container');
-  photographerLinkContainer.setAttribute('href', '');
+  photographerLinkContainer.classList.add('photographer__link-container');
+  photographerLinkContainer.setAttribute('href', 'page-photographe.html');
+  photographerLinkContainer.setAttribute('aria-label', `${element.name}`);
   photographerLinkContainer.animate([
     { opacity: '0' },
     { opacity: '1' },
@@ -37,6 +38,7 @@ function addPhotographerPreview(element) {
   const photographerImage = photographerLinkContainer.appendChild(document.createElement('img'));
   photographerImage.classList.add('photographer__img');
   photographerImage.setAttribute('src', `assets/Photographers ID Photos/${element.portrait}`);
+  photographerImage.alt = '';
 
   const photographerName = photographerLinkContainer.appendChild(document.createElement('h2'));
   photographerName.innerHTML = element.name;
@@ -61,14 +63,19 @@ function addPhotographerPreview(element) {
   // A screen reader span tag is added as well
   element.tags.forEach((tag) => {
     const photographerTag = photographerTagList.appendChild(document.createElement('li'));
-    const photographerTagLink = photographerTag.appendChild(document.createElement('a'));
     const photographerSRtag = photographerTag.appendChild(document.createElement('span'));
+    const photographerTagLink = photographerTag.appendChild(document.createElement('a'));
     photographerSRtag.innerHTML = 'Tag';
     photographerSRtag.classList.add('screen-reader-only');
     photographerTagLink.setAttribute('href', '#');
     photographerTagLink.innerHTML = `#${tag}`;
     photographerTagLink.classList.add('tag');
   });
+}
+
+// Using JSON data to fill the photographer page with the corresponding photographer
+function fillPhotographerPage(element) {
+    console.log('test');
 }
 
 // Executes the addPhotographerPreview function to each 'photographer' object from the JSON file
@@ -117,5 +124,6 @@ window.addEventListener('scroll', () => {
 // Making the nav link focus on main content and preventing page reload
 navLink.addEventListener('click', (event) => {
   event.preventDefault();
-  // mainGrid.focus();
+  const focusOnFirstElement = document.querySelector('.photographer__link-container');
+  focusOnFirstElement.focus();
 });

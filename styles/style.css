@@ -241,7 +241,7 @@ h1 {
   min-width: 300px;
 }
 
-.photographer__container {
+.photographer__link-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -310,6 +310,22 @@ h1 {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+/*--  PHOTOGRAPHER PAGE --*/
+.photographer-banner {
+  background-color: #fafafa;
+  border-radius: 5px;
+}
+
+.photographer-banner .contact-button {
+  padding: 1.4rem 1.2rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fafafa;
+  background-color: #901c1c;
+  border: none;
+  border-radius: 5px;
 }
 
 /*--  MEDIA QUERIES --*/

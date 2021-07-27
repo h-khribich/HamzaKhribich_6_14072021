@@ -140,7 +140,7 @@ h1 {
         width: fit-content; min-width: 300px;
     }
 
-    &__container { @include flex(flex, column, center, center, nowrap); 
+    &__link-container { @include flex(flex, column, center, center, nowrap); 
     min-width: 300px;}
     
     &__img {
@@ -176,6 +176,22 @@ h1 {
 
     &__taglist {
         @include flex(flex, row, flex-start, center, wrap)
+    }
+}
+
+/*--  PHOTOGRAPHER PAGE --*/
+.photographer-banner {
+    background-color: $background-gray;
+    border-radius: 5px;
+
+    .contact-button  {
+        padding: 1.4rem 1.2rem;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #fafafa;
+        background-color: $primary-color;
+        border: none;
+        border-radius: 5px;
     }
 }
 
