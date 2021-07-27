@@ -40,7 +40,10 @@ $font-black: rgb(24, 24, 24); // Regular black color is too saturated for screen
 }
 *:focus { outline-color: $primary-color; }
 
-body { margin: 2.7rem 4.6rem 1rem; }
+body { 
+    margin: 2.7rem 4.6rem 1rem;
+    @include flex(flex, column, center, center, nowrap);
+}
 a { text-decoration: none; }
 ul { list-style: none; }
 h1 {
@@ -52,6 +55,7 @@ h1 {
 .header {
     @include flex(inline-flex, row, space-between, center, wrap);
     width: 67%; max-width: 900px;
+    align-self: flex-start;
 
     &__logo-container {
         width: 200px; height: 63px;
@@ -125,18 +129,15 @@ h1 {
 
 #main-grid {
     margin: 4.5rem 0;
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    row-gap: 3.5rem;
+    @include flex(flex, row, space-between, center, wrap);
+    gap: 5rem;
+    max-width: 1430px;
 }
 
 .photographer {
     &__section { 
-        @include flex(flex, row, center, center, wrap);
-        
-        // Flex-end and flex-start on first column and last column respectively
-        &:nth-child(3n - 2) { @include flex(flex, row, flex-start, center, nowrap); }
-
-        &:nth-child(3n - 3) { @include flex(flex, row, flex-end, center, nowrap); }
+        @include flex(flex, column, center, center, wrap);
+        width: fit-content; min-width: 300px;
     }
 
     &__container { @include flex(flex, column, center, center, nowrap); 
@@ -189,18 +190,8 @@ h1 {
     }
 }
 
-@media screen and (max-width: 1024px) {
-    #main-grid { 
-        grid-template-columns: repeat(2, 1fr); 
-
-        .photographer__section { 
-            @include flex(flex, row, center, center, wrap); 
-    
-            &:nth-child(3n - 2),
-            &:nth-child(3n - 3)
-            { @include flex(flex, row, center, center, nowrap); }
-        }
-    }
+@media screen and (max-width: 1265px){
+    #main-grid { justify-content: space-evenly; }
 }
 
 @media screen and (max-width: 768px) {
@@ -212,12 +203,9 @@ h1 {
 }
 
 @media screen and (max-width: 680px) {
-    #main-grid { 
-        margin: 1.5rem 0;
-        grid-template-columns: 1fr; 
-    }
+    #main-grid { margin: 1.5rem 0; }
 
-    nav { line-height: 2.5; }
+    .header__nav{ line-height: 2.5; }
 }
 
 @media screen and (max-width: 625px) {
@@ -226,9 +214,7 @@ h1 {
         top: 3.2rem;
     }
 
-    .header__logo-container img {
-        width: 160px; height: 53px;
-    }
+    .header__logo-container img { width: 160px; height: 53px; }
 }
 
 @media screen and (max-width: 475px) {
@@ -258,3 +244,5 @@ h1 {
 
     #main-title { top: 5.4rem; left: 1.7rem; }
 }
+
+.hidden { display: none; }
