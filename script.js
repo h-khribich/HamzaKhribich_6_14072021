@@ -1,25 +1,46 @@
 /* -- General DOM Selectors -- */
 const navLink = document.querySelector('.header__link');
 const mainGrid = document.getElementById('main-grid');
-const activeTagsArray = [];
+let activeTagsArray = [];
 
 // Toggling the 'active-tag' CSS class
 function activeTag(element) {
   element.addEventListener('click', () => {
+    const allSimilarTags = document.querySelectorAll(`.tag[data-tag-name="${element.dataset.tagName}"]`);
+    element.blur();
     if (element.classList.contains('active-tag')) {
-      element.classList.remove('active-tag');
-      element.blur();
-      activeTagsArray.pop();
+      allSimilarTags.forEach((similarTag) => {
+        similarTag.classList.remove('active-tag');
+      });
+      activeTagsArray = activeTagsArray.filter((tag) => !(tag === element.dataset.tagName));
     } else {
-      element.classList.add('active-tag');
-      element.blur();
-      activeTagsArray.push(element.innerHTML);
+      allSimilarTags.forEach((similarTag) => {
+        similarTag.classList.add('active-tag');
+      });
+      activeTagsArray.push(element.dataset.tagName);
     }
+
+    if (activeTagsArray.length <= 0) {
+      const elementsToDisplay = document.querySelectorAll('section');
+      elementsToDisplay.forEach((elementToDisplay) => {
+        elementToDisplay.classList.remove('hidden');
+      });
+      return;
+    }
+
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section) => {
+      section.classList.add('hidden');
+    });
+
+    activeTagsArray.forEach((tag) => {
+      const elementsToDisplay = document.querySelectorAll(`section[data-tags*="${tag}"]`);
+      elementsToDisplay.forEach((elementToDisplay) => {
+        elementToDisplay.classList.remove('hidden');
+      });
+    });
   });
 }
-
-// Sorting relevant photographers according to tag click
-// if tagList[i] equals activeTagsArray[i]; result++; à la fin, si result === 0; display none
 
 // Each photographer object into HTML elements with classes for styling
 function addPhotographerPreview(element) {
@@ -28,7 +49,8 @@ function addPhotographerPreview(element) {
 
   const photographerLinkContainer = photographerSection.appendChild(document.createElement('a'));
   photographerLinkContainer.classList.add('photographer__link-container');
-  photographerLinkContainer.setAttribute('href', 'page-photographe.html');
+  photographerLinkContainer.setAttribute('href', `page-photographe.html?id=${element.id}`);
+  photographerLinkContainer.setAttribute('id', `${element.id}`);
   photographerLinkContainer.setAttribute('aria-label', `${element.name}`);
   photographerLinkContainer.animate([
     { opacity: '0' },
@@ -61,15 +83,26 @@ function addPhotographerPreview(element) {
 
   // Loop through the tags array and push them into a new 'a' tag within an 'li' element
   // A screen reader span tag is added as well
+  photographerSection.dataset.tags = element.tags.join(',');
+  const navTaglist = document.querySelector('.photographer_tags-list');
+
   element.tags.forEach((tag) => {
+    if (!document.querySelector(`.tag[data-tag-name="${tag}"]`)) {
+      const navTag = navTaglist.appendChild(document.createElement('li'));
+      navTag.innerText = `#${tag}`;
+      navTag.classList.add('tag');
+      navTag.dataset.tagName = tag;
+    }
+    // Ajouter span tag text
     const photographerTag = photographerTagList.appendChild(document.createElement('li'));
+    photographerTag.dataset.tagName = tag;
+    photographerTag.classList.add('tag');
     const photographerSRtag = photographerTag.appendChild(document.createElement('span'));
     const photographerTagLink = photographerTag.appendChild(document.createElement('a'));
-    photographerSRtag.innerHTML = 'Tag';
+    photographerSRtag.innerText = 'Tag';
     photographerSRtag.classList.add('screen-reader-only');
     photographerTagLink.setAttribute('href', '#');
-    photographerTagLink.innerHTML = `#${tag}`;
-    photographerTagLink.classList.add('tag');
+    photographerTagLink.innerText = `#${tag}`;
   });
 }
 
@@ -87,28 +120,8 @@ fetch('fisheye_data.json')
     });
 
     const tags = document.querySelectorAll('.tag');
-    const sections = document.querySelectorAll('.photographer__section');
-
     tags.forEach((tag) => {
       activeTag(tag);
-      tag.addEventListener('click', () => {
-        sections.forEach((section) => {
-          const tagList = section.getElementsByClassName('tag');
-          const tagListArray = Array.from(tagList);
-                // EFFECTUER TESTS PLUS SIMPLES
-          if (activeTagsArray >= 1) {
-            let result = false;
-            for (let i = 0; i < activeTagsArray.length; i + 1) {
-              if (tagListArray.includes(activeTagsArray[i])) {
-                result = true;
-              }
-            }
-            if (result === 0) {
-              section.classList.add('hidden');
-            }
-          }
-        });
-      });
     });
   })
   .catch((err) => (err));

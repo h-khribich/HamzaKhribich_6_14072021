@@ -166,18 +166,29 @@ h1 {
   font-size: .75rem;
   font-weight: 500;
   color: #901c1c;
+  cursor: pointer;
   border: 1px solid #c4c4c4;
   border-radius: 15px;
   -webkit-transition: .2s ease-in-out;
   transition: .2s ease-in-out;
 }
 
+.tag a {
+  color: #901c1c;
+  font-size: .75rem;
+  font-weight: 500;
+}
+
 .tag:hover,
-.tag:focus,
 .active-tag {
   color: #fff;
   background-color: #901c1c;
   border: 1px solid transparent;
+}
+
+.tag:hover a,
+.active-tag a {
+  color: #fff;
 }
 
 .screen-reader-only {
