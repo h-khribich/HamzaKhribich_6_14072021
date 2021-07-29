@@ -41,10 +41,7 @@ $font-black: rgb(24, 24, 24); // Regular black color is too saturated for screen
 }
 *:focus { outline-color: $primary-color; }
 
-body { 
-    margin: 2.7rem 4.6rem 1rem;
-    @include flex(flex, column, center, center, nowrap);
-}
+body { margin: 2.7rem 4.6rem 1rem; }
 a { text-decoration: none; }
 ul { list-style: none; }
 h1 {
@@ -115,14 +112,8 @@ h1 {
     transition: .2s ease-in-out;
 }
 
-.tag a {
-    color: $primary-color;
-    font-size: .75rem; font-weight: 500;
-}
-
-
-
 .tag:hover,
+.tag:focus,
 .active-tag { @include active-tag(); }
 
 .screen-reader-only {
@@ -183,12 +174,13 @@ h1 {
     }
 
     &__taglist {
-        @include flex(flex, row, flex-start, center, wrap)
+        @include flex(flex, row, flex-start, center, wrap);
     }
 }
 
 /*--  PHOTOGRAPHER PAGE --*/
 .photographer-banner {
+    @include flex(flex, row, flex-start, center, wrap);
     background-color: $background-gray;
     border-radius: 5px;
 
@@ -203,6 +195,29 @@ h1 {
     }
 }
 
+.name-block {
+  &__name {
+    font-size: 4rem;
+    color: $secondary-color;
+  }
+
+  &__location {
+    font-size: 1.5rem;
+    color: $primary-color;
+  }
+
+  &__tagline {
+    font-size: 1.1rem;
+    color: $font-gray;
+  }
+
+  &__taglist { 
+    @include flex(flex, row, flex-start, center, wrap); 
+
+    a { font-size: 1.1rem; }
+  }
+}
+
 /*--  MEDIA QUERIES --*/
 @media screen and (max-width: 1365px){
     .header {
@@ -215,21 +230,22 @@ h1 {
 }
 
 @media screen and (max-width: 1265px){
-    #main-grid { justify-content: space-evenly; }
-}
-
-@media screen and (max-width: 768px) {
     body { margin: 2.2rem 1.5rem 1rem; }
 
     #main-title { right: 2rem; top: 2.9rem; }
 
-    .header__link { display: none; }
+    #main-grid { justify-content: space-evenly; }
 }
 
 @media screen and (max-width: 680px) {
-    #main-grid { margin: 1.5rem 0; }
+    #main-grid { 
+      margin: 1.5rem 0; 
+      justify-content: center;
+    }
 
     .header__nav{ line-height: 2.5; }
+
+    .header__link { display: none; }
 }
 
 @media screen and (max-width: 625px) {
