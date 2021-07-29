@@ -321,22 +321,83 @@ h1 {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  height: 310px;
+  margin: 2.2rem 0;
+  padding: 2.3rem 2.5rem;
   background-color: #fafafa;
   border-radius: 5px;
 }
 
+.photographer-banner__name-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  height: 100%;
+}
+
 .photographer-banner .contact-button {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin: 1.4rem 2.5rem;
   padding: 1.4rem 1.2rem;
   font-size: 1.15rem;
   font-weight: 700;
+  cursor: pointer;
   color: #fafafa;
   background-color: #901c1c;
   border: none;
   border-radius: 5px;
+  -webkit-transition: .2s ease-in-out;
+  transition: .2s ease-in-out;
+}
+
+.photographer-banner .contact-button:hover {
+  color: #181818;
+  background-color: #db8876;
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
+}
+
+.photographer-banner__img-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.photographer-banner__img-container img {
+  margin: 1rem;
 }
 
 .name-block__name {
   font-size: 4rem;
+  padding-top: 0.8rem;
   color: #d3573c;
 }
 
@@ -347,6 +408,7 @@ h1 {
 
 .name-block__tagline {
   font-size: 1.1rem;
+  padding-top: 1.3rem;
   color: #525252;
 }
 
@@ -366,6 +428,8 @@ h1 {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  margin-left: -5px;
+  padding-top: 1.7rem;
 }
 
 .name-block__taglist a {
