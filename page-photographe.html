@@ -34,6 +34,26 @@
                   <img class="photographer__img">
                 </div> 
             </div>
+
+          <!-- CONTACT MODAL -->
+            <dialog id="contact-modal" aria-labelledby="modal__contact-me">
+              <h1 id="modal__contact-me">Contactez-moi</h1>
+              <p id="modal__name"></p>
+              <!-- First name -->
+              <label for="first-name" class="modal__label">Prénom</label>
+              <input type="text" name="first-name" id="first-name" aria-label="First name" class="modal__input">
+              <!-- Last name -->
+              <label for="last-name" class="modal__label">Nom</label>
+              <input type="text" name="last-name" id="last-name" aria-label="Last name" class="modal__input">
+              <!-- Email -->
+              <label for="email" class="modal__label">Email</label>
+              <input type="email" name="email" id="email" aria-label="Email" class="modal__input">
+              <!-- User input message -->
+              <label for="user-msg" class="modal__label">Votre message</label>
+              <textarea name="user-msg" id="user-msg" aria-label="Your message" class="modal__input"></textarea>
+              <button type="submit" aria-label="Send" id="submit-button">Envoyer</button>
+              <button id="close-modal" aria-label="Close contact form"><img src="assets/close_button.svg" alt=""></button>
+            </dialog>
         </main>
         <script src="photographer-page.js"></script>
     </body>

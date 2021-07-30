@@ -6,7 +6,13 @@ const photographerLocation = document.querySelector('.name-block__location');
 const photographerTagline = document.querySelector('.name-block__tagline');
 const photographerTagList = document.querySelector('.name-block__taglist');
 const photographerImage = document.querySelector('.photographer__img');
+const contactButton = document.querySelector('.contact-button');
+const contactModal = document.getElementById('contact-modal');
+const closeButton = document.getElementById('close-modal');
+const modalName = document.getElementById('modal__name');
+const submitButton = document.getElementById('sumbit-button');
 
+/* -- Photographer banner -- */
 function fillPhotographerBanner(element) {
   photographerName.innerText = element.name;
   photographerLocation.innerText = `${element.city}, ${element.country}`;
@@ -33,20 +39,29 @@ fetch('fisheye_data.json')
     data.photographers.forEach((photographer) => {
       if (photographer.id === pageID) {
         fillPhotographerBanner(photographer);
+        // Adding modal title dynamically
+        modalName.innerText = `${photographerName.innerText}`;
+        contactModal.setAttribute('aria-label', `Contact me ${photographer.name}`);
       }
     });
   })
   .catch((err) => (err));
 
-// fetch
-/*
-const artists = [{
-  id: 12,
-},{
-  id: 62,
-}];
+/* -- Contact modal -- */
+// Opening the modal
+contactButton.addEventListener('click', () => {
+  contactModal.toggleAttribute('open');
+  contactModal.classList.add('opened__contact-modal');
+});
 
-const id = 62;
+// Closing the modal
+closeButton.addEventListener('click', () => {
+  contactModal.toggleAttribute('open');
+  contactModal.classList.remove('opened__contact-modal');
+});
 
-const artist = artists.find((el) => el.id === id);
-*/
+submitButton.addEventListener('click', () => {
+  // contactModal validate and animate
+  contactModal.toggleAttribute('open');
+  contactModal.classList.remove('opened__contact-modal');
+});

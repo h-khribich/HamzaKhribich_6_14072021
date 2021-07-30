@@ -325,7 +325,19 @@ h1 {
   margin: 2.2rem 0;
   padding: 2.3rem 2.5rem;
   background-color: #fafafa;
+  border: none;
   border-radius: 5px;
+  -webkit-animation: fade-in 1.5s forwards;
+          animation: fade-in 1.5s forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .photographer-banner__name-block {
@@ -363,7 +375,8 @@ h1 {
   transition: .2s ease-in-out;
 }
 
-.photographer-banner .contact-button:hover {
+.photographer-banner .contact-button:hover,
+.photographer-banner .contact-button:focus {
   color: #181818;
   background-color: #db8876;
   -webkit-transform: scale(1.01);
@@ -434,6 +447,95 @@ h1 {
 
 .name-block__taglist a {
   font-size: 1.1rem;
+}
+
+.opened__contact-modal {
+  position: relative;
+  margin: 0 auto;
+  padding: 1.3rem 2.3rem;
+  width: 670px;
+  -webkit-transform: translateY(-45%);
+          transform: translateY(-45%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  background-color: #db8876;
+  border: none;
+  border-radius: 5px;
+}
+
+.opened__contact-modal #modal__contact-me,
+.opened__contact-modal #modal__name {
+  display: inline-block;
+  font-size: 3.8rem;
+  line-height: 1.1;
+  color: #181818;
+}
+
+.opened__contact-modal #modal__name {
+  padding-bottom: 1.8rem;
+}
+
+.opened__contact-modal .modal__label {
+  font-size: 2rem;
+  color: #312e2e;
+}
+
+.opened__contact-modal .modal__input {
+  border: none;
+  border-radius: 5px;
+  margin: .3rem 0;
+  width: 100%;
+  padding: 1.4rem;
+}
+
+.opened__contact-modal #user-msg {
+  height: 170px;
+}
+
+.opened__contact-modal #close-modal {
+  width: 42px;
+  height: 42px;
+  position: absolute;
+  cursor: pointer;
+  background: none;
+  border: none;
+  top: 2rem;
+  right: 2rem;
+}
+
+.opened__contact-modal #submit-button {
+  margin: 1rem 0;
+  padding: 1.3rem 3rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: #fafafa;
+  background-color: #901c1c;
+  border: none;
+  border-radius: 5px;
+  -webkit-transition: .2s ease-in-out;
+  transition: .2s ease-in-out;
+}
+
+.opened__contact-modal #submit-button:hover,
+.opened__contact-modal #submit-button:focus {
+  color: #181818;
+  background-color: #fafafa;
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
 }
 
 /*--  MEDIA QUERIES --*/

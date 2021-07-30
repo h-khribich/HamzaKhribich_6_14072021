@@ -32,6 +32,11 @@ $font-black: rgb(24, 24, 24); // Regular black color is too saturated for screen
     border: 0;
 }
 
+@mixin small-radius {
+  border: none;
+  border-radius: 5px;
+}
+
 /*-- GENERAL --*/
 * {
     margin: 0; padding: 0;
@@ -73,7 +78,7 @@ h1 {
         color: $font-black;
         background-color: $secondary-background;
         font-size: 1.1rem; font-weight: 700;
-        border: none; border-radius: 5px;
+        @include small-radius();
         transition: visibility 2s;
     }
 
@@ -185,7 +190,14 @@ h1 {
     margin: 2.2rem 0;
     padding: 2.3rem 2.5rem;
     background-color: $background-gray;
-    border-radius: 5px;
+    @include small-radius();
+    animation: fade-in 1.5s forwards;
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+
+      to { opacity: 1; }
+    }
 
     &__name-block { 
       @include flex(flex, column, flex-start, flex-start, nowrap); 
@@ -198,11 +210,12 @@ h1 {
         font-size: 1.15rem; font-weight: 700;
         cursor: pointer;
         color: #fafafa; background-color: $primary-color;
-        border: none; border-radius: 5px;
+        @include small-radius();
         transition: .2s ease-in-out;
     }
 
-    .contact-button:hover {
+    .contact-button:hover,
+    .contact-button:focus {
       color: $font-black; background-color: $secondary-background;
       transform: scale(1.01);
     }
@@ -239,6 +252,62 @@ h1 {
     margin-left: -5px; padding-top: 1.7rem;
 
     a { font-size: 1.1rem; }
+  }
+}
+
+.opened__contact-modal {
+  position: relative;
+  margin: 0 auto; padding: 1.3rem 2.3rem;
+  width: 670px;
+  transform: translateY(-45%);
+  @include flex(flex, column, flex-start, flex-start, nowrap);
+  background-color: $secondary-background;
+  @include small-radius();
+
+  #modal__contact-me,
+  #modal__name {
+    display: inline-block;
+    font-size: 3.8rem;
+    line-height: 1.1;
+    color: $font-black;
+  }
+
+  #modal__name { padding-bottom: 1.8rem; }
+
+  .modal__label { 
+    font-size: 2rem;
+    color: #312e2e
+  }
+
+  .modal__input {
+    @include small-radius();
+    margin: .3rem 0;
+    width: 100%; padding: 1.4rem;
+  }
+
+  #user-msg { height: 170px; }
+
+  #close-modal {
+    width: 42px; height: 42px;
+    position: absolute;
+    cursor: pointer;
+    background: none; border: none;
+    top: 2rem; right: 2rem;
+  }
+
+  #submit-button {
+    margin: 1rem 0; padding: 1.3rem 3rem;
+    font-size: 1.15rem; font-weight: 700;
+    cursor: pointer;
+    color: #fafafa; background-color: $primary-color;
+    @include small-radius();
+    transition: .2s ease-in-out;
+  }
+
+  #submit-button:hover,
+  #submit-button:focus {
+    color: $font-black; background-color: $background-gray;
+    transform: scale(1.01);
   }
 }
 
