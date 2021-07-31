@@ -1,16 +1,18 @@
 /* -- General & DOM Selectors -- */
 const params = (new URL(window.location)).searchParams;
 const pageID = parseInt(params.get('id'), 10);
+
 const photographerName = document.querySelector('.name-block__name');
 const photographerLocation = document.querySelector('.name-block__location');
 const photographerTagline = document.querySelector('.name-block__tagline');
 const photographerTagList = document.querySelector('.name-block__taglist');
 const photographerImage = document.querySelector('.photographer__img');
+const modalBackground = document.getElementById('modal-background');
 const contactButton = document.querySelector('.contact-button');
 const contactModal = document.getElementById('contact-modal');
 const closeButton = document.getElementById('close-modal');
 const modalName = document.getElementById('modal__name');
-const submitButton = document.getElementById('sumbit-button');
+const submitButton = document.getElementById('submit-button');
 
 /* -- Photographer banner -- */
 function fillPhotographerBanner(element) {
@@ -28,7 +30,7 @@ function fillPhotographerBanner(element) {
     const photographerTagLink = photographerTag.appendChild(document.createElement('a'));
     photographerTagLink.dataset.tagName = tag;
     photographerTagLink.classList.add('tag');
-    photographerTagLink.setAttribute('href', '#');
+    photographerTagLink.setAttribute('href', `index.html?tag=${tag}`);
     photographerTagLink.innerText = `#${tag}`;
   });
 }
@@ -52,16 +54,19 @@ fetch('fisheye_data.json')
 contactButton.addEventListener('click', () => {
   contactModal.toggleAttribute('open');
   contactModal.classList.add('opened__contact-modal');
+  // modalBackground.style.display = 'block';
 });
 
 // Closing the modal
 closeButton.addEventListener('click', () => {
   contactModal.toggleAttribute('open');
   contactModal.classList.remove('opened__contact-modal');
+  // modalBackground.style.display = 'none';
 });
 
 submitButton.addEventListener('click', () => {
   // contactModal validate and animate
   contactModal.toggleAttribute('open');
   contactModal.classList.remove('opened__contact-modal');
+  // modalBackground.style.display = 'none';
 });

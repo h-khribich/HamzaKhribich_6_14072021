@@ -84,6 +84,7 @@ h1 {
 
     .sticky { 
         position: fixed;
+        visibility: visible;
         animation: fade-in .6s ease-in-out forwards;
 
         @keyframes fade-in {
@@ -255,6 +256,17 @@ h1 {
   }
 }
 
+/*
+#modal-background {
+  display: none;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
+  background-color: #c4c4c460;
+}
+*/
+
 .opened__contact-modal {
   position: relative;
   margin: 0 auto; padding: 1.3rem 2.3rem;
@@ -310,6 +322,8 @@ h1 {
     transform: scale(1.01);
   }
 }
+
+#test { height: 900px; }
 
 /*--  MEDIA QUERIES --*/
 @media screen and (max-width: 1365px){

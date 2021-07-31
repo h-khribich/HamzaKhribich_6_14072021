@@ -1,6 +1,9 @@
 /* -- General & DOM Selectors -- */
 const navLink = document.querySelector('.header__link');
 const mainGrid = document.getElementById('main-grid');
+const pageURL = (new URL(window.location).href);
+const params = (new URL(window.location)).searchParams;
+const crossPageTag = params.get('tag');
 let activeTagsArray = [];
 
 // Toggling the 'active-tag' and filtering relevant photographers
@@ -132,6 +135,18 @@ fetch('fisheye_data.json')
     tags.forEach((tag) => {
       filterPhotographers(tag);
     });
+
+    const dataTagList = document.querySelectorAll('nav [data-tag-name]');
+    function crossPageFiltering() {
+      if (pageURL.match('tag')) {
+        dataTagList.forEach((dataTag) => {
+          if (dataTag.innerText.match(crossPageTag)) {
+            dataTag.click();
+          }
+        });
+      }
+    }
+    crossPageFiltering();
   })
   .catch((err) => (err));
 
@@ -139,18 +154,19 @@ fetch('fisheye_data.json')
 
 /* -- Skip to content button -- */
 // Making the navlink button focus on main content and preventing page reload
-const displayedSections = document.querySelector('section:not(.hidden)');
-console.log(displayedSections);
+// const displayedSections = document.querySelector('section:not(.hidden)');
 
-navLink.addEventListener('click', (event) => {
-  event.preventDefault();
-  displayedSections.focus();
-});
-
-// Making the navlink button visible as soon as the user scrolls down
+// Making the nav link visible as soon as the user scrolls down
 window.addEventListener('scroll', () => {
   const sticky = navLink.offsetTop;
   if (window.pageYOffset >= sticky) {
     navLink.classList.add('sticky');
   }
+});
+
+// Making the nav link focus on main content and preventing page reload
+navLink.addEventListener('click', (event) => {
+  event.preventDefault();
+  const focusOnFirstElement = document.querySelector('.photographer__link-container');
+  focusOnFirstElement.focus();
 });

@@ -91,6 +91,7 @@ h1 {
 
 .header .sticky {
   position: fixed;
+  visibility: visible;
   -webkit-animation: fade-in .6s ease-in-out forwards;
           animation: fade-in .6s ease-in-out forwards;
 }
@@ -449,6 +450,16 @@ h1 {
   font-size: 1.1rem;
 }
 
+/*
+#modal-background {
+  display: none;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
+  background-color: #c4c4c460;
+}
+*/
 .opened__contact-modal {
   position: relative;
   margin: 0 auto;
@@ -536,6 +547,10 @@ h1 {
   background-color: #fafafa;
   -webkit-transform: scale(1.01);
           transform: scale(1.01);
+}
+
+#test {
+  height: 900px;
 }
 
 /*--  MEDIA QUERIES --*/
