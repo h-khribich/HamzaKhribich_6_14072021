@@ -58,6 +58,33 @@ contactButton.addEventListener('click', () => {
   contactModal.toggleAttribute('open');
   contactModal.classList.toggle('opened__contact-modal');
   modalBackground.style.display = 'block';
+  pageWrapper.setAttribute('aria-disabled', 'true');
+});
+
+// Trapping focus inside the modal for accessibility
+const modalFocusableElements = 'dialog > input, button, textarea';
+const firstFocusableElement = contactModal.querySelectorAll(modalFocusableElements)[0];
+const focusableContent = contactModal.querySelectorAll(modalFocusableElements);
+const lastFocusableElement = focusableContent[focusableContent.length - 1];
+
+document.addEventListener('keydown', (event) => {
+  const tabIsPressed = event.key === 'Tab' || event.key === 9;
+  if (!tabIsPressed) {
+    return false;
+  }
+  // In case of Shift, if the active element is the first, loop back and vice-versa
+  if (event.shiftKey) {
+    if (document.activeElement === firstFocusableElement) {
+      lastFocusableElement.focus();
+      event.preventDefault();
+    }
+  // If pressed key is Tab
+  } else {
+    if (document.activeElement === lastFocusableElement) {
+      firstFocusableElement.focus();
+      event.preventDefault();
+    }
+  }
 });
 
 // Closing the modal
@@ -65,6 +92,7 @@ closeButton.addEventListener('click', () => {
   contactModal.toggleAttribute('open');
   contactModal.classList.toggle('opened__contact-modal');
   modalBackground.style.display = 'none';
+  pageWrapper.removeAttribute('aria-disabled', 'true');
 });
 
 submitButton.addEventListener('click', () => {
@@ -72,4 +100,5 @@ submitButton.addEventListener('click', () => {
   contactModal.toggleAttribute('open');
   contactModal.classList.toggle('opened__contact-modal');
   modalBackground.style.display = 'none';
+  pageWrapper.removeAttribute('aria-disabled', 'true');
 });
