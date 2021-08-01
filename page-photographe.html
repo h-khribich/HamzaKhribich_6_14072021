@@ -12,6 +12,7 @@
         <script src="https://kit.fontawesome.com/cbf8feb3a6.js" crossorigin="anonymous"></script>
     </head>
     <body>
+      <div id="page-wrapper">
         <header class="header">
             <a class="header__logo-container" href="index.html" role="">
                 <img src="assets/fisheye_logo.svg" alt="Fisheye Home Page">
@@ -29,37 +30,37 @@
                     <ul class="name-block__taglist">
                     </ul>
                 </section>
-                <button type="button" class="contact-button">Contactez-moi</button> 
+                <button type="button" aria-label="Contact Me" class="contact-button">Contactez-moi</button> 
                 <div class="photographer-banner__img-container">
                   <img class="photographer__img">
                 </div> 
             </div>
-
-          <div id="modal-background">
-          <!-- CONTACT MODAL -->
+            <div id="test"></div>
+        </main>
+      </div>
+        
+        <div id="modal-background">
+          <div id="modal-padding">
             <dialog id="contact-modal" aria-labelledby="modal__contact-me">
               <h1 id="modal__contact-me">Contactez-moi</h1>
               <p id="modal__name"></p>
               <!-- First name -->
-              <label for="first-name" class="modal__label">Prénom</label>
-              <input type="text" name="first-name" id="first-name" aria-label="First name" class="modal__input">
+              <label for="first-name" id="label__first-name" class="modal__label">Prénom</label>
+              <input type="text" name="first-name" id="first-name" aria-label="First name" aria-labelledby="label__first-name" class="modal__input">
               <!-- Last name -->
-              <label for="last-name" class="modal__label">Nom</label>
-              <input type="text" name="last-name" id="last-name" aria-label="Last name" class="modal__input">
+              <label for="last-name" id="label__last-name" class="modal__label">Nom</label>
+              <input type="text" name="last-name" id="last-name" aria-label="Last name" aria-labelledby="label__last-name" class="modal__input">
               <!-- Email -->
-              <label for="email" class="modal__label">Email</label>
-              <input type="email" name="email" id="email" aria-label="Email" class="modal__input">
+              <label for="email" id="label__email" class="modal__label">Email</label>
+              <input type="email" name="email" id="email" aria-label="Email" aria-labelledby="label__email" class="modal__input">
               <!-- User input message -->
-              <label for="user-msg" class="modal__label">Votre message</label>
-              <textarea name="user-msg" id="user-msg" aria-label="Your message" class="modal__input"></textarea>
+              <label for="user-msg" id="label__your-message" class="modal__label">Votre message</label>
+              <textarea name="user-msg" id="user-msg" aria-label="Your message" aria-labelledby="label__your-message" class="modal__input"></textarea>
               <button type="submit" aria-label="Send" id="submit-button">Envoyer</button>
-              <button id="close-modal" aria-label="Close contact form"><img src="assets/close_button.svg" alt=""></button>
+              <button id="close-modal" aria-label="Close Contact form"><img src="assets/close_button.svg" alt=""></button>
             </dialog>
           </div>
-          <div id="test">
-
-          </div>
-        </main>
+        </div>
         <script src="photographer-page.js"></script>
     </body>
 </html>

@@ -2,6 +2,9 @@
 const params = (new URL(window.location)).searchParams;
 const pageID = parseInt(params.get('id'), 10);
 
+const mainContent = document.querySelector('main');
+const header = document.querySelector('header');
+const pageWrapper = document.getElementById('page-wrapper');
 const photographerName = document.querySelector('.name-block__name');
 const photographerLocation = document.querySelector('.name-block__location');
 const photographerTagline = document.querySelector('.name-block__tagline');
@@ -53,20 +56,20 @@ fetch('fisheye_data.json')
 // Opening the modal
 contactButton.addEventListener('click', () => {
   contactModal.toggleAttribute('open');
-  contactModal.classList.add('opened__contact-modal');
-  // modalBackground.style.display = 'block';
+  contactModal.classList.toggle('opened__contact-modal');
+  modalBackground.style.display = 'block';
 });
 
 // Closing the modal
 closeButton.addEventListener('click', () => {
   contactModal.toggleAttribute('open');
-  contactModal.classList.remove('opened__contact-modal');
-  // modalBackground.style.display = 'none';
+  contactModal.classList.toggle('opened__contact-modal');
+  modalBackground.style.display = 'none';
 });
 
 submitButton.addEventListener('click', () => {
   // contactModal validate and animate
   contactModal.toggleAttribute('open');
-  contactModal.classList.remove('opened__contact-modal');
-  // modalBackground.style.display = 'none';
+  contactModal.classList.toggle('opened__contact-modal');
+  modalBackground.style.display = 'none';
 });

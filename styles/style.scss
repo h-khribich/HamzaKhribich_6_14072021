@@ -46,7 +46,11 @@ $font-black: rgb(24, 24, 24); // Regular black color is too saturated for screen
 }
 *:focus { outline-color: $primary-color; }
 
-body { margin: 2.7rem 4.6rem 1rem; }
+body { 
+  position: relative;
+  padding: 2.7rem 4.6rem 1rem; 
+}
+
 a { text-decoration: none; }
 ul { list-style: none; }
 h1 {
@@ -256,22 +260,29 @@ h1 {
   }
 }
 
-/*
-#modal-background {
-  display: none;
-  position: absolute;
+.opened__contact-modal::backdrop {
+  position: fixed;
   top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  pointer-events: none;
+  width: 100%; height: 100%;
   background-color: #c4c4c460;
 }
-*/
+
+#modal-background {
+  display: none;
+  position: fixed;
+  overflow: scroll;
+  z-index: 999;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #c4c4c460;
+}
+
+#modal-padding { padding: 5rem 2rem; }
 
 .opened__contact-modal {
   position: relative;
+  z-index: 1000;
   margin: 0 auto; padding: 1.3rem 2.3rem;
-  width: 670px;
-  transform: translateY(-45%);
+  width: 670px; max-width: 100%;
   @include flex(flex, column, flex-start, flex-start, nowrap);
   background-color: $secondary-background;
   @include small-radius();
@@ -321,6 +332,11 @@ h1 {
     color: $font-black; background-color: $background-gray;
     transform: scale(1.01);
   }
+}
+
+.preventScroll {
+  height: 100%;
+  overflow: hidden;
 }
 
 #test { height: 900px; }

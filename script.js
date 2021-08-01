@@ -136,6 +136,8 @@ fetch('fisheye_data.json')
       filterPhotographers(tag);
     });
 
+    // If a tag is clicked on the photographer's page, it leads back to the main page
+    // then clicks on the corresponding tag
     const dataTagList = document.querySelectorAll('nav [data-tag-name]');
     function crossPageFiltering() {
       if (pageURL.match('tag')) {
