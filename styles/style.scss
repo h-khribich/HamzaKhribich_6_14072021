@@ -149,8 +149,14 @@ h1 {
         width: fit-content; min-width: 300px;
     }
 
-    &__link-container { @include flex(flex, column, center, center, nowrap); 
-    min-width: 300px;}
+    &__link-container { 
+      @include flex(flex, column, center, center, nowrap); 
+      min-width: 300px;
+      transition: .2s ease-in-out;
+
+    }
+
+    &__link-container:hover { transform: scale(1.03); }
     
     &__img {
         width: 200px; height: 200px;
@@ -302,6 +308,15 @@ h1 {
     font-size: 1.7rem;
   }
 
+  .invalid-message {
+    width: 100%;
+    color: $primary-color;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: .5rem; padding: .6rem 0;
+    border-top: 2px solid $primary-color;
+  }
+
   #user-msg { height: 170px; }
 
   #close-modal {
@@ -328,11 +343,6 @@ h1 {
   }
 }
 
-.preventScroll {
-  height: 100%;
-  overflow: hidden;
-}
-
 #test { height: 900px; }
 
 /*--  MEDIA QUERIES --*/
@@ -347,7 +357,7 @@ h1 {
 }
 
 @media screen and (max-width: 1265px){
-    body { margin: 2.2rem 1.5rem 1rem; }
+    body { padding: 2.2rem 1.5rem 1rem; }
 
     #main-title { right: 2rem; top: 2.9rem; }
 
@@ -375,7 +385,7 @@ h1 {
 }
 
 @media screen and (max-width: 475px) {
-    body { margin: 2.2rem 0 1rem; }
+    body { padding: 2.2rem 0 1rem; }
     
     #main-title { 
         font-size: .9rem;
@@ -390,7 +400,7 @@ h1 {
 }
 
 @media screen and (max-width: 374px) {
-    body { margin: 1.2rem 0 1rem; }
+    body { padding: 1.2rem 0 1rem; }
 
     .header { 
         height: 200px;
@@ -400,6 +410,10 @@ h1 {
     }
 
     #main-title { top: 5.4rem; left: 1.7rem; }
+}
+
+@media screen and (max-width: 290px) {
+    .header__nav { padding-top: 1.2rem; }
 }
 
 .hidden { display: none; }

@@ -22,6 +22,7 @@
             <!-- IMPLEMENTER UN BOUTON REVENIR EN HAUT DE LA PAGE ? -->
             <!-- AJOUTER ALT TEXTE SUR IMAGES FICHIER JSON -->
             <!-- AJOUTER ROLES AUX DIVS -->
+            <!-- FORM METHOD -->
             <div class="photographer-banner">
                 <section class="photographer-banner__name-block">
                     <h1 class="name-block__name"></h1>
@@ -39,28 +40,68 @@
         </main>
       </div>
         
+      <!-- CONTACT MODAL -->
         <div id="modal-background">
           <div id="modal-padding">
-            <dialog id="contact-modal" aria-labelledby="modal__contact-me">
+            <form action="" method="GET" id="contact-modal" aria-labelledby="modal__contact-me">
               <h1 id="modal__contact-me">Contactez-moi</h1>
               <p id="modal__name"></p>
               <!-- First name -->
               <label for="first-name" id="label__first-name" class="modal__label">Prénom</label>
-              <input type="text" name="first-name" id="first-name" aria-label="First name" aria-labelledby="label__first-name" class="modal__input">
+              <input 
+                type="text" 
+                name="first-name" 
+                id="first-name" 
+                aria-label="First name" 
+                aria-labelledby="label__first-name" 
+                class="modal__input">
+              <p class="hidden invalid-message" id="first-name-invalid_message">
+                Veuilliez saisir plus de deux caractères
+              </p>
+
               <!-- Last name -->
               <label for="last-name" id="label__last-name" class="modal__label">Nom</label>
-              <input type="text" name="last-name" id="last-name" aria-label="Last name" aria-labelledby="label__last-name" class="modal__input">
+              <input 
+                type="text" 
+                name="last-name" 
+                id="last-name" 
+                aria-label="Last name" 
+                aria-labelledby="label__last-name" 
+                class="modal__input">
+              <p class="hidden invalid-message" id="last-name-invalid_message">
+                Veuilliez saisir plus de deux caractères
+              </p>
+
               <!-- Email -->
               <label for="email" id="label__email" class="modal__label">Email</label>
-              <input type="email" name="email" id="email" aria-label="Email" aria-labelledby="label__email" class="modal__input">
+              <input 
+                type="email" 
+                name="email" 
+                id="email" 
+                aria-label="Email" 
+                aria-labelledby="label__email" 
+                class="modal__input">
+              <p class="hidden invalid-message" id="email-invalid_message">
+                Veuilliez saisir un email valide
+              </p>
+
               <!-- User input message -->
               <label for="user-msg" id="label__your-message" class="modal__label">Votre message</label>
-              <textarea name="user-msg" id="user-msg" aria-label="Your message" aria-labelledby="label__your-message" class="modal__input"></textarea>
+              <textarea 
+                name="user-msg" 
+                id="user-msg" 
+                aria-label="Your message" 
+                aria-labelledby="label__your-message" 
+                class="modal__input">
+              </textarea>
+
+              <!-- Close and Submit buttons -->
               <button type="submit" aria-label="Send" id="submit-button">Envoyer</button>
               <button id="close-modal" aria-label="Close Contact form"><img src="assets/close_button.svg" alt=""></button>
-            </dialog>
+            </form>
           </div>
         </div>
         <script src="photographer-page.js"></script>
+        <script src="modal.js"></script>
     </body>
 </html>

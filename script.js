@@ -60,7 +60,7 @@ function addPhotographerPreview(element) {
 
   const photographerLinkContainer = photographerSection.appendChild(document.createElement('a'));
   photographerLinkContainer.classList.add('photographer__link-container');
-  photographerLinkContainer.setAttribute('href', `page-photographe.html?id=${element.id}`);
+  photographerLinkContainer.setAttribute('href', `page-photographe.html?id=${element.id}&name=${element.name}`);
   photographerLinkContainer.setAttribute('id', `${element.id}`);
   photographerLinkContainer.setAttribute('aria-label', `${element.name}`);
   photographerLinkContainer.animate([
