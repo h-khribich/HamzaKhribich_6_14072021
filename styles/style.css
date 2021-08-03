@@ -471,6 +471,12 @@ h1 {
 }
 
 #modal-padding {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 5rem 2rem;
 }
 
@@ -574,8 +580,21 @@ h1 {
           transform: scale(1.01);
 }
 
-#test {
-  height: 900px;
+#validation__dialog {
+  margin: 0 auto;
+  background-color: #db8876;
+}
+
+#validation__close {
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+#validation__message {
+  padding: 5rem 3rem;
 }
 
 /*--  MEDIA QUERIES --*/

@@ -11,15 +11,21 @@ const modalInputs = document.querySelectorAll('form > input');
 const contactButton = document.querySelector('.contact-button');
 const closeButton = document.getElementById('close-modal');
 const submitButton = document.getElementById('submit-button');
+const closeValidationMsg = document.getElementById('validation__close');
+const confirmButton = document.getElementById('validation__confirm-button');
 
 // Specific inputs selectors
-// Adding invalid messages to be shown when relevant
+// Adding specific invalid messages to be shown when relevant
 const firstName = document.getElementById('first-name');
 const firstNameInvalid = document.getElementById('first-name-invalid_message');
 const lastName = document.getElementById('last-name');
 const lastNameInvalid = document.getElementById('last-name-invalid_message');
 const email = document.getElementById('email');
 const emailInvalid = document.getElementById('email-invalid_message');
+
+// Validation message selectors
+const validationModal = document.getElementById('validation__dialog');
+const validationMessage = document.getElementById('validation__message');
 
 /* -- Contact modal -- */
 
@@ -29,7 +35,7 @@ contactModal.setAttribute('aria-label', `Contact me ${getName}`);
 
 // Opening the modal
 contactButton.addEventListener('click', () => {
-  contactModal.toggleAttribute('open');
+  contactModal.style.visibility = 'visible';
   contactModal.classList.toggle('opened__contact-modal');
   modalBackground.style.display = 'block';
   pageWrapper.setAttribute('aria-disabled', 'true');
@@ -133,29 +139,47 @@ function checkAllInputs() {
   }
 }
 
+// Removing 'required' attribute to avoid errors and closing the modal
 function closeAndSubmit() {
   modalInputs.forEach((input) => {
     input.toggleAttribute('required');
   });
-  contactModal.toggleAttribute('open');
-  contactModal.classList.toggle('opened__contact-modal');
-  modalBackground.style.display = 'none';
-  pageWrapper.removeAttribute('aria-disabled', 'true');
+  contactModal.style.visibility = 'hidden';
 }
 
-// Closing the modal
-closeButton.addEventListener('click', (e) => {
-  e.preventDefault();
-  modalInputs.forEach((input) => {
-    input.toggleAttribute('required');
+// Displaying validation message
+function validationEvent() {
+  validationModal.animate(
+    [{ opacity: '0' },
+
+      { opacity: '1', transform: 'translateY(999px)' },
+    ], 1000,
+  );
+  validationModal.showModal();
+  validationMessage.innerText = `Merci d'avoir pris contact avec ${getName}`;
+}
+
+// Both 'dialog' and 'form' close buttons behave identically
+[closeButton, closeValidationMsg, confirmButton].forEach((button) => {
+  button.addEventListener('click', (event) => {
+    event.preventDefault();
+    modalInputs.forEach((input) => {
+      input.toggleAttribute('required');
+    });
+    contactModal.classList.toggle('opened__contact-modal');
+    contactModal.style.visibility = 'hidden';
+    modalBackground.style.display = 'none';
+    pageWrapper.removeAttribute('aria-disabled', 'true');
   });
-  contactModal.toggleAttribute('open');
-  contactModal.classList.toggle('opened__contact-modal');
-  modalBackground.style.display = 'none';
-  pageWrapper.removeAttribute('aria-disabled', 'true');
 });
 
-// Submitting the modal
+[closeValidationMsg, confirmButton].forEach((button) => {
+  button.addEventListener('click', () => {
+    validationModal.close();
+  });
+});
+
+// Submitting event
 submitButton.addEventListener('click', (e) => {
   e.preventDefault();
   // If the form is valid, submit it, else, highlight invalid inputs
@@ -163,16 +187,24 @@ submitButton.addEventListener('click', (e) => {
     console.log(firstName.value);
     console.log(lastName.value);
     console.log(email.value);
+
     // Submission animation
     contactModal.animate(
       [{ opacity: '1' },
 
         { opacity: '0', transform: 'translateY(-999px)' },
-      ], 900,
+      ], 1000,
     );
-    // Give time for animation completion before closing all
-    setTimeout(closeAndSubmit, 900);
+    // Clearing the modal after submission
+    contactModal.reset();
+    // Returning to top of modal
+    setTimeout(closeButton.focus(), 1000);
+    // Removing form from view
+    setTimeout(closeAndSubmit, 1000);
+    // Validation message
+    setTimeout(validationEvent, 1000);
   } else {
+    // Checking every input at once
     checkAllInputs();
   }
 });

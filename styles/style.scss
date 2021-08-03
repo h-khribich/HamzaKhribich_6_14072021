@@ -275,7 +275,11 @@ h1 {
   background-color: #c4c4c460;
 }
 
-#modal-padding { padding: 5rem 2rem; }
+#modal-padding {
+  display: flex;
+  align-items: center;
+  padding: 5rem 2rem; 
+}
 
 .opened__contact-modal {
   position: relative;
@@ -343,7 +347,20 @@ h1 {
   }
 }
 
-#test { height: 900px; }
+#validation {
+  &__dialog {
+    margin: 0 auto;
+    background-color: $secondary-background; 
+  }
+
+  &__close { 
+    width: 42px; height: 42px;
+    cursor: pointer;
+    background: none; border: none;
+  }
+
+  &__message { padding: 5rem 3rem; }
+}
 
 /*--  MEDIA QUERIES --*/
 @media screen and (max-width: 1365px){

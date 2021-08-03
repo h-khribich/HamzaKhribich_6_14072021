@@ -56,7 +56,7 @@
                 aria-labelledby="label__first-name" 
                 class="modal__input">
               <p class="hidden invalid-message" id="first-name-invalid_message">
-                Veuilliez saisir plus de deux caractères
+                Veuilliez saisir plus de deux caractères (sans-espace)
               </p>
 
               <!-- Last name -->
@@ -69,7 +69,7 @@
                 aria-labelledby="label__last-name" 
                 class="modal__input">
               <p class="hidden invalid-message" id="last-name-invalid_message">
-                Veuilliez saisir plus de deux caractères
+                Veuilliez saisir plus de deux caractères (sans-espace)
               </p>
 
               <!-- Email -->
@@ -97,8 +97,25 @@
 
               <!-- Close and Submit buttons -->
               <button type="submit" aria-label="Send" id="submit-button">Envoyer</button>
-              <button id="close-modal" aria-label="Close Contact form"><img src="assets/close_button.svg" alt=""></button>
+              <button 
+                id="close-modal"
+                class="close"
+                aria-label="Close Contact form">
+                <img src="assets/close_button.svg" alt="">
+              </button>
             </form>
+
+            <!-- Validation message -->
+            <dialog id="validation__dialog">
+              <button 
+                id="validation__close" 
+                aria-label="Close Contact form">
+                <img src="assets/close_button.svg" alt="">
+              </button>              
+              <p id="validation__message"></p>
+              <button id="validation__confirm-button">Super !</button>
+            </dialog>
+
           </div>
         </div>
         <script src="photographer-page.js"></script>
