@@ -13,6 +13,7 @@ const closeButton = document.getElementById('close-modal');
 const submitButton = document.getElementById('submit-button');
 const closeValidationMsg = document.getElementById('validation__close');
 const confirmButton = document.getElementById('validation__confirm-button');
+const modalPadding = document.getElementById('modal-padding');
 
 // Specific inputs selectors
 // Adding specific invalid messages to be shown when relevant
@@ -35,9 +36,9 @@ contactModal.setAttribute('aria-label', `Contact me ${getName}`);
 
 // Opening the modal
 contactButton.addEventListener('click', () => {
-  contactModal.style.visibility = 'visible';
-  contactModal.classList.toggle('opened__contact-modal');
-  modalBackground.style.display = 'block';
+  contactModal.classList.remove('hidden');
+  contactModal.classList.add('opened__contact-modal');
+  modalBackground.classList.remove('hidden');
   pageWrapper.setAttribute('aria-disabled', 'true');
 
   // 'Required' has to be added dynamically to prevent errors when required inputs are hidden
@@ -144,45 +145,50 @@ function closeAndSubmit() {
   modalInputs.forEach((input) => {
     input.toggleAttribute('required');
   });
-  contactModal.style.visibility = 'hidden';
+  contactModal.classList.add('hidden');
+  contactModal.classList.remove('opened__contact-modal');
 }
 
 // Displaying validation message
 function validationEvent() {
+  // Centering the message
+  modalPadding.style.height = '100%';
+  validationMessage.innerText = `Merci d'avoir pris contact avec ${getName}`;
+  validationModal.classList.remove('hidden');
   validationModal.animate(
-    [{ opacity: '0' },
+    [{ opacity: '0', transform: 'translateY(-999px)' },
 
-      { opacity: '1', transform: 'translateY(999px)' },
+      { opacity: '1' },
     ], 1000,
   );
-  validationModal.showModal();
-  validationMessage.innerText = `Merci d'avoir pris contact avec ${getName}`;
 }
 
 // Both 'dialog' and 'form' close buttons behave identically
-[closeButton, closeValidationMsg, confirmButton].forEach((button) => {
-  button.addEventListener('click', (event) => {
-    event.preventDefault();
-    modalInputs.forEach((input) => {
-      input.toggleAttribute('required');
-    });
-    contactModal.classList.toggle('opened__contact-modal');
-    contactModal.style.visibility = 'hidden';
-    modalBackground.style.display = 'none';
-    pageWrapper.removeAttribute('aria-disabled', 'true');
+closeButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  modalInputs.forEach((input) => {
+    input.toggleAttribute('required');
   });
+  contactModal.classList.remove('opened__contact-modal');
+  contactModal.classList.add('hidden');
+  modalBackground.classList.add('hidden');
+  pageWrapper.removeAttribute('aria-disabled', 'true');
 });
 
 [closeValidationMsg, confirmButton].forEach((button) => {
   button.addEventListener('click', () => {
-    validationModal.close();
+    modalPadding.style.height = 'auto';
+    validationModal.classList.add('hidden');
+    modalBackground.classList.add('hidden');
+    pageWrapper.removeAttribute('aria-disabled', 'true');
   });
 });
 
 // Submitting event
+// If the form is valid, submit it, else, highlight invalid inputs
 submitButton.addEventListener('click', (e) => {
+  // If form is valid, log user input
   e.preventDefault();
-  // If the form is valid, submit it, else, highlight invalid inputs
   if (contactModal.checkValidity()) {
     console.log(firstName.value);
     console.log(lastName.value);
@@ -192,7 +198,7 @@ submitButton.addEventListener('click', (e) => {
     contactModal.animate(
       [{ opacity: '1' },
 
-        { opacity: '0', transform: 'translateY(-999px)' },
+        { opacity: '.2', transform: 'translateY(-999px)' },
       ], 1000,
     );
     // Clearing the modal after submission

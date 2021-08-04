@@ -33,6 +33,10 @@ h1 {
   color: #901c1c;
 }
 
+.hidden {
+  display: none;
+}
+
 /*-- HEADER --*/
 .header {
   display: -webkit-inline-box;
@@ -459,7 +463,6 @@ h1 {
 }
 
 #modal-background {
-  display: none;
   position: fixed;
   overflow: scroll;
   z-index: 999;
@@ -471,9 +474,13 @@ h1 {
 }
 
 #modal-padding {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -581,20 +588,52 @@ h1 {
 }
 
 #validation__dialog {
-  margin: 0 auto;
+  position: relative;
+  max-width: 550px;
+  border: none;
+  border-radius: 5px;
+  padding: 2rem;
   background-color: #db8876;
 }
 
 #validation__close {
+  position: absolute;
   width: 42px;
   height: 42px;
+  right: 2rem;
   cursor: pointer;
   background: none;
   border: none;
 }
 
 #validation__message {
-  padding: 5rem 3rem;
+  padding: 5rem 3rem 3rem;
+  text-align: center;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+#validation__confirm-button {
+  display: block;
+  margin: 0 auto;
+  padding: 1.2rem 2.5rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: #fafafa;
+  background-color: #901c1c;
+  border: none;
+  border-radius: 5px;
+  -webkit-transition: .2s ease-in-out;
+  transition: .2s ease-in-out;
+}
+
+#validation__confirm-button:hover {
+  color: #181818;
+  background-color: #fff;
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
 }
 
 /*--  MEDIA QUERIES --*/
@@ -690,9 +729,5 @@ h1 {
   .header__nav {
     padding-top: 1.2rem;
   }
-}
-
-.hidden {
-  display: none;
 }
 /*# sourceMappingURL=style.css.map */

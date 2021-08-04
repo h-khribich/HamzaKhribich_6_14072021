@@ -58,6 +58,8 @@ h1 {
     color: $primary-color;
 }
 
+.hidden { display: none; }
+
 /*-- HEADER --*/
 .header {
     @include flex(inline-flex, row, space-between, center, wrap);
@@ -267,7 +269,6 @@ h1 {
 }
 
 #modal-background {
-  display: none;
   position: fixed;
   overflow: scroll;
   z-index: 999;
@@ -276,7 +277,9 @@ h1 {
 }
 
 #modal-padding {
+  position: relative;
   display: flex;
+  justify-content: center;
   align-items: center;
   padding: 5rem 2rem; 
 }
@@ -349,17 +352,43 @@ h1 {
 
 #validation {
   &__dialog {
-    margin: 0 auto;
+    position: relative;
+    max-width: 550px;
+    @include small-radius();
+    padding: 2rem;
     background-color: $secondary-background; 
   }
 
   &__close { 
+    position: absolute;
     width: 42px; height: 42px;
+    right: 2rem;
     cursor: pointer;
     background: none; border: none;
   }
 
-  &__message { padding: 5rem 3rem; }
+  &__message { 
+    padding: 5rem 3rem 3rem;
+    text-align: center;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 500;
+  }
+
+  &__confirm-button {
+    display: block;
+    margin: 0 auto; padding: 1.2rem 2.5rem;
+    font-size: 1.15rem; font-weight: 700;
+    cursor: pointer;
+    color: #fafafa; background-color: $primary-color;
+    @include small-radius();
+    transition: .2s ease-in-out;
+
+    &:hover {
+      color: $font-black; background-color: #fff;
+      transform: scale(1.01);
+    }
+  }
 }
 
 /*--  MEDIA QUERIES --*/
@@ -432,5 +461,3 @@ h1 {
 @media screen and (max-width: 290px) {
     .header__nav { padding-top: 1.2rem; }
 }
-
-.hidden { display: none; }

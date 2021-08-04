@@ -41,9 +41,9 @@
       </div>
         
       <!-- CONTACT MODAL -->
-        <div id="modal-background">
+        <div id="modal-background" class="hidden">
           <div id="modal-padding">
-            <form action="" method="GET" id="contact-modal" aria-labelledby="modal__contact-me">
+            <form action="" method="GET" id="contact-modal" aria-labelledby="modal__contact-me" class="hidden">
               <h1 id="modal__contact-me">Contactez-moi</h1>
               <p id="modal__name"></p>
               <!-- First name -->
@@ -106,7 +106,7 @@
             </form>
 
             <!-- Validation message -->
-            <dialog id="validation__dialog">
+            <div id="validation__dialog" role="dialog" class="hidden">
               <button 
                 id="validation__close" 
                 aria-label="Close Contact form">
@@ -114,7 +114,7 @@
               </button>              
               <p id="validation__message"></p>
               <button id="validation__confirm-button">Super !</button>
-            </dialog>
+            </div>
 
           </div>
         </div>
