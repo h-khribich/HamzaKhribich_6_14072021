@@ -16,7 +16,13 @@
 
 body {
   position: relative;
+  max-width: 1600px;
+  margin: 0 auto;
   padding: 2.7rem 4.6rem 1rem;
+}
+
+main {
+  position: relative;
 }
 
 a {
@@ -188,8 +194,8 @@ h1 {
 /*-- MAIN CONTENT--*/
 #main-title {
   position: absolute;
-  top: 3.4rem;
-  right: 7.5rem;
+  top: -3.2rem;
+  right: 2.7rem;
 }
 
 #main-grid {
@@ -647,15 +653,14 @@ h1 {
   .header nav {
     width: 100%;
   }
+  #main-title {
+    top: -6.4rem;
+  }
 }
 
 @media screen and (max-width: 1265px) {
   body {
     padding: 2.2rem 1.5rem 1rem;
-  }
-  #main-title {
-    right: 2rem;
-    top: 2.9rem;
   }
   #main-grid {
     -webkit-box-pack: space-evenly;
@@ -678,16 +683,23 @@ h1 {
   .header__link {
     display: none;
   }
+  #main-title {
+    top: -9.2rem;
+    right: 1rem;
+  }
 }
 
 @media screen and (max-width: 625px) {
   #main-title {
     font-size: 1.5rem;
-    top: 3.2rem;
+    top: -11.2rem;
   }
   .header__logo-container img {
     width: 160px;
     height: 53px;
+  }
+  .header__nav {
+    max-width: 570px;
   }
 }
 
@@ -697,7 +709,8 @@ h1 {
   }
   #main-title {
     font-size: .9rem;
-    top: 3.6rem;
+    top: -10.9rem;
+    right: 3rem;
   }
   #main-grid {
     row-gap: 2rem;
@@ -723,8 +736,11 @@ h1 {
     margin: 0;
   }
   #main-title {
-    top: 5.4rem;
+    top: -8.4rem;
     left: 1.7rem;
+  }
+  #main-grid {
+    margin: 0;
   }
 }
 
