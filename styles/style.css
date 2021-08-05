@@ -33,10 +33,6 @@ h1 {
   color: #901c1c;
 }
 
-.hidden {
-  display: none;
-}
-
 /*-- HEADER --*/
 .header {
   display: -webkit-inline-box;
@@ -197,7 +193,8 @@ h1 {
 }
 
 #main-grid {
-  margin: 4.5rem 0;
+  margin: 0 auto;
+  padding: 4.5rem 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -205,15 +202,16 @@ h1 {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  gap: 5rem;
+  -webkit-column-gap: 10rem;
+          column-gap: 10rem;
+  row-gap: 5rem;
   max-width: 1430px;
 }
 
@@ -236,7 +234,7 @@ h1 {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  min-width: 300px;
+  min-width: 280px;
 }
 
 .photographer__link-container {
@@ -255,7 +253,7 @@ h1 {
           align-items: center;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
-  min-width: 300px;
+  min-width: 280px;
   -webkit-transition: .2s ease-in-out;
   transition: .2s ease-in-out;
 }
@@ -280,6 +278,7 @@ h1 {
   font-size: 2.1rem;
   font-weight: 400;
   color: #d3573c;
+  text-align: center;
 }
 
 .photographer__location {
@@ -307,9 +306,9 @@ h1 {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -632,8 +631,8 @@ h1 {
 #validation__confirm-button:hover {
   color: #181818;
   background-color: #fff;
-  -webkit-transform: scale(1.01);
-          transform: scale(1.01);
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
 }
 
 /*--  MEDIA QUERIES --*/
@@ -668,6 +667,7 @@ h1 {
 @media screen and (max-width: 680px) {
   #main-grid {
     margin: 1.5rem 0;
+    padding: 1rem 0;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -699,6 +699,9 @@ h1 {
     font-size: .9rem;
     top: 3.6rem;
   }
+  #main-grid {
+    row-gap: 2rem;
+  }
   .header {
     padding: 0 1rem;
   }
@@ -729,5 +732,12 @@ h1 {
   .header__nav {
     padding-top: 1.2rem;
   }
+  .photographer__taglist {
+    line-height: 2.1;
+  }
+}
+
+.hidden {
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */

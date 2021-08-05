@@ -58,8 +58,6 @@ h1 {
     color: $primary-color;
 }
 
-.hidden { display: none; }
-
 /*-- HEADER --*/
 .header {
     @include flex(inline-flex, row, space-between, center, wrap);
@@ -139,21 +137,23 @@ h1 {
 }
 
 #main-grid {
-    margin: 4.5rem 0;
-    @include flex(flex, row, space-between, center, wrap);
-    gap: 5rem;
+    margin: 0 auto;
+    padding: 4.5rem 0;
+    @include flex(flex, row, space-around, center, wrap);
+    column-gap: 10rem;
+    row-gap: 5rem;
     max-width: 1430px;
 }
 
 .photographer {
     &__section { 
         @include flex(flex, column, center, center, wrap);
-        width: fit-content; min-width: 300px;
+        width: fit-content; min-width: 280px;
     }
 
     &__link-container { 
       @include flex(flex, column, center, center, nowrap); 
-      min-width: 300px;
+      min-width: 280px;
       transition: .2s ease-in-out;
 
     }
@@ -172,6 +172,7 @@ h1 {
         font-size: 2.1rem;
         font-weight: 400;
         color: $secondary-color;
+        text-align: center;
     }
 
     &__location {
@@ -192,7 +193,7 @@ h1 {
     }
 
     &__taglist {
-        @include flex(flex, row, flex-start, center, wrap);
+        @include flex(flex, row, center, center, wrap);
     }
 }
 
@@ -386,7 +387,7 @@ h1 {
 
     &:hover {
       color: $font-black; background-color: #fff;
-      transform: scale(1.01);
+      transform: scale(1.03);
     }
   }
 }
@@ -412,7 +413,8 @@ h1 {
 
 @media screen and (max-width: 680px) {
     #main-grid { 
-      margin: 1.5rem 0; 
+      margin: 1.5rem 0;
+      padding: 1rem 0;
       justify-content: center;
     }
 
@@ -438,6 +440,8 @@ h1 {
         top: 3.6rem;
     }
 
+    #main-grid { row-gap: 2rem; }
+
     .header {
         padding: 0 1rem;
 
@@ -460,4 +464,8 @@ h1 {
 
 @media screen and (max-width: 290px) {
     .header__nav { padding-top: 1.2rem; }
+
+    .photographer__taglist { line-height: 2.1; }
 }
+
+.hidden { display: none; }

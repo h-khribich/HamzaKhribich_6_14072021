@@ -190,10 +190,7 @@ submitButton.addEventListener('click', (e) => {
   // If form is valid, log user input
   e.preventDefault();
   if (contactModal.checkValidity()) {
-    console.log(firstName.value);
-    console.log(lastName.value);
-    console.log(email.value);
-
+    console.log(`Prénom: ${firstName.value}\nNom: ${lastName.value}\nEmail: ${email.value}`);
     // Submission animation
     contactModal.animate(
       [{ opacity: '1' },

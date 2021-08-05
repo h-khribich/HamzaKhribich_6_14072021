@@ -28,7 +28,6 @@ function filterPhotographers(element) {
     // If no tag has been selected, show all photographers
     if (activeTagsArray.length <= 0) {
       const elementsToDisplay = document.querySelectorAll('section');
-      mainGrid.style.justifyContent = 'space-between';
       elementsToDisplay.forEach((elementToDisplay) => {
         elementToDisplay.classList.remove('hidden');
       });
@@ -46,8 +45,6 @@ function filterPhotographers(element) {
       const elementsToDisplay = document.querySelectorAll(`section[data-tags*="${tag}"]`);
       elementsToDisplay.forEach((elementToDisplay) => {
         elementToDisplay.classList.remove('hidden');
-        // Preventing a gap in the middle of the page when 5 photographers are displayed
-        mainGrid.style.justifyContent = 'space-evenly';
       });
     });
   });
