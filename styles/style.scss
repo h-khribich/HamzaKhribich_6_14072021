@@ -419,6 +419,8 @@ h1 {
   color: #fff; background-color: $primary-color;
 }
 
+.hidden { display: none; }
+
 /*--  MEDIA GALLERY --*/
 #media-gallery {
   display: grid;
@@ -440,8 +442,6 @@ h1 {
 
 @media screen and (max-width: 1265px){
     body { padding: 2.2rem 1.5rem 1rem; }
-
-    // #main-title { right: 2rem; top: 2.9rem; }
 
     #main-grid { justify-content: space-evenly; }
 }
@@ -508,5 +508,3 @@ h1 {
 
     .photographer__taglist { line-height: 2.1; }
 }
-
-.hidden { display: none; }

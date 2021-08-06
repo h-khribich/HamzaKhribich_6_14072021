@@ -669,6 +669,10 @@ h1 {
   background-color: #901c1c;
 }
 
+.hidden {
+  display: none;
+}
+
 /*--  MEDIA GALLERY --*/
 #media-gallery {
   display: -ms-grid;
@@ -787,9 +791,5 @@ h1 {
   .photographer__taglist {
     line-height: 2.1;
   }
-}
-
-.hidden {
-  display: none;
 }
 /*# sourceMappingURL=style.css.map */
