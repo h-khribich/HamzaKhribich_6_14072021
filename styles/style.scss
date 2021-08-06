@@ -202,10 +202,12 @@ h1 {
 }
 
 /*--  PHOTOGRAPHER PAGE --*/
+
+/*--  PHOTOGRAPHER BANNER --*/
 .photographer-banner {
     @include flex(flex, row, flex-start, center, wrap);
     height: 310px;
-    margin: 2.2rem 0;
+    margin: 2.2rem 0 .4rem;
     padding: 2.3rem 2.5rem;
     background-color: $background-gray;
     @include small-radius();
@@ -246,6 +248,7 @@ h1 {
     }
 }
 
+/*--  PHOTOGRAPHER BANNER - NAME BLOCK --*/
 .name-block {
   &__name {
     font-size: 4rem;
@@ -273,6 +276,7 @@ h1 {
   }
 }
 
+/*--  CONTACT MODAL --*/
 #modal-background {
   position: fixed;
   overflow: scroll;
@@ -355,6 +359,7 @@ h1 {
   }
 }
 
+/*--  MODAL VALIDATION MESSAGE --*/
 #validation {
   &__dialog {
     position: relative;
@@ -394,6 +399,30 @@ h1 {
       transform: scale(1.03);
     }
   }
+}
+
+/*--  ORDER BY --*/
+#label__order-by { margin-right: .9rem; }
+
+#label__order-by,
+#order-by {
+  appearance: none;
+  background-image: url('../assets/svg-assets/dropdown_arrow.svg');
+  background-repeat: no-repeat;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+#order-by {
+  @include small-radius();
+  padding: 1rem;
+  color: #fff; background-color: $primary-color;
+}
+
+/*--  MEDIA GALLERY --*/
+#media-gallery {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
 }
 
 /*--  MEDIA QUERIES --*/

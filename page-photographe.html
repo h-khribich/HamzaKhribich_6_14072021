@@ -7,22 +7,24 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-        <link rel="icon" type="image/svg+xml" href="assets/fisheye_favicon.svg"/>
+        <link rel="icon" type="image/svg+xml" href="assets/svg-assets/fisheye_favicon.svg"/>
         <link rel="stylesheet" href="styles/style.css">
         <script src="https://kit.fontawesome.com/cbf8feb3a6.js" crossorigin="anonymous"></script>
     </head>
+    <!-- IMPLEMENTER UN BOUTON REVENIR EN HAUT DE LA PAGE ? -->
+            <!-- AJOUTER ROLES AUX DIVS -->
     <body>
       <div id="page-wrapper">
+        <!-- HEADER -->
         <header class="header">
             <a class="header__logo-container" href="index.html" role="">
-                <img src="assets/fisheye_logo.svg" alt="Fisheye Home Page">
+                <img src="assets/svg-assets/fisheye_logo.svg" alt="Fisheye Home Page">
             </a>
         </header>
+        <!-- MAIN CONTENT -->
         <main>
-            <!-- IMPLEMENTER UN BOUTON REVENIR EN HAUT DE LA PAGE ? -->
-            <!-- AJOUTER ALT TEXTE SUR IMAGES FICHIER JSON -->
-            <!-- AJOUTER ROLES AUX DIVS -->
-            <!-- FORM METHOD -->
+
+            <!-- PHOTOGRAPHER BANNER -->
             <div class="photographer-banner">
                 <section class="photographer-banner__name-block">
                     <h1 class="name-block__name"></h1>
@@ -36,7 +38,22 @@
                   <img class="photographer__img">
                 </div> 
             </div>
-            <div id="test"></div>
+
+            <!-- 'ORDER-BY' -->
+            <div>
+              <label for="order-by" id="label__order-by">Trier par</label>
+              <select name="order-media" id="order-by" aria-label="Order by" aria-labelledby="label__order-by">
+                <option value="popularité">Popularité</option>
+                <option value="date">Date</option>
+                <option value="titre">Titre</option>
+              </select>
+            </div>
+
+            <!-- MEDIA GALLERY -->
+            <div id="media-gallery">
+
+            </div>
+
         </main>
       </div>
         
@@ -101,7 +118,7 @@
                 id="close-modal"
                 class="close"
                 aria-label="Close Contact form">
-                <img src="assets/close_button.svg" alt="">
+                <img src="assets/svg-assets/close_button.svg" alt="">
               </button>
             </form>
 
@@ -110,7 +127,7 @@
               <button 
                 id="validation__close" 
                 aria-label="Close Contact form">
-                <img src="assets/close_button.svg" alt="">
+                <img src="assets/svg-assets/close_button.svg" alt="">
               </button>              
               <p id="validation__message"></p>
               <button id="validation__confirm-button">Super !</button>
@@ -118,7 +135,8 @@
 
           </div>
         </div>
-        <script src="photographer-page.js"></script>
-        <script src="modal.js"></script>
+        <script type="module" src="photographer-page.js"></script>
+        <script type="module" src="modal.js"></script>
+        <script type="module" src="media-factory.js"></script>
     </body>
 </html>

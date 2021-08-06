@@ -1,6 +1,9 @@
 /* -- General & DOM Selectors -- */
 const params = (new URL(window.location)).searchParams;
-const pageID = parseInt(params.get('id'), 10);
+const pageId = parseInt(params.get('id'), 10);
+
+// Using the photographer ID variable in other files
+export default pageId;
 
 // Photographer selectors
 const photographerName = document.querySelector('.name-block__name');
@@ -36,7 +39,7 @@ fetch('fisheye_data.json')
   .then((response) => response.json())
   .then((data) => {
     data.photographers.forEach((photographer) => {
-      if (photographer.id === pageID) {
+      if (photographer.id === pageId) {
         fillPhotographerBanner(photographer);
       }
     });
