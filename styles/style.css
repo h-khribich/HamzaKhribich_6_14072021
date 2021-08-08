@@ -664,11 +664,12 @@ h1 {
 #order-by {
   border: none;
   border-radius: 5px;
-  padding: 1rem;
-  color: #fff;
-  background-color: #901c1c;
 }
 
+/*
+#order-by > option padding: 1rem;
+color: #fff; background-color: $primary-color;
+*/
 .hidden {
   display: none;
 }

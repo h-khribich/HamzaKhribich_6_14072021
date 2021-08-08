@@ -34,19 +34,6 @@ const validationMessage = document.getElementById('validation__message');
 modalName.innerText = getName;
 contactModal.setAttribute('aria-label', `Contact me ${getName}`);
 
-// Opening the modal
-contactButton.addEventListener('click', () => {
-  contactModal.classList.remove('hidden');
-  contactModal.classList.add('opened__contact-modal');
-  modalBackground.classList.remove('hidden');
-  pageWrapper.setAttribute('aria-disabled', 'true');
-
-  // 'Required' has to be added dynamically to prevent errors when required inputs are hidden
-  modalInputs.forEach((input) => {
-    input.toggleAttribute('required');
-  });
-});
-
 // Trapping focus inside the modal for accessibility
 const modalFocusableElements = 'form > input, button, textarea';
 const firstFocusableElement = contactModal.querySelectorAll(modalFocusableElements)[0];
@@ -65,12 +52,24 @@ document.addEventListener('keydown', (event) => {
       event.preventDefault();
     }
   // If pressed key is Tab
-  } else {
-    if (document.activeElement === lastFocusableElement) {
-      firstFocusableElement.focus();
-      event.preventDefault();
-    }
+  } else if (document.activeElement === lastFocusableElement) {
+    firstFocusableElement.focus();
+    event.preventDefault();
   }
+});
+
+// Opening the modal
+contactButton.addEventListener('click', () => {
+  contactModal.classList.remove('hidden');
+  contactModal.classList.add('opened__contact-modal');
+  modalBackground.classList.remove('hidden');
+  pageWrapper.setAttribute('aria-disabled', 'true');
+  firstFocusableElement.focus();
+
+  // 'Required' has to be added dynamically to prevent errors when required inputs are hidden
+  modalInputs.forEach((input) => {
+    input.toggleAttribute('required');
+  });
 });
 
 /* -- INPUTS REGEX VALIDATION -- */

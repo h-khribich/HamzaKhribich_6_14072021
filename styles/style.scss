@@ -413,11 +413,12 @@ h1 {
   font-weight: 700;
 }
 
-#order-by {
-  @include small-radius();
-  padding: 1rem;
-  color: #fff; background-color: $primary-color;
-}
+#order-by { @include small-radius(); }
+
+/*
+#order-by > option padding: 1rem;
+color: #fff; background-color: $primary-color;
+*/
 
 .hidden { display: none; }
 

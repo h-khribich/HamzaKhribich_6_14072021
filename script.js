@@ -120,6 +120,17 @@ function addPhotographerPreview(element) {
   });
 }
 
+function crossPageFiltering() {
+  const dataTagList = document.querySelectorAll('nav [data-tag-name]');
+  if (pageURL.match('tag')) {
+    dataTagList.forEach((dataTag) => {
+      if (dataTag.innerText.match(crossPageTag)) {
+        dataTag.click();
+      }
+    });
+  }
+}
+
 /* -- Fetching JSON data to fill the page -- */
 fetch('fisheye_data.json')
   .then((response) => response.json())
@@ -135,16 +146,6 @@ fetch('fisheye_data.json')
 
     // If a tag is clicked on the photographer's page, it leads back to the main page
     // then clicks on the corresponding tag
-    const dataTagList = document.querySelectorAll('nav [data-tag-name]');
-    function crossPageFiltering() {
-      if (pageURL.match('tag')) {
-        dataTagList.forEach((dataTag) => {
-          if (dataTag.innerText.match(crossPageTag)) {
-            dataTag.click();
-          }
-        });
-      }
-    }
     crossPageFiltering();
   })
   .catch((err) => (err));

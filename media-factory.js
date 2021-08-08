@@ -1,5 +1,5 @@
 /* -- General & DOM Selectors -- */
-import pageId from './photographer-page.js';
+const pageId = localStorage.getItem('pageId');
 
 const photographerMedia = [];
 

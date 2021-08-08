@@ -2,8 +2,7 @@
 const params = (new URL(window.location)).searchParams;
 const pageId = parseInt(params.get('id'), 10);
 
-// Using the photographer ID variable in other files
-export default pageId;
+localStorage.setItem('pageId', pageId);
 
 // Photographer selectors
 const photographerName = document.querySelector('.name-block__name');
