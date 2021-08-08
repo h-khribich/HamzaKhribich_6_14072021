@@ -423,9 +423,34 @@ color: #fff; background-color: $primary-color;
 .hidden { display: none; }
 
 /*--  MEDIA GALLERY --*/
-#media-gallery {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
+#media-gallery { 
+  @include flex(flex, row, space-between, center, wrap);
+  row-gap: 1.7rem;
+}
+
+.media {
+  width: 350px; height: 300px;
+  @include small-radius();
+
+  // &__container {}
+
+  &__image { object-fit: cover; }
+
+  // &__video { object-fit: cover; }
+
+  &__description {
+    @include flex(flex, row, space-between, center, nowrap);
+    line-height: 2;
+    color: $primary-color;
+  }
+
+  &__title { 
+    font-size: 1.4rem;
+    font-weight: 400; }
+
+  &__likes { 
+    font-size: 1.4rem;
+    font-weight: 500; }
 }
 
 /*--  MEDIA QUERIES --*/
