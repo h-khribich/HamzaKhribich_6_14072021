@@ -9,6 +9,7 @@ function mediaFactory(element) {
     createMedia: function createMedia() {
       const mediaContainer = document.createElement('div');
       mediaContainer.classList.add('media__container');
+
       // Depending on the type of media, a different HTML element is created
       if (element.video) {
         const mediaVideo = mediaContainer.appendChild(document.createElement('video'));
@@ -66,13 +67,3 @@ fetch('fisheye_data.json')
     });
   })
   .catch((err) => err);
-
-// Accessing type of media through key
-/*
-let mediaType = '';
-Object.keys(media).forEach((key) => {
-  if ((key === 'image') || (key === 'video')) {
-    mediaType = key;
-  }
-});
-*/

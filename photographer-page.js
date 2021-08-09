@@ -1,7 +1,7 @@
 /* -- General & DOM Selectors -- */
 const params = (new URL(window.location)).searchParams;
 const pageId = parseInt(params.get('id'), 10);
-
+let totalLikes = 0;
 localStorage.setItem('pageId', pageId);
 
 // Photographer selectors
@@ -10,6 +10,8 @@ const photographerLocation = document.querySelector('.name-block__location');
 const photographerTagline = document.querySelector('.name-block__tagline');
 const photographerTagList = document.querySelector('.name-block__taglist');
 const photographerImage = document.querySelector('.photographer__img');
+const photographerPrice = document.getElementById('price');
+const photographerTotalLikes = document.getElementById('total-likes');
 
 /* -- Photographer banner -- */
 function fillPhotographerBanner(element) {
@@ -33,13 +35,27 @@ function fillPhotographerBanner(element) {
   });
 }
 
+// Photographer's total likes and price per day
+function totalLikesAndPrice(element) {
+  photographerPrice.innerText = `${element.price} € / jour`;
+  photographerTotalLikes.innerHTML = `${totalLikes} <i class="fas fa-heart"></i>`;
+}
+
 // The photographer ID enables us to load the data for similar ID JSON object only
 fetch('fisheye_data.json')
   .then((response) => response.json())
   .then((data) => {
+    // Calculating number of photographer total likes
+    data.media.forEach((media) => {
+      if (media.photographerId === pageId) {
+        totalLikes += media.likes;
+      }
+    });
+    // Filling banner and total likes elements
     data.photographers.forEach((photographer) => {
       if (photographer.id === pageId) {
         fillPhotographerBanner(photographer);
+        totalLikesAndPrice(photographer);
       }
     });
   })
