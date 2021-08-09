@@ -425,32 +425,38 @@ color: #fff; background-color: $primary-color;
 /*--  MEDIA GALLERY --*/
 #media-gallery { 
   @include flex(flex, row, space-between, center, wrap);
-  row-gap: 1.7rem;
+  margin-bottom: 1.5rem;
+  row-gap: 1.8rem;
 }
 
 .media {
   width: 350px; height: 300px;
   @include small-radius();
-
-  // &__container {}
-
-  &__image { object-fit: cover; }
-
-  // &__video { object-fit: cover; }
+  object-fit: cover;
 
   &__description {
-    @include flex(flex, row, space-between, center, nowrap);
-    line-height: 2;
+    @include flex(flex, row, space-between, baseline, nowrap);
+    line-height: 1.6;
     color: $primary-color;
   }
 
-  &__title { 
-    font-size: 1.4rem;
-    font-weight: 400; }
+  &__title {
+    max-width: 80%;
+    font-size: 1.3rem;
+    font-weight: 300;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-  &__likes { 
-    font-size: 1.4rem;
-    font-weight: 500; }
+  // &__video {}
+
+  &__likes {
+    font-size: 1.2rem;
+    font-weight: 500; 
+
+    .icon { font-size: 1.15rem; }
+  }
 }
 
 /*--  MEDIA QUERIES --*/

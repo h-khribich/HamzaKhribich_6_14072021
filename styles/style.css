@@ -691,7 +691,8 @@ color: #fff; background-color: $primary-color;
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  row-gap: 1.7rem;
+  margin-bottom: 1.5rem;
+  row-gap: 1.8rem;
 }
 
 .media {
@@ -699,9 +700,6 @@ color: #fff; background-color: $primary-color;
   height: 300px;
   border: none;
   border-radius: 5px;
-}
-
-.media__image {
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -717,23 +715,31 @@ color: #fff; background-color: $primary-color;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
-  line-height: 2;
+  line-height: 1.6;
   color: #901c1c;
 }
 
 .media__title {
-  font-size: 1.4rem;
-  font-weight: 400;
+  max-width: 80%;
+  font-size: 1.3rem;
+  font-weight: 300;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .media__likes {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 500;
+}
+
+.media__likes .icon {
+  font-size: 1.15rem;
 }
 
 /*--  MEDIA QUERIES --*/

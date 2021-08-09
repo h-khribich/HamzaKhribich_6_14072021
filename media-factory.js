@@ -11,17 +11,18 @@ function mediaFactory(element) {
       mediaContainer.classList.add('media__container');
       // Depending on the type of media, a different HTML element is created
       if (element.video) {
-        const placeholder = document.createElement('p');
-        placeholder.innerText = 'video placeholder';
-        mediaContainer.appendChild(placeholder);
+        const mediaVideo = mediaContainer.appendChild(document.createElement('video'));
+        mediaVideo.setAttribute('controls', '');
+        mediaVideo.classList.add('media', 'media__video');
+        const videoSource = mediaVideo.appendChild(document.createElement('source'));
+        videoSource.setAttribute('src', `assets/${element.photographerId}/${element.video}`);
+        videoSource.setAttribute('type', 'video/mp4');
       }
       if (element.image) {
         const mediaImage = mediaContainer.appendChild(document.createElement('img'));
         mediaImage.setAttribute('src', `assets/${element.photographerId}/${element.image}`);
         mediaImage.setAttribute('alt', `${element['alt-text']}`);
-        mediaImage.classList.add('media', 'media__image');
-        // Append element to container
-        mediaContainer.appendChild(mediaImage);
+        mediaImage.classList.add('media');
       }
       // Media description container, title and likes
       const mediaDescription = mediaContainer.appendChild(document.createElement('div'));
@@ -32,13 +33,19 @@ function mediaFactory(element) {
       mediaTitle.classList.add('media__title');
 
       const mediaLikes = document.createElement('span');
-      mediaLikes.innerText = `${element.likes}`;
+      mediaLikes.innerHTML = `${element.likes} <i class="far fa-heart icon"></i>`;
       mediaLikes.classList.add('media__likes');
 
       mediaDescription.append(mediaTitle, mediaLikes);
 
       // Add the filled object to the HTML body
       mediaGallery.appendChild(mediaContainer);
+
+      // Load effect animation
+      mediaContainer.animate([
+        { opacity: '0' },
+        { opacity: '1' },
+      ], 1500, 'ease-in-out');
     },
   };
 }
