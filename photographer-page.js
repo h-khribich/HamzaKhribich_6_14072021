@@ -1,3 +1,5 @@
+import MediaFactory from './MediaFactory.js';
+
 /* -- General & DOM Selectors -- */
 const params = (new URL(window.location)).searchParams;
 const pageId = parseInt(params.get('id'), 10);
@@ -45,18 +47,21 @@ function totalLikesAndPrice(element) {
 fetch('fisheye_data.json')
   .then((response) => response.json())
   .then((data) => {
+    const photographerMedia = data.media.filter((m) => m.photographerId === pageId);
     // Calculating number of photographer total likes
-    data.media.forEach((media) => {
-      if (media.photographerId === pageId) {
-        totalLikes += media.likes;
-      }
+    photographerMedia.forEach((media) => {
+      totalLikes += media.likes;
     });
     // Filling banner and total likes elements
-    data.photographers.forEach((photographer) => {
-      if (photographer.id === pageId) {
-        fillPhotographerBanner(photographer);
-        totalLikesAndPrice(photographer);
-      }
+    const photographer = data.photographers.find((p) => p.id === pageId);
+    fillPhotographerBanner(photographer);
+    totalLikesAndPrice(photographer);
+
+    const mediaGallery = document.getElementById('media-gallery');
+
+    photographerMedia.forEach((media) => {
+      const newMedia = MediaFactory.createMedia(media);
+      mediaGallery.insertAdjacentHTML('beforeend', newMedia.display());
     });
   })
   .catch((err) => (err));

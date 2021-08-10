@@ -33,8 +33,11 @@ function mediaFactory(element) {
       mediaTitle.innerText = `${element.title}`;
       mediaTitle.classList.add('media__title');
 
-      const mediaLikes = document.createElement('span');
-      mediaLikes.innerHTML = `${element.likes} <i class="far fa-heart icon"></i>`;
+      const mediaLikes = document.createElement('div');
+      mediaLikes.innerHTML = `${element.likes}`;
+      const mediaHeart = mediaLikes.appendChild(document.createElement('a'));
+      mediaHeart.classList.add('heart');
+      mediaHeart.innerHTML = '<i class="far fa-heart icon empty"></i><i class="fas fa-heart icon full"></i>';
       mediaLikes.classList.add('media__likes');
 
       mediaDescription.append(mediaTitle, mediaLikes);
