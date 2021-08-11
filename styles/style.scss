@@ -464,6 +464,7 @@ h1 {
     .heart {
       height: 26px;
       margin-left: .3rem;
+      cursor: pointer;
     }
 
     .empty {
@@ -472,24 +473,22 @@ h1 {
       -webkit-text-stroke-color: $primary-color;
     }
     
-    .heart:hover {
-      .empty {
-        color: $primary-color;
-        -webkit-text-stroke-width: 0;
-        -webkit-text-stroke-color: none;
-        animation: heart-fill .5s ease-in-out forwards;
+    .full {
+      color: $primary-color;
+      -webkit-text-stroke-width: 0;
+      -webkit-text-stroke-color: none;
+      animation: heart-fill .5s ease-in-out forwards;
 
-        @keyframes heart-fill {
-          0% { transform: scale(1); }
+      @keyframes heart-fill {
+        0% { transform: scale(1); }
 
-          30% { transform: scale(1.3); }
+        30% { transform: scale(1.3); }
 
-          50% { transform: scale(1); }
+        50% { transform: scale(1); }
 
-          75% { transform: scale(1.3); }
+        75% { transform: scale(1.3); }
 
-          100% { transform: scale(1); }
-        }
+        100% { transform: scale(1); }
       }
     }
   }
@@ -498,6 +497,7 @@ h1 {
 /*--  PRICE PER DAY --*/
 #price-container {
   position: fixed;
+  width: 300px;
   bottom: 0; right: 2.5rem;
   padding: 1rem 2rem .9rem;
   color: $font-black; background-color: $secondary-background;

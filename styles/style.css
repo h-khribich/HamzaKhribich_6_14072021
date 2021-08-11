@@ -766,6 +766,7 @@ h1 {
 .media__likes .heart {
   height: 26px;
   margin-left: .3rem;
+  cursor: pointer;
 }
 
 .media__likes .empty {
@@ -774,7 +775,7 @@ h1 {
   -webkit-text-stroke-color: #901c1c;
 }
 
-.media__likes .heart:hover .empty {
+.media__likes .full {
   color: #901c1c;
   -webkit-text-stroke-width: 0;
   -webkit-text-stroke-color: none;
@@ -831,6 +832,7 @@ h1 {
 /*--  PRICE PER DAY --*/
 #price-container {
   position: fixed;
+  width: 300px;
   bottom: 0;
   right: 2.5rem;
   padding: 1rem 2rem .9rem;

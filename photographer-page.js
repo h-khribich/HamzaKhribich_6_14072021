@@ -44,6 +44,24 @@ function totalLikesAndPrice(element) {
   photographerTotalLikes.innerHTML = `${totalLikes} <i class="fas fa-heart"></i>`;
 }
 
+// Heart animation and total likes incrementation
+function animateAndIncrementLikes(elements) {
+  elements.forEach((element) => {
+    element.addEventListener('click', () => {
+      element.classList.toggle('empty');
+      element.classList.toggle('full');
+
+      // If the heart is activated, increment total likes, else, decrement
+      if (element.classList.contains('full')) {
+        totalLikes += 1;
+      } else {
+        totalLikes -= 1;
+      }
+      photographerTotalLikes.innerHTML = `${totalLikes} <i class='fas fa-heart'></i>`;
+    });
+  });
+}
+
 // The photographer ID enables us to load the data for similar ID JSON object only
 fetch('fisheye_data.json')
   .then((response) => response.json())
@@ -63,5 +81,9 @@ fetch('fisheye_data.json')
       const newMedia = MediaFactory.createMedia(media);
       mediaGallery.insertAdjacentHTML('beforeend', newMedia.display());
     });
+
+    // Total likes incrementation and animation function
+    const heartIcons = document.querySelectorAll('.icon');
+    animateAndIncrementLikes(heartIcons);
   })
   .catch((err) => (err));
