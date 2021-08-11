@@ -52,11 +52,7 @@ function animateAndIncrementLikes(elements) {
       element.classList.toggle('full');
 
       // If the heart is activated, increment total likes, else, decrement
-      if (element.classList.contains('full')) {
-        totalLikes += 1;
-      } else {
-        totalLikes -= 1;
-      }
+      totalLikes = element.classList.contains('full') ? totalLikes += 1 : totalLikes -= 1;
       photographerTotalLikes.innerHTML = `${totalLikes} <i class='fas fa-heart'></i>`;
     });
   });

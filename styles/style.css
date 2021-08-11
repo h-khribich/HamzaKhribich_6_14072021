@@ -646,26 +646,6 @@ h1 {
 }
 
 /*--  ORDER BY --*/
-#label__order-by {
-  margin-right: .9rem;
-}
-
-#label__order-by,
-#order-by {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  background-image: url("../assets/svg-assets/dropdown_arrow.svg");
-  background-repeat: no-repeat;
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-
-#order-by {
-  border: none;
-  border-radius: 5px;
-}
-
 /*--  MEDIA GALLERY --*/
 #media-gallery {
   display: -webkit-box;
@@ -832,7 +812,7 @@ h1 {
 /*--  PRICE PER DAY --*/
 #price-container {
   position: fixed;
-  width: 300px;
+  min-width: 265px;
   bottom: 0;
   right: 2.5rem;
   padding: 1rem 2rem .9rem;
@@ -855,6 +835,7 @@ h1 {
           align-items: baseline;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
+  gap: 2.2rem;
 }
 
 #total-likes,
@@ -864,7 +845,7 @@ h1 {
 }
 
 #total-likes {
-  margin-right: 4rem;
+  min-width: 63px;
 }
 
 #total-likes i {

@@ -23,6 +23,7 @@ const lastName = document.getElementById('last-name');
 const lastNameInvalid = document.getElementById('last-name-invalid_message');
 const email = document.getElementById('email');
 const emailInvalid = document.getElementById('email-invalid_message');
+const userMessage = document.getElementById('user-msg');
 
 // Validation message selectors
 const validationModal = document.getElementById('validation__dialog');
@@ -212,7 +213,7 @@ submitButton.addEventListener('click', (e) => {
   // If form is valid, log user input
   e.preventDefault();
   if (contactModal.checkValidity()) {
-    console.log(`Prénom: ${firstName.value}\nNom: ${lastName.value}\nEmail: ${email.value}`);
+    console.log(`Prénom: ${firstName.value}\nNom: ${lastName.value}\nEmail: ${email.value}\nMessage: ${userMessage.value}`);
     // Submission animation
     contactModal.animate(
       [{ opacity: '1' },

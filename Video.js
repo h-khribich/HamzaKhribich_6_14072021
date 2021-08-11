@@ -10,7 +10,7 @@ export default class Video {
               </video>
               <div class="media__description">
                 <p class="media__title">${this.title}</p>
-                <div class="media__likes">
+                <div class="media__likes" aria-label="likes">
                   ${this.likes}
                   <a class="heart">
                     <i class="fas fa-heart icon empty" aria-hidden="true"></i>

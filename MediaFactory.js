@@ -1,5 +1,4 @@
 import Image from './Image.js';
-
 import Video from './Video.js';
 
 export default class MediaFactory {

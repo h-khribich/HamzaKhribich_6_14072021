@@ -402,18 +402,7 @@ h1 {
 }
 
 /*--  ORDER BY --*/
-#label__order-by { margin-right: .9rem; }
 
-#label__order-by,
-#order-by {
-  appearance: none;
-  background-image: url('../assets/svg-assets/dropdown_arrow.svg');
-  background-repeat: no-repeat;
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-
-#order-by { @include small-radius(); }
 
 /*--  MEDIA GALLERY --*/
 #media-gallery { 
@@ -497,12 +486,13 @@ h1 {
 /*--  PRICE PER DAY --*/
 #price-container {
   position: fixed;
-  width: 300px;
+  min-width: 265px;
   bottom: 0; right: 2.5rem;
   padding: 1rem 2rem .9rem;
   color: $font-black; background-color: $secondary-background;
   border-top-left-radius: 5px; border-top-right-radius: 5px;
   @include flex(flex, row, space-between, baseline, nowrap);
+  gap: 2.2rem;
 }
 
 #total-likes,
@@ -511,7 +501,7 @@ h1 {
 }
 
 #total-likes {
-  margin-right: 4rem;
+  min-width: 63px;
   i { font-size: 1.1rem; }
 }
 
