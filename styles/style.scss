@@ -427,6 +427,16 @@ h1 {
   width: 350px; height: 300px;
   object-fit: cover;
 
+  &__container {
+    animation: fade-in 2s forwards;
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+
+      to { opacity: 1; }
+    }
+  }
+
   &__description {
     @include flex(flex, row, space-between, baseline, nowrap);
     line-height: 1.6;

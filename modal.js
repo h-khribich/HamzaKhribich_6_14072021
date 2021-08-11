@@ -41,6 +41,7 @@ const focusableContent = contactModal.querySelectorAll(modalFocusableElements);
 const lastFocusableElement = focusableContent[focusableContent.length - 1];
 
 document.addEventListener('keydown', (event) => {
+  const tabIsNotPressed = null;
   const tabIsPressed = event.key === 'Tab' || event.key === 9;
   if (!tabIsPressed) {
     return false;
@@ -56,6 +57,7 @@ document.addEventListener('keydown', (event) => {
     firstFocusableElement.focus();
     event.preventDefault();
   }
+  return tabIsNotPressed;
 });
 
 // Opening the modal
@@ -120,20 +122,41 @@ email.addEventListener('input', () => {
   }
 });
 
+// Submission attempt while invalid inputs
+function invalidAnimation(element) {
+  element.animate([
+    {
+      opacity: '1',
+      transform: 'translateX(0)',
+    },
+    {
+      opacity: '.5',
+      transform: 'translateX(-10px)',
+    },
+    {
+      opacity: '1',
+      transform: 'translateX(15px)',
+    },
+  ], 150);
+}
+
 // Checking all inputs at once (for submit button)
 function checkAllInputs() {
   if (!firstName.checkValidity()) {
     firstNameInvalid.classList.remove('hidden');
+    invalidAnimation(firstNameInvalid);
   } else {
     firstNameInvalid.classList.add('hidden');
   }
   if (!lastName.checkValidity()) {
     lastNameInvalid.classList.remove('hidden');
+    invalidAnimation(lastNameInvalid);
   } else {
     lastNameInvalid.classList.add('hidden');
   }
   if (!email.checkValidity()) {
     emailInvalid.classList.remove('hidden');
+    invalidAnimation(emailInvalid);
   } else {
     emailInvalid.classList.add('hidden');
   }

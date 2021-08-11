@@ -3,6 +3,7 @@ import MediaFactory from './MediaFactory.js';
 /* -- General & DOM Selectors -- */
 const params = (new URL(window.location)).searchParams;
 const pageId = parseInt(params.get('id'), 10);
+const mediaGallery = document.getElementById('media-gallery');
 let totalLikes = 0;
 localStorage.setItem('pageId', pageId);
 
@@ -57,8 +58,7 @@ fetch('fisheye_data.json')
     fillPhotographerBanner(photographer);
     totalLikesAndPrice(photographer);
 
-    const mediaGallery = document.getElementById('media-gallery');
-
+    // Creating individual media elements
     photographerMedia.forEach((media) => {
       const newMedia = MediaFactory.createMedia(media);
       mediaGallery.insertAdjacentHTML('beforeend', newMedia.display());

@@ -696,6 +696,20 @@ h1 {
      object-fit: cover;
 }
 
+.media__container {
+  -webkit-animation: fade-in 2s forwards;
+          animation: fade-in 2s forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .media__description {
   display: -webkit-box;
   display: -ms-flexbox;
