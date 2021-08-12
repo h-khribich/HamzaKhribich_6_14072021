@@ -646,6 +646,119 @@ h1 {
 }
 
 /*--  ORDER BY --*/
+#order-by__section {
+  position: relative;
+  padding: .5rem 0 3.2rem;
+}
+
+#order-by__container {
+  display: inline-block;
+  position: absolute;
+  z-index: 1;
+  border: none;
+  border-radius: 5px;
+  min-width: 165px;
+  padding: 1rem;
+  background-color: #901c1c;
+}
+
+#order-by__container a, #order-by__container #order-by__selected {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+#order-by__title {
+  display: inline-block;
+  margin-right: 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #181818;
+}
+
+#order-by__trigger {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+#order-by__selected {
+  padding: .2rem 0;
+}
+
+#order-by__img-container {
+  margin-left: .7rem;
+}
+
+.order-by__options {
+  display: none;
+}
+
+.order-by__options .option {
+  width: 100%;
+  padding-top: .9rem;
+  margin-top: .9rem;
+  border-top: 1px solid #fff;
+}
+
+.open {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-animation: slide-down .4s ease-in-out forwards;
+          animation: slide-down .4s ease-in-out forwards;
+}
+
+@-webkit-keyframes slide-down {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-25px);
+            transform: translateY(-25px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-25px);
+            transform: translateY(-25px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
 /*--  MEDIA GALLERY --*/
 #media-gallery {
   display: -webkit-box;

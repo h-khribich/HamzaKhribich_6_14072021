@@ -16,6 +16,11 @@ const photographerImage = document.querySelector('.photographer__img');
 const photographerPrice = document.getElementById('price');
 const photographerTotalLikes = document.getElementById('total-likes');
 
+// 'Order-by' selectors
+const filterTrigger = document.getElementById('order-by__trigger');
+const filterOptions = document.querySelector('.order-by__options');
+const filterContainer = document.getElementById('order-by__container');
+
 /* -- Photographer banner -- */
 function fillPhotographerBanner(element) {
   photographerName.innerText = element.name;
@@ -37,6 +42,50 @@ function fillPhotographerBanner(element) {
     photographerTagLink.innerText = `#${tag}`;
   });
 }
+
+/* -- 'Order-by' -- */
+// Options closing animation
+function closeDropdown() {
+  function close() {
+    filterOptions.classList.toggle('open');
+  }
+
+  filterOptions.animate([
+    { opacity: '1', transform: 'translateY(0)' },
+
+    { opacity: '0', transform: 'translateY(-25px)' },
+  ], 360, 'ease-in-out');
+
+  setTimeout(close, 330);
+}
+
+// Update aria expanded
+function updateAriaExpanded() {
+  if (filterOptions.classList.contains('open')) {
+    filterTrigger.setAttribute('aria-expanded', 'true');
+  } else {
+    filterTrigger.setAttribute('aria-expanded', 'false');
+  }
+}
+
+// Making options appear or disappear
+filterTrigger.addEventListener('click', (e) => {
+  e.preventDefault();
+  if (filterOptions.classList.contains('open')) {
+    closeDropdown();
+  } else {
+    filterOptions.classList.toggle('open');
+  }
+  updateAriaExpanded();
+});
+
+// Closing dropdown if click occurs anywhere on page
+window.addEventListener('click', async (e) => {
+  if (filterOptions.classList.contains('open') && !filterContainer.contains(e.target)) {
+    closeDropdown();
+    updateAriaExpanded();
+  }
+});
 
 // Photographer's total likes and price per day
 function totalLikesAndPrice(element) {

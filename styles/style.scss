@@ -402,6 +402,70 @@ h1 {
 }
 
 /*--  ORDER BY --*/
+#order-by {
+  &__section { 
+    position: relative;
+    padding: .5rem 0 3.2rem; 
+  }
+
+  &__container { 
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+    @include small-radius();
+    min-width: 165px;
+    padding: 1rem;
+    background-color: $primary-color;
+    
+    a, #order-by__selected {
+      font-size: 1.1rem; 
+      font-weight: 700;
+      color: #fff;
+    }
+  }
+
+  &__title {
+    display: inline-block;
+    margin-right: 1rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $font-black;
+  }
+
+  &__trigger { @include flex(flex, row, space-between, center, nowrap); }
+
+  &__selected { padding: .2rem 0; }
+
+  &__img-container { margin-left: .7rem; }
+}
+
+.order-by__options {
+  display: none;
+
+  .option {
+    width: 100%;
+    padding-top: .9rem; margin-top: .9rem;
+    border-top: 1px solid #fff;
+  }
+}
+
+// Making options appear and animate container
+.open { 
+  @include flex(flex, column, flex-start, flex-start, nowrap); 
+  animation: slide-down .4s ease-in-out forwards;
+
+  @keyframes slide-down {
+    from { 
+      opacity: 0;
+      transform: translateY(-25px);
+     }
+
+    to {
+      opacity: 1;
+      transform: translateY(0); 
+    }
+  }
+}
 
 
 /*--  MEDIA GALLERY --*/
