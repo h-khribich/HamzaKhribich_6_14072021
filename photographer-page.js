@@ -20,6 +20,7 @@ const photographerTotalLikes = document.getElementById('total-likes');
 const filterTrigger = document.getElementById('order-by__trigger');
 const filterOptions = document.querySelector('.order-by__options');
 const filterContainer = document.getElementById('order-by__container');
+const filterArrow = document.getElementById('order-by__arrow');
 
 /* -- Photographer banner -- */
 function fillPhotographerBanner(element) {
@@ -45,45 +46,42 @@ function fillPhotographerBanner(element) {
 
 /* -- 'Order-by' -- */
 // Options closing animation
-function closeDropdown() {
-  function close() {
+function openAndCloseDropdown() {
+  // Opening dropdown
+  if (!filterOptions.classList.contains('open')) {
     filterOptions.classList.toggle('open');
-  }
-
-  filterOptions.animate([
-    { opacity: '1', transform: 'translateY(0)' },
-
-    { opacity: '0', transform: 'translateY(-25px)' },
-  ], 360, 'ease-in-out');
-
-  setTimeout(close, 330);
-}
-
-// Update aria expanded
-function updateAriaExpanded() {
-  if (filterOptions.classList.contains('open')) {
     filterTrigger.setAttribute('aria-expanded', 'true');
+    // Arrow animation
+    filterArrow.animate([
+      { transform: 'rotate(180deg)' },
+    ], { duration: 300, fill: 'forwards' });
   } else {
-    filterTrigger.setAttribute('aria-expanded', 'false');
+    // Closing dropdown
+    filterArrow.animate([
+      { transform: 'rotate(0deg)' },
+    ], { duration: 300, fill: 'forwards' });
+
+    const close = function close() {
+      filterOptions.classList.toggle('open');
+      filterTrigger.setAttribute('aria-expanded', 'false');
+    };
+    filterOptions.animate([
+      { opacity: '0', transform: 'translateY(-25px)' },
+    ], 360, 'ease-in-out');
+    setTimeout(close, 300);
   }
 }
 
 // Making options appear or disappear
 filterTrigger.addEventListener('click', (e) => {
   e.preventDefault();
-  if (filterOptions.classList.contains('open')) {
-    closeDropdown();
-  } else {
-    filterOptions.classList.toggle('open');
-  }
-  updateAriaExpanded();
+  openAndCloseDropdown();
 });
 
 // Closing dropdown if click occurs anywhere on page
 window.addEventListener('click', async (e) => {
   if (filterOptions.classList.contains('open') && !filterContainer.contains(e.target)) {
-    closeDropdown();
-    updateAriaExpanded();
+    openAndCloseDropdown();
   }
 });
 
