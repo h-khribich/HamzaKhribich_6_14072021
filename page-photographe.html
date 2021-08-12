@@ -51,16 +51,16 @@
                   aria-expanded="false" 
                   aria-label="Order by"
                   aria-controls="order-by__options">
-                  <span id="order-by__selected">Popularité</span>
+                  <span id="order-by__selected"></span>
                   <div id="order-by__img-container">
                     <img src="assets/svg-assets/dropdown_arrow.svg" alt="" id="order-by__arrow">
                   </div>
                 </a>
                 <!-- FILTER OPTIONS -->
                 <div class="order-by__options" role="listbox">
-                  <!-- <a href="#" class="option" data-value="popularite" role="option">Popularité</a> -->
-                  <a href="#" class="option" data-value="date" role="option">Date</a>
-                  <a href="#" class="option" data-value="titre" role="option">Titre</a>
+                  <a href="#" class="option" data-value="popularite" aria-selected="true" role="option">Popularité</a>
+                  <a href="#" class="option" data-value="date" aria-selected="false" role="option">Date</a>
+                  <a href="#" class="option" data-value="titre" aria-selected="false" role="option">Titre</a>
                 </div>
               </div>
             </section>

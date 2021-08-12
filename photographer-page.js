@@ -18,9 +18,11 @@ const photographerTotalLikes = document.getElementById('total-likes');
 
 // 'Order-by' selectors
 const filterTrigger = document.getElementById('order-by__trigger');
-const filterOptions = document.querySelector('.order-by__options');
+const filterDropdown = document.querySelector('.order-by__options');
 const filterContainer = document.getElementById('order-by__container');
 const filterArrow = document.getElementById('order-by__arrow');
+const filterSelected = document.getElementById('order-by__selected');
+const filterOptions = document.querySelectorAll('.option');
 
 /* -- Photographer banner -- */
 function fillPhotographerBanner(element) {
@@ -48,8 +50,8 @@ function fillPhotographerBanner(element) {
 // Options closing animation
 function openAndCloseDropdown() {
   // Opening dropdown
-  if (!filterOptions.classList.contains('open')) {
-    filterOptions.classList.toggle('open');
+  if (!filterDropdown.classList.contains('open')) {
+    filterDropdown.classList.toggle('open');
     filterTrigger.setAttribute('aria-expanded', 'true');
     // Arrow animation
     filterArrow.animate([
@@ -62,29 +64,52 @@ function openAndCloseDropdown() {
     ], { duration: 300, fill: 'forwards' });
 
     const close = function close() {
-      filterOptions.classList.toggle('open');
+      filterDropdown.classList.toggle('open');
       filterTrigger.setAttribute('aria-expanded', 'false');
     };
-    filterOptions.animate([
+    filterDropdown.animate([
       { opacity: '0', transform: 'translateY(-25px)' },
     ], 360, 'ease-in-out');
     setTimeout(close, 300);
   }
 }
 
-// Making options appear or disappear
+// Dropdown click event
 filterTrigger.addEventListener('click', (e) => {
   e.preventDefault();
   openAndCloseDropdown();
 });
 
-// Closing dropdown if click occurs anywhere on page
+// Closing dropdown if click occurs anywhere else on page
 window.addEventListener('click', async (e) => {
-  if (filterOptions.classList.contains('open') && !filterContainer.contains(e.target)) {
+  if (filterDropdown.classList.contains('open') && !filterContainer.contains(e.target)) {
     openAndCloseDropdown();
   }
 });
 
+// Filtering
+filterOptions.forEach((option) => {
+  if (option.getAttribute('aria-selected') === 'true') {
+    filterSelected.innerText = option.innerText;
+    option.classList.add('hidden');
+  }
+
+  option.addEventListener('click', (e) => {
+    e.preventDefault();
+    const filterLastSelected = document.querySelector('.order-by__options > .hidden');
+
+    // Unselect last selected element
+    filterLastSelected.setAttribute('aria-selected', 'false');
+    filterLastSelected.classList.remove('hidden');
+
+    // Clicked element becomes new slected element
+    option.classList.add('hidden');
+    option.setAttribute('aria-selected', 'true');
+    filterSelected.innerText = option.innerText;
+  });
+});
+
+/* -- Likes and price -- */
 // Photographer's total likes and price per day
 function totalLikesAndPrice(element) {
   photographerPrice.innerText = `${element.price} € / jour`;
