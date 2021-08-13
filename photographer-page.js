@@ -46,6 +46,10 @@ function fillPhotographerBanner(element) {
   });
 }
 
+function test() {
+  console.log(document.querySelector('.media__container'));
+}
+
 /* -- 'Order-by' -- */
 // Options closing animation
 function openAndCloseDropdown() {
@@ -87,7 +91,7 @@ window.addEventListener('click', async (e) => {
   }
 });
 
-// Filtering
+// Showing selected option in dropdown
 filterOptions.forEach((option) => {
   if (option.getAttribute('aria-selected') === 'true') {
     filterSelected.innerText = option.innerText;
@@ -106,6 +110,9 @@ filterOptions.forEach((option) => {
     option.classList.add('hidden');
     option.setAttribute('aria-selected', 'true');
     filterSelected.innerText = option.innerText;
+
+    // Filtering
+    if (option.dataset.value === 'titre') {}
   });
 });
 
@@ -149,6 +156,8 @@ fetch('fisheye_data.json')
       const newMedia = MediaFactory.createMedia(media);
       mediaGallery.insertAdjacentHTML('beforeend', newMedia.display());
     });
+
+    // Filtering
 
     // Total likes incrementation and animation function
     const heartIcons = document.querySelectorAll('.icon');
