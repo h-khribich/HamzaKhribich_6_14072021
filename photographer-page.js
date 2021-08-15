@@ -82,7 +82,7 @@ filterTrigger.addEventListener('click', (e) => {
 });
 
 // Closing dropdown if click occurs anywhere else on page
-window.addEventListener('click', async (e) => {
+window.addEventListener('click', (e) => {
   if (filterDropdown.classList.contains('open') && !filterContainer.contains(e.target)) {
     openAndCloseDropdown();
   }
@@ -206,24 +206,39 @@ fetch('fisheye_data.json')
     // Total likes incrementation and animation function
     const heartIcons = document.querySelectorAll('.icon');
     animateAndIncrementLikes(heartIcons);
-  })
-  .then(() => {
-    // Filtering
-    const mediaTitles = document.querySelectorAll('.media__title');
-    const toArray = Array.from(mediaTitles);
-    const test1 = toArray.sort((a, b) => {
-      const x = a.innerText.toUpperCase();
-      const y = b.innerText.toUpperCase();
-      let result = 0;
-      if (x === y) {
-        result = 0;
-      } else if (x > y) {
-        result = 1;
-      } else {
-        result = -1;
-      }
-      return result;
+
+    /* Each 'sorting' code block enables us to create a new element upon which we will call
+    the media factory function after having erased the previous HTML sorting
+    */
+
+    // Sorting by title
+    const sortedByTitle = photographerMedia.sort((a, b) => a.title.toUpperCase()
+     - b.title.toUpperCase());
+
+    // Sorting by date
+    const sortedByDate = photographerMedia.sort((a, b) => new Date(b.date)
+     - new Date(a.date));
+
+    // Sorting by popularity
+
+    // Sorting event listeners
+    filterOptions.forEach((option) => {
+      option.addEventListener('click', () => {
+        // Clear previous HTML and display relevant sorted element
+        if (option.dataset.value === 'titre') {
+          mediaGallery.innerHTML = '';
+          sortedByTitle.forEach((media) => {
+            const newMedia = MediaFactory.createMedia(media);
+            mediaGallery.insertAdjacentHTML('beforeend', newMedia.display());
+          });
+        } else if (option.dataset.value === 'date') {
+          mediaGallery.innerHTML = '';
+          sortedByDate.forEach((media) => {
+            const newMedia = MediaFactory.createMedia(media);
+            mediaGallery.insertAdjacentHTML('beforeend', newMedia.display());
+          });
+        }
+      });
     });
-    console.log(test1);
   })
   .catch((err) => (err));
