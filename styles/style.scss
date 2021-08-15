@@ -405,7 +405,7 @@ h1 {
 #order-by {
   &__section { 
     position: relative;
-    padding: .5rem 0 3.2rem; 
+    margin: 1rem 0 5rem; 
   }
 
   &__container { 
@@ -471,7 +471,7 @@ h1 {
 /*--  MEDIA GALLERY --*/
 #media-gallery { 
   @include flex(flex, row, space-between, center, wrap);
-  margin-bottom: 1.5rem;
+  margin: 1.5rem 0;
   row-gap: 1.8rem;
 }
 

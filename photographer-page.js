@@ -4,6 +4,7 @@ import MediaFactory from './MediaFactory.js';
 const params = (new URL(window.location)).searchParams;
 const pageId = parseInt(params.get('id'), 10);
 const mediaGallery = document.getElementById('media-gallery');
+let activeTagsArray = [];
 let totalLikes = 0;
 localStorage.setItem('pageId', pageId);
 
@@ -39,15 +40,11 @@ function fillPhotographerBanner(element) {
     photographerSRtag.innerText = 'Tag';
     photographerSRtag.classList.add('screen-reader-only');
     const photographerTagLink = photographerTag.appendChild(document.createElement('a'));
-    photographerTagLink.dataset.tagName = tag;
+    photographerTagLink.setAttribute('href', '#');
     photographerTagLink.classList.add('tag');
-    photographerTagLink.setAttribute('href', `index.html?tag=${tag}`);
+    photographerTagLink.dataset.tagName = tag;
     photographerTagLink.innerText = `#${tag}`;
   });
-}
-
-function test() {
-  console.log(document.querySelector('.media__container'));
 }
 
 /* -- 'Order-by' -- */
@@ -110,9 +107,6 @@ filterOptions.forEach((option) => {
     option.classList.add('hidden');
     option.setAttribute('aria-selected', 'true');
     filterSelected.innerText = option.innerText;
-
-    // Filtering
-    if (option.dataset.value === 'titre') {}
   });
 });
 
@@ -137,19 +131,71 @@ function animateAndIncrementLikes(elements) {
   });
 }
 
+// Tag filtering
+function filterByTag(element) {
+  element.blur();
+
+  // Toggling 'active-tag' and updating active tags array
+  if (element.classList.contains('active-tag')) {
+    element.classList.remove('active-tag');
+    activeTagsArray = activeTagsArray.filter((tag) => !(tag === element.dataset.tagName));
+  } else {
+    element.classList.add('active-tag');
+    activeTagsArray.push(element.dataset.tagName);
+  }
+
+  const mediaContainer = document.querySelectorAll('.media__container');
+  // If no tags are active, all is displayed
+  if (activeTagsArray.length <= 0) {
+    mediaContainer.forEach((elementToDisplay) => {
+      elementToDisplay.classList.remove('hidden');
+    });
+    return;
+  }
+
+  // Media are hidden, only to be shown when a relevant tag has been selected
+  mediaContainer.forEach((media) => {
+    media.classList.add('hidden');
+  });
+
+  // If a tag has a sister tag in the active array, his parent is displayed
+  activeTagsArray.forEach((tag) => {
+    const elementsToDisplay = document.querySelectorAll(`div[data-tag-name="${tag}"]`);
+    elementsToDisplay.forEach((elementToDisplay) => {
+      elementToDisplay.classList.remove('hidden');
+      elementToDisplay.animate([
+        { opacity: '0' },
+
+        { opacity: '1' },
+      ], 400, 'ease-in-out', 'forwards');
+    });
+  });
+}
+
 // The photographer ID enables us to load the data for similar ID JSON object only
 fetch('fisheye_data.json')
   .then((response) => response.json())
   .then((data) => {
     const photographerMedia = data.media.filter((m) => m.photographerId === pageId);
+
     // Calculating number of photographer total likes
     photographerMedia.forEach((media) => {
       totalLikes += media.likes;
     });
+
     // Filling banner and total likes elements
     const photographer = data.photographers.find((p) => p.id === pageId);
     fillPhotographerBanner(photographer);
     totalLikesAndPrice(photographer);
+
+    // Search by relevant tags
+    const tags = document.querySelectorAll('.tag');
+    tags.forEach((tag) => {
+      tag.addEventListener('click', (e) => {
+        e.preventDefault();
+        filterByTag(tag);
+      });
+    });
 
     // Creating individual media elements
     photographerMedia.forEach((media) => {
@@ -157,10 +203,27 @@ fetch('fisheye_data.json')
       mediaGallery.insertAdjacentHTML('beforeend', newMedia.display());
     });
 
-    // Filtering
-
     // Total likes incrementation and animation function
     const heartIcons = document.querySelectorAll('.icon');
     animateAndIncrementLikes(heartIcons);
+  })
+  .then(() => {
+    // Filtering
+    const mediaTitles = document.querySelectorAll('.media__title');
+    const toArray = Array.from(mediaTitles);
+    const test1 = toArray.sort((a, b) => {
+      const x = a.innerText.toUpperCase();
+      const y = b.innerText.toUpperCase();
+      let result = 0;
+      if (x === y) {
+        result = 0;
+      } else if (x > y) {
+        result = 1;
+      } else {
+        result = -1;
+      }
+      return result;
+    });
+    console.log(test1);
   })
   .catch((err) => (err));

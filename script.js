@@ -120,6 +120,7 @@ function addPhotographerPreview(element) {
   });
 }
 
+/*
 function crossPageFiltering() {
   const dataTagList = document.querySelectorAll('nav [data-tag-name]');
   if (pageURL.match('tag')) {
@@ -130,6 +131,7 @@ function crossPageFiltering() {
     });
   }
 }
+*/
 
 /* -- Fetching JSON data to fill the page -- */
 fetch('fisheye_data.json')
@@ -146,7 +148,7 @@ fetch('fisheye_data.json')
 
     // If a tag is clicked on the photographer's page, it leads back to the main page
     // then clicks on the corresponding tag
-    crossPageFiltering();
+    // crossPageFiltering();
   })
   .catch((err) => (err));
 
@@ -156,6 +158,7 @@ fetch('fisheye_data.json')
 // Making the navlink button focus on main content and preventing page reload
 // const displayedSections = document.querySelector('section:not(.hidden)');
 
+/*
 // Making the nav link visible as soon as the user scrolls down
 window.addEventListener('scroll', () => {
   const sticky = navLink.offsetTop;
@@ -170,3 +173,4 @@ navLink.addEventListener('click', (event) => {
   const focusOnFirstElement = document.querySelector('.photographer__link-container');
   focusOnFirstElement.focus();
 });
+*/

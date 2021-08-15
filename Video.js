@@ -4,7 +4,7 @@ export default class Video {
   }
 
   display() {
-    return `<div class="media__container">
+    return `<div class="media__container" data-tag-name="${this.tags}">
               <video controls="" class="media media__video">
                 <source src="assets/${this.photographerId}/${this.video}" type="video/mp4">
               </video>
