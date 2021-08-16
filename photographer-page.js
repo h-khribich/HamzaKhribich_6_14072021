@@ -197,8 +197,44 @@ fetch('fisheye_data.json')
       });
     });
 
-    // Creating individual media elements
-    photographerMedia.forEach((media) => {
+    /* Each 'sorting' code block enables us to copy the original array
+    and create a new element upon which we will call the media factory function
+    after having erased the previous HTML sorting
+    */
+    // Sorting by title
+    const sortedByTitle = [...photographerMedia].sort((a, b) => a.title.toUpperCase()
+      .localeCompare(b.title.toUpperCase()));
+
+    // Sorting by date
+    const sortedByDate = [...photographerMedia].sort((a, b) => new Date(b.date)
+     - new Date(a.date));
+
+    // Sorting by popularity
+    const sortedByPopularity = [...photographerMedia].sort((a, b) => b.likes - a.likes);
+
+    // Sorting event listeners
+    filterOptions.forEach((option) => {
+      let chosenOption = [];
+      option.addEventListener('click', () => {
+        // Choosing the correct parameter
+        if (option.dataset.value === 'titre') {
+          chosenOption = sortedByTitle;
+        } else if (option.dataset.value === 'date') {
+          chosenOption = sortedByDate;
+        } else if (option.dataset.value === 'popularite') {
+          chosenOption = sortedByPopularity;
+        }
+        // Clear previous HTML and Display relevant sorted element
+        mediaGallery.innerHTML = '';
+        chosenOption.forEach((media) => {
+          const newMedia = MediaFactory.createMedia(media);
+          mediaGallery.insertAdjacentHTML('beforeend', newMedia.display());
+        });
+      });
+    });
+
+    // By default, media are sorted by popularity
+    sortedByPopularity.forEach((media) => {
       const newMedia = MediaFactory.createMedia(media);
       mediaGallery.insertAdjacentHTML('beforeend', newMedia.display());
     });
@@ -206,39 +242,5 @@ fetch('fisheye_data.json')
     // Total likes incrementation and animation function
     const heartIcons = document.querySelectorAll('.icon');
     animateAndIncrementLikes(heartIcons);
-
-    /* Each 'sorting' code block enables us to create a new element upon which we will call
-    the media factory function after having erased the previous HTML sorting
-    */
-
-    // Sorting by title
-    const sortedByTitle = photographerMedia.sort((a, b) => a.title.toUpperCase()
-     - b.title.toUpperCase());
-
-    // Sorting by date
-    const sortedByDate = photographerMedia.sort((a, b) => new Date(b.date)
-     - new Date(a.date));
-
-    // Sorting by popularity
-
-    // Sorting event listeners
-    filterOptions.forEach((option) => {
-      option.addEventListener('click', () => {
-        // Clear previous HTML and display relevant sorted element
-        if (option.dataset.value === 'titre') {
-          mediaGallery.innerHTML = '';
-          sortedByTitle.forEach((media) => {
-            const newMedia = MediaFactory.createMedia(media);
-            mediaGallery.insertAdjacentHTML('beforeend', newMedia.display());
-          });
-        } else if (option.dataset.value === 'date') {
-          mediaGallery.innerHTML = '';
-          sortedByDate.forEach((media) => {
-            const newMedia = MediaFactory.createMedia(media);
-            mediaGallery.insertAdjacentHTML('beforeend', newMedia.display());
-          });
-        }
-      });
-    });
   })
   .catch((err) => (err));
