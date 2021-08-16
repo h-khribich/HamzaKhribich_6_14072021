@@ -332,17 +332,19 @@ h1 {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  height: 310px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   margin: 2.2rem 0 .4rem;
-  padding: 2.3rem 2.5rem;
+  padding: 2rem 2.5rem;
   background-color: #fafafa;
   border: none;
   border-radius: 5px;
@@ -375,13 +377,19 @@ h1 {
           align-items: flex-start;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
-  height: 100%;
+  padding: 0 2rem .3rem 0;
 }
 
-.photographer-banner .contact-button {
+.photographer-banner .contact-button__container {
+  -ms-flex-item-align: baseline;
+      align-self: baseline;
+  margin-right: auto;
+}
+
+.photographer-banner .contact-button__container .contact-button {
   -ms-flex-item-align: start;
       align-self: flex-start;
-  margin: 1.4rem 2.5rem;
+  margin-top: 1.3rem;
   padding: 1.4rem 1.2rem;
   font-size: 1.15rem;
   font-weight: 700;
@@ -394,8 +402,8 @@ h1 {
   transition: .2s ease-in-out;
 }
 
-.photographer-banner .contact-button:hover,
-.photographer-banner .contact-button:focus {
+.photographer-banner .contact-button__container .contact-button:hover,
+.photographer-banner .contact-button__container .contact-button:focus {
   color: #181818;
   background-color: #db8876;
   -webkit-transform: scale(1.01);
@@ -418,9 +426,6 @@ h1 {
           align-items: center;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
 }
 
 .photographer-banner__img-container img {
@@ -430,7 +435,6 @@ h1 {
 /*--  PHOTOGRAPHER BANNER - NAME BLOCK --*/
 .name-block__name {
   font-size: 4rem;
-  padding-top: 0.8rem;
   color: #d3573c;
 }
 
@@ -776,6 +780,8 @@ h1 {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  position: relative;
+  z-index: -1;
   margin: 1.5rem 0;
   gap: 1.8rem;
 }
@@ -1006,6 +1012,21 @@ h1 {
   }
 }
 
+@media screen and (max-width: 978px) {
+  .contact-button__container {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+    margin: auto;
+  }
+  .contact-button__container .contact-button {
+    margin-top: 0;
+  }
+  .photographer-banner__name-block {
+    padding: 0;
+  }
+}
+
 @media screen and (max-width: 790px) {
   .media {
     width: 280px;
@@ -1024,8 +1045,16 @@ h1 {
     -webkit-transform: scale(0.9);
             transform: scale(0.9);
   }
-  #price-container {
+  #price-container,
+  #order-by__section,
+  .header__link {
     display: none;
+  }
+  .contact-button__container {
+    position: fixed;
+    z-index: 1;
+    margin: 0 auto;
+    bottom: 1.5rem;
   }
 }
 
@@ -1039,9 +1068,6 @@ h1 {
   }
   .header__nav {
     line-height: 2.5;
-  }
-  .header__link {
-    display: none;
   }
   #main-title {
     top: -9.2rem;
@@ -1084,12 +1110,16 @@ h1 {
   .media__container {
     width: 90%;
   }
-  .media__title, .media__likes {
+  .media__title {
     font-size: .9rem;
   }
+  .media__likes {
+    font-size: .8rem;
+  }
   .heart {
-    -webkit-transform: scale(0.85);
-            transform: scale(0.85);
+    margin: .2rem;
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
   }
 }
 

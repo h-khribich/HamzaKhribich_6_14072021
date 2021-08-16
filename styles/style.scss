@@ -205,10 +205,10 @@ h1 {
 
 /*--  PHOTOGRAPHER BANNER --*/
 .photographer-banner {
-    @include flex(flex, row, flex-start, center, wrap);
-    height: 310px;
+    @include flex(flex, row, space-between, center, wrap);
+    height: fit-content;
     margin: 2.2rem 0 .4rem;
-    padding: 2.3rem 2.5rem;
+    padding: 2rem 2.5rem;
     background-color: $background-gray;
     @include small-radius();
     animation: fade-in 1.5s forwards;
@@ -220,13 +220,17 @@ h1 {
     }
 
     &__name-block { 
-      @include flex(flex, column, flex-start, flex-start, nowrap); 
-      height: 100%;
+      @include flex(flex, column, flex-start, flex-start, nowrap);
+      padding: 0 2rem .3rem 0;
     }
 
-    .contact-button  {
+    .contact-button__container {
+      align-self: baseline;
+      margin-right: auto;
+
+      .contact-button  {
         align-self: flex-start;
-        margin: 1.4rem 2.5rem; padding: 1.4rem 1.2rem;
+        margin-top: 1.3rem; padding: 1.4rem 1.2rem;
         font-size: 1.15rem; font-weight: 700;
         cursor: pointer;
         color: #fafafa; background-color: $primary-color;
@@ -234,15 +238,15 @@ h1 {
         transition: .2s ease-in-out;
     }
 
-    .contact-button:hover,
-    .contact-button:focus {
-      color: $font-black; background-color: $secondary-background;
-      transform: scale(1.01);
+      .contact-button:hover,
+      .contact-button:focus {
+        color: $font-black; background-color: $secondary-background;
+        transform: scale(1.01);
+      }
     }
 
     &__img-container {
       @include flex(flex, row, flex-end, center, nowrap);
-      flex: 1;
 
       img { margin: 1rem };
     }
@@ -252,7 +256,6 @@ h1 {
 .name-block {
   &__name {
     font-size: 4rem;
-    padding-top: 0.8rem;
     color: $secondary-color;
   }
 
@@ -471,6 +474,8 @@ h1 {
 /*--  MEDIA GALLERY --*/
 #media-gallery {
   @include flex(flex, row, space-between, center, wrap);
+  position: relative;
+  z-index: -1;
   margin: 1.5rem 0;
   gap: 1.8rem;
 }
@@ -572,25 +577,36 @@ h1 {
 
 /*--  MEDIA QUERIES --*/
 @media screen and (max-width: 1365px){
-    .header {
-        width: 100%; max-width: 100%;
+  .header {
+      width: 100%; max-width: 100%;
 
-        &__logo-container { margin-right: 80%; }
+      &__logo-container { margin-right: 80%; }
 
-        nav { width: 100%; }
-    }
+      nav { width: 100%; }
+  }
 
-    #main-title { top: -6.4rem; }
+  #main-title { top: -6.4rem; }
 }
 
 @media screen and (max-width: 1265px){
-    body { padding: 2.2rem 1.5rem 1rem; }
+  body { padding: 2.2rem 1.5rem 1rem; }
 
-    #main-grid { justify-content: space-evenly; }
+  #main-grid { justify-content: space-evenly; }
 }
 
 @media screen and (max-width: 1160px){
-    #media-gallery { justify-content: space-evenly; }
+  #media-gallery { justify-content: space-evenly; }
+}
+
+@media screen and (max-width: 978px){
+  .contact-button__container {
+    order: 2;
+    margin: auto;
+
+    .contact-button { margin-top: 0; }
+  }
+
+  .photographer-banner__name-block { padding: 0 }
 }
 
 @media screen and (max-width: 790px){
@@ -608,21 +624,28 @@ h1 {
     transform: scale(.9);
   }
 
-  #price-container { display: none; }
+  #price-container,
+  #order-by__section,
+  .header__link { display: none; }
+
+  .contact-button__container {
+    position: fixed;
+    z-index: 1;
+    margin: 0 auto;
+    bottom: 1.5rem;
+  }
 }
 
 @media screen and (max-width: 680px) {
-    #main-grid { 
-      margin: 1.5rem 0;
-      padding: 1rem 0;
-      justify-content: center;
-    }
+  #main-grid { 
+    margin: 1.5rem 0;
+    padding: 1rem 0;
+    justify-content: center;
+  }
 
-    .header__nav{ line-height: 2.5; }
+  .header__nav{ line-height: 2.5; }
 
-    .header__link { display: none; }
-
-    #main-title { top: -9.2rem; right: 1rem; }
+  #main-title { top: -9.2rem; right: 1rem; }
 }
 
 @media screen and (max-width: 636px){
@@ -634,14 +657,14 @@ h1 {
 }
 
 @media screen and (max-width: 625px) {
-    #main-title { 
-        font-size: 1.5rem;
-        top: -11.2rem;
-    }
+  #main-title { 
+      font-size: 1.5rem;
+      top: -11.2rem;
+  }
 
-    .header__logo-container img { width: 160px; height: 53px; }
+  .header__logo-container img { width: 160px; height: 53px; }
 
-    .header__nav { max-width: 570px; }
+  .header__nav { max-width: 570px; }
 }
 
 @media screen and (max-width: 500px){
@@ -651,47 +674,51 @@ h1 {
 
     &__container { width: 90%; }
 
-    &__title,
-    &__likes { font-size: .9rem; }
+    &__title { font-size: .9rem; }
+
+    &__likes { font-size: .8rem; }
   }
 
-  .heart { transform: scale(.85); }
+  .heart { 
+    margin: .2rem;
+    transform: scale(.8);
+  }
 }
 
 @media screen and (max-width: 475px) {
-    body { padding: 2.2rem 0 1rem; }
-    
-    #main-title { 
-        font-size: .9rem;
-        top: -10.9rem; right: 3rem;
-    }
+  body { padding: 2.2rem 0 1rem; }
+  
+  #main-title { 
+      font-size: .9rem;
+      top: -10.9rem; right: 3rem;
+  }
 
-    #main-grid { row-gap: 2rem; }
+  #main-grid { row-gap: 2rem; }
 
-    .header {
-        padding: 0 1rem;
+  .header {
+      padding: 0 1rem;
 
-        &__logo-container img { width: 150px; height: 37px; }
-    }
+      &__logo-container img { width: 150px; height: 37px; }
+  }
 }
 
 @media screen and (max-width: 374px) {
-    body { padding: 1.2rem 0 1rem; }
+  body { padding: 1.2rem 0 1rem; }
 
-    .header { 
-        height: 200px;
-        padding: 0;
+  .header { 
+      height: 200px;
+      padding: 0;
 
-        &__logo-container { margin: 0; }
-    }
+      &__logo-container { margin: 0; }
+  }
 
-    #main-title { top: -8.4rem; left: 1.7rem; }
+  #main-title { top: -8.4rem; left: 1.7rem; }
 
-    #main-grid { margin: 0; }
+  #main-grid { margin: 0; }
 }
 
 @media screen and (max-width: 290px) {
-    .header__nav { padding-top: 1.2rem; }
+  .header__nav { padding-top: 1.2rem; }
 
-    .photographer__taglist { line-height: 2.1; }
+  .photographer__taglist { line-height: 2.1; }
 }
