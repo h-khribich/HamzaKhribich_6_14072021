@@ -219,8 +219,8 @@ h1 {
       to { opacity: 1; }
     }
 
-    &__name-block { 
-      @include flex(flex, column, flex-start, flex-start, nowrap);
+    &__name-block {
+      @include flex(flex, column, flex-start, flex-start, wrap);
       padding: 0 2rem .3rem 0;
     }
 
@@ -271,7 +271,7 @@ h1 {
   }
 
   &__taglist { 
-    @include flex(flex, row, flex-start, center, wrap); 
+    @include flex(flex, row, flex-start, center, nowrap); 
 
     margin-left: -5px; padding-top: 1.7rem;
 
@@ -598,15 +598,21 @@ h1 {
   #media-gallery { justify-content: space-evenly; }
 }
 
+@media screen and (max-width: 1160px){
+  .photographer-banner__name-block { width: 330px; }
+}
+
 @media screen and (max-width: 978px){
+  .photographer-banner__name-block { padding: 0 }
+}
+
+@media screen and (max-width: 865px){
   .contact-button__container {
     order: 2;
     margin: auto;
 
-    .contact-button { margin-top: 0; }
+    .contact-button { margin: 1rem 0; }
   }
-
-  .photographer-banner__name-block { padding: 0 }
 }
 
 @media screen and (max-width: 790px){
@@ -642,6 +648,27 @@ h1 {
       margin: 0; padding: .5rem 0;
     }
   }
+
+  .photographer-banner { margin-top: 0; }
+
+  .photographer-banner__img-container {
+    align-self: baseline;
+
+    .photographer__img {
+      width: 100px; height: 100px;
+    }
+  }
+
+  .name-block {
+    &__name { font-size: 2.3rem; }
+
+    &__location,
+    &__tagline,
+    &__taglist a { font-size: .9rem; }
+
+    &__tagline { padding-top: .3rem; }
+    &__taglist { padding-top: .7rem; }
+  }
 }
 
 @media screen and (max-width: 700px) {
@@ -673,6 +700,12 @@ h1 {
 
     &__container { width: 75%; }
   }
+
+  .photographer-banner {
+    padding: 0 1.2rem;
+    margin-bottom: 1.5rem;
+    background-color: #fff;
+  }
 }
 
 @media screen and (max-width: 625px) {
@@ -682,11 +715,12 @@ h1 {
   }
 
   .header__logo-container img { width: 160px; height: 53px; }
-
-  .header__nav { max-width: 570px; }
+.header__nav { max-width: 570px; }
 }
 
 @media screen and (max-width: 565px) {
+  .photographer-banner { flex-wrap: nowrap; }
+
   #modal-padding { height: 100%; }
 
   .opened__contact-modal {
@@ -750,6 +784,8 @@ h1 {
     margin: .2rem;
     transform: scale(.8);
   }
+
+  .photographer-banner__img-container img { margin: 0; }
 }
 
 @media screen and (max-width: 475px) {
