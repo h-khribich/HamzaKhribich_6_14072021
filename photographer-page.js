@@ -6,6 +6,8 @@ const pageId = parseInt(params.get('id'), 10);
 const pageWrapper = document.getElementById('page-wrapper');
 const mediaGallery = document.getElementById('media-gallery');
 const lightboxContainer = document.querySelector('.lightbox-container');
+const closeLightbox = document.getElementById('lightbox__close-lightbox');
+
 let activeTagsArray = [];
 let nbOfLikes = 0;
 let totalLikes = 0;
@@ -262,13 +264,35 @@ fetch('fisheye_data.json')
     });
 
     // Lightbox
-    const mediaContainers = document.querySelectorAll('.media__container');
-    mediaContainers.forEach((container) => {
-      container.addEventListener('click', () => {
+    // Making lightbox appear and hiding page wrapper
+    const mediaImage = document.querySelectorAll('.media__container img');
+
+    mediaImage.forEach((image) => {
+      image.addEventListener('click', () => {
         lightboxContainer.classList.toggle('hidden');
+        lightboxContainer.animate([
+          { opacity: '0' },
+
+          { opacity: '1' },
+        ], 300, 'ease-in-out');
         pageWrapper.setAttribute('aria-hidden', 'true');
         pageWrapper.style.position = 'fixed';
       });
     });
+
+    // Closing the lightbox
+    closeLightbox.addEventListener('click', () => {
+      pageWrapper.animate([
+        { opacity: '0' },
+
+        { opacity: '1' },
+      ], 300, 'ease-in-out');
+      lightboxContainer.classList.toggle('hidden');
+      pageWrapper.removeAttribute('aria-hidden', 'true');
+      pageWrapper.style.position = 'relative';
+    });
   })
   .catch((err) => (err));
+
+            // FIX PHOTOGRAPHER BANNER INDEX ISSUE
+            
