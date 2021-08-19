@@ -39,6 +39,10 @@ h1 {
   color: #901c1c;
 }
 
+#page-wrapper {
+  position: relative;
+}
+
 /*-- HEADER --*/
 .header {
   display: -webkit-inline-box;
@@ -340,6 +344,8 @@ h1 {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -652,13 +658,13 @@ h1 {
 /*--  ORDER BY --*/
 #order-by__section {
   position: relative;
+  z-index: 2;
   margin: 1rem 0 5rem;
 }
 
 #order-by__container {
   display: inline-block;
   position: absolute;
-  z-index: 1;
   border: none;
   border-radius: 5px;
   min-width: 165px;
@@ -781,7 +787,6 @@ h1 {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   position: relative;
-  z-index: -1;
   margin: 1.5rem 0 3.5rem;
   gap: 1.8rem;
 }
@@ -929,6 +934,31 @@ h1 {
   cursor: pointer;
 }
 
+/*--  LIGHTBOX --*/
+#lightbox-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center center;
+      -ms-flex-pack: center center;
+          justify-content: center center;
+  -webkit-box-align: nowrap;
+      -ms-flex-align: nowrap;
+          align-items: nowrap;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  background-color: #fff;
+}
+
 /*--  PRICE PER DAY --*/
 #price-container {
   position: fixed;
@@ -1061,7 +1091,6 @@ h1 {
   }
   .contact-button__container {
     position: fixed;
-    z-index: 1;
     left: 50%;
     -webkit-transform: translate(-50%);
             transform: translate(-50%);

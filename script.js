@@ -1,9 +1,6 @@
 /* -- General & DOM Selectors -- */
 const navLink = document.querySelector('.header__link');
 const mainGrid = document.getElementById('main-grid');
-const pageURL = (new URL(window.location).href);
-const params = (new URL(window.location)).searchParams;
-const crossPageTag = params.get('tag');
 let activeTagsArray = [];
 
 // Toggling the 'active-tag' and filtering relevant photographers
@@ -119,19 +116,6 @@ function addPhotographerPreview(element) {
     photographerTagLink.innerText = `#${tag}`;
   });
 }
-
-/*
-function crossPageFiltering() {
-  const dataTagList = document.querySelectorAll('nav [data-tag-name]');
-  if (pageURL.match('tag')) {
-    dataTagList.forEach((dataTag) => {
-      if (dataTag.innerText.match(crossPageTag)) {
-        dataTag.click();
-      }
-    });
-  }
-}
-*/
 
 /* -- Fetching JSON data to fill the page -- */
 fetch('fisheye_data.json')

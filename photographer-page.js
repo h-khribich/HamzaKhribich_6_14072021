@@ -4,8 +4,11 @@ import MediaFactory from './MediaFactory.js';
 const params = (new URL(window.location)).searchParams;
 const pageId = parseInt(params.get('id'), 10);
 const mediaGallery = document.getElementById('media-gallery');
+// const lightboxContainer = document.querySelector('.lightbox-container');
 let activeTagsArray = [];
+let nbOfLikes = 0;
 let totalLikes = 0;
+let chosenOption = [];
 localStorage.setItem('pageId', pageId);
 
 // Photographer selectors
@@ -118,14 +121,20 @@ function totalLikesAndPrice(element) {
 }
 
 // Heart animation and total likes incrementation
-function animateAndIncrementLikes(elements) {
-  elements.forEach((element) => {
-    element.addEventListener('click', () => {
-      element.classList.toggle('empty');
-      element.classList.toggle('full');
+function animateAndIncrementLikes() {
+  const heartIcons = document.querySelectorAll('.heart');
+  heartIcons.forEach((icon) => {
+    icon.addEventListener('click', () => {
+      icon.firstElementChild.classList.toggle('empty');
+      icon.firstElementChild.classList.toggle('full');
 
-      // If the heart is activated, increment total likes, else, decrement
-      totalLikes = element.classList.contains('full') ? totalLikes += 1 : totalLikes -= 1;
+      // If the heart is activated, increment likes and total likes, else, decrement
+      const likes = icon.previousElementSibling;
+      nbOfLikes = parseInt(icon.previousElementSibling.innerText, 10);
+      nbOfLikes = icon.firstElementChild.classList.contains('full') ? nbOfLikes += 1 : nbOfLikes -= 1;
+      likes.innerText = `${nbOfLikes}`;
+
+      totalLikes = icon.firstElementChild.classList.contains('full') ? totalLikes += 1 : totalLikes -= 1;
       photographerTotalLikes.innerHTML = `${totalLikes} <i class='fas fa-heart'></i>`;
     });
   });
@@ -212,35 +221,43 @@ fetch('fisheye_data.json')
     // Sorting by popularity
     const sortedByPopularity = [...photographerMedia].sort((a, b) => b.likes - a.likes);
 
-    // Sorting event listeners
-    filterOptions.forEach((option) => {
-      let chosenOption = [];
-      option.addEventListener('click', () => {
-        // Choosing the correct parameter
-        if (option.dataset.value === 'titre') {
-          chosenOption = sortedByTitle;
-        } else if (option.dataset.value === 'date') {
-          chosenOption = sortedByDate;
-        } else if (option.dataset.value === 'popularite') {
-          chosenOption = sortedByPopularity;
-        }
-        // Clear previous HTML and Display relevant sorted element
-        mediaGallery.innerHTML = '';
-        chosenOption.forEach((media) => {
-          const newMedia = MediaFactory.createMedia(media);
-          mediaGallery.insertAdjacentHTML('beforeend', newMedia.display());
-        });
-      });
-    });
-
-    // By default, media are sorted by popularity
-    sortedByPopularity.forEach((media) => {
+    // Media are sorted by popularity by default
+    chosenOption = sortedByPopularity;
+    chosenOption.forEach((media) => {
       const newMedia = MediaFactory.createMedia(media);
       mediaGallery.insertAdjacentHTML('beforeend', newMedia.display());
     });
 
-    // Total likes incrementation and animation function
-    const heartIcons = document.querySelectorAll('.icon');
-    animateAndIncrementLikes(heartIcons);
+    // Likes incrementation and animation function
+    animateAndIncrementLikes();
+
+    // Sorting event listeners
+    filterOptions.forEach((option) => {
+      option.addEventListener('click', () => {
+        // Choosing the correct parameter
+        if (option.dataset.value === 'titre') {
+          chosenOption = sortedByTitle;
+          setTimeout(1000, openAndCloseDropdown());
+        } else if (option.dataset.value === 'date') {
+          chosenOption = sortedByDate;
+          setTimeout(1000, openAndCloseDropdown());
+        } else if (option.dataset.value === 'popularite') {
+          chosenOption = sortedByPopularity;
+          setTimeout(1000, openAndCloseDropdown());
+        }
+        // Clear previous HTML and Display relevant sorted element
+        mediaGallery.innerHTML = '';
+        totalLikes = 0;
+        chosenOption.forEach((media) => {
+          const newMedia = MediaFactory.createMedia(media);
+          mediaGallery.insertAdjacentHTML('beforeend', newMedia.display());
+          // Clearing previous session's likes
+          totalLikes += media.likes;
+          photographerTotalLikes.innerHTML = `${totalLikes} <i class='fas fa-heart'></i>`;
+        });
+        // Likes function has to be called again as elements were redisplayed
+        animateAndIncrementLikes();
+      });
+    });
   })
   .catch((err) => (err));

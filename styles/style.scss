@@ -52,14 +52,19 @@ body {
   margin: 0 auto;
   padding: 2.7rem 4.6rem 1rem; 
 }
+
 main { position: relative; }
 
 a { text-decoration: none; }
+
 ul { list-style: none; }
+
 h1 {
     font-size: 2.1rem; font-weight: 400;
     color: $primary-color;
 }
+
+#page-wrapper { position: relative; }
 
 /*-- HEADER --*/
 .header {
@@ -206,6 +211,8 @@ h1 {
 /*--  PHOTOGRAPHER BANNER --*/
 .photographer-banner {
     @include flex(flex, row, space-between, center, wrap);
+    position: relative;
+    z-index: 2;
     height: fit-content;
     margin: 2.2rem 0 .4rem;
     padding: 2rem 2.5rem;
@@ -408,13 +415,13 @@ h1 {
 #order-by {
   &__section { 
     position: relative;
+    z-index: 2;
     margin: 1rem 0 5rem; 
   }
 
   &__container { 
     display: inline-block;
     position: absolute;
-    z-index: 1;
     @include small-radius();
     min-width: 165px;
     padding: 1rem;
@@ -470,12 +477,10 @@ h1 {
   }
 }
 
-
 /*--  MEDIA GALLERY --*/
 #media-gallery {
   @include flex(flex, row, space-between, center, wrap);
   position: relative;
-  z-index: -1;
   margin: 1.5rem 0 3.5rem;
   gap: 1.8rem;
 }
@@ -549,6 +554,14 @@ h1 {
 .heart {
   margin-left: .3rem;
   cursor: pointer;
+}
+
+/*--  LIGHTBOX --*/
+#lightbox-container {
+  position: absolute;
+  top: 0; bottom: 0; right: 0; left: 0;
+  @include flex(flex, row, center center, nowrap);
+  background-color: #fff;
 }
 
 /*--  PRICE PER DAY --*/
@@ -636,7 +649,6 @@ h1 {
 
   .contact-button__container {
     position: fixed;
-    z-index: 1;
     left: 50%; transform: translate(-50%);
     width: 170px;
     margin: 0 auto;
