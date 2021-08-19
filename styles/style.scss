@@ -492,6 +492,8 @@ h1 {
 
   &__container {
     width: 350px;
+    cursor: pointer;
+    transition: .2s ease-in-out;
     animation: fade-in 2s forwards;
 
     @keyframes fade-in {
@@ -499,6 +501,8 @@ h1 {
 
       to { opacity: 1; }
     }
+
+    &:hover { transform: scale(1.02); }
   }
 
   &__description {
@@ -557,11 +561,22 @@ h1 {
 }
 
 /*--  LIGHTBOX --*/
-#lightbox-container {
-  position: absolute;
+.lightbox-container {
+  position: fixed;
+  z-index: 99;
   top: 0; bottom: 0; right: 0; left: 0;
   @include flex(flex, row, center center, nowrap);
   background-color: #fff;
+}
+
+#lightbox {
+  margin: auto;
+
+  &__left-arrow img,
+  &__right-arrow img,
+  &__close-lightbox img{
+    width: 43px; height: 43px;
+  }
 }
 
 /*--  PRICE PER DAY --*/

@@ -3,8 +3,9 @@ import MediaFactory from './MediaFactory.js';
 /* -- General & DOM Selectors -- */
 const params = (new URL(window.location)).searchParams;
 const pageId = parseInt(params.get('id'), 10);
+const pageWrapper = document.getElementById('page-wrapper');
 const mediaGallery = document.getElementById('media-gallery');
-// const lightboxContainer = document.querySelector('.lightbox-container');
+const lightboxContainer = document.querySelector('.lightbox-container');
 let activeTagsArray = [];
 let nbOfLikes = 0;
 let totalLikes = 0;
@@ -257,6 +258,16 @@ fetch('fisheye_data.json')
         });
         // Likes function has to be called again as elements were redisplayed
         animateAndIncrementLikes();
+      });
+    });
+
+    // Lightbox
+    const mediaContainers = document.querySelectorAll('.media__container');
+    mediaContainers.forEach((container) => {
+      container.addEventListener('click', () => {
+        lightboxContainer.classList.toggle('hidden');
+        pageWrapper.setAttribute('aria-hidden', 'true');
+        pageWrapper.style.position = 'fixed';
       });
     });
   })

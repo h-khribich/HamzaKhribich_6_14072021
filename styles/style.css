@@ -802,6 +802,9 @@ h1 {
 
 .media__container {
   width: 350px;
+  cursor: pointer;
+  -webkit-transition: .2s ease-in-out;
+  transition: .2s ease-in-out;
   -webkit-animation: fade-in 2s forwards;
           animation: fade-in 2s forwards;
 }
@@ -813,6 +816,11 @@ h1 {
   to {
     opacity: 1;
   }
+}
+
+.media__container:hover {
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
 }
 
 .media__description {
@@ -935,8 +943,9 @@ h1 {
 }
 
 /*--  LIGHTBOX --*/
-#lightbox-container {
-  position: absolute;
+.lightbox-container {
+  position: fixed;
+  z-index: 99;
   top: 0;
   bottom: 0;
   right: 0;
@@ -957,6 +966,17 @@ h1 {
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
   background-color: #fff;
+}
+
+#lightbox {
+  margin: auto;
+}
+
+#lightbox__left-arrow img,
+#lightbox__right-arrow img,
+#lightbox__close-lightbox img {
+  width: 43px;
+  height: 43px;
 }
 
 /*--  PRICE PER DAY --*/

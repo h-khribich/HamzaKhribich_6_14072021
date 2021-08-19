@@ -10,7 +10,7 @@ export default class Image {
                 <p class="media__title">${this.title}</p>
                 <div class="media__likes" aria-label="likes">
                   <span class="likes">
-                    ${parseInt(this.likes, 10)}
+                    ${this.likes}
                   </span>
                   <a class="heart">
                     <i class="fas fa-heart icon empty" aria-hidden="true"></i>
