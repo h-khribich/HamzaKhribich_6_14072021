@@ -34,10 +34,10 @@ const lightboxContainer = document.querySelector('.lightbox-container');
 const closeLightbox = document.getElementById('lightbox__close-lightbox');
 const lightboxMediaContainer = document.getElementById('lightbox__media-container');
 const lightboxLeftArrow = document.getElementById('lightbox__left-arrow');
-const lightboxRightArrow = document.getElementById('lightbox__arrow-arrow');
+const lightboxRightArrow = document.getElementById('lightbox__right-arrow');
 let selectedMedia = '';
 
-/* -- Photographer banner -- */
+/* -- PHOTOGRAPHER BANNER -- */
 function fillPhotographerBanner(element) {
   photographerName.innerText = element.name;
   photographerLocation.innerText = `${element.city}, ${element.country}`;
@@ -59,7 +59,7 @@ function fillPhotographerBanner(element) {
   });
 }
 
-/* -- 'Order-by' -- */
+/* -- 'ORDER-BY' -- */
 // Options closing animation
 function openAndCloseDropdown() {
   // Opening dropdown
@@ -122,7 +122,7 @@ filterOptions.forEach((option) => {
   });
 });
 
-/* -- Likes and price -- */
+/* -- LIKES AND PRICE -- */
 // Photographer's total likes and price per day
 function totalLikesAndPrice(element) {
   photographerPrice.innerText = `${element.price} € / jour`;
@@ -149,7 +149,7 @@ function animateAndIncrementLikes() {
   });
 }
 
-// Tag filtering
+/* -- TAG FILTERING -- */
 function filterByTag(element) {
   element.blur();
 
@@ -284,10 +284,9 @@ fetch('fisheye_data.json')
       });
     });
 
-    // Lightbox
+    /* -- LIGHTBOX -- */
     // Making lightbox appear and hiding page wrapper
     const mediaImage = document.querySelectorAll('.media__container img, .media__container video');
-
     mediaImage.forEach((image) => {
       image.addEventListener('click', () => {
         lightboxContainer.classList.toggle('hidden');
@@ -303,6 +302,27 @@ fetch('fisheye_data.json')
         selectedMedia = chosenOption.find((m) => m.id === parseInt(image.dataset.id, 10));
         lightboxMedia(selectedMedia);
       });
+    });
+
+    // Navigating media
+    // Left arrow
+    lightboxLeftArrow.addEventListener('click', () => {
+      for (let i = chosenOption.length - 1; i >= 0; i -= 1) {
+        if (chosenOption[i].id === selectedMedia.id) {
+          selectedMedia = chosenOption[i -= 1];
+        }
+      }
+      lightboxMedia(selectedMedia);
+    });
+
+    // Right arrow
+    lightboxRightArrow.addEventListener('click', () => {
+      for (let i = 0; i < chosenOption.length; i += 1) {
+        if (chosenOption[i].id === selectedMedia.id) {
+          selectedMedia = chosenOption[i += 1];
+        }
+      }
+      lightboxMedia(selectedMedia);
     });
 
     // Closing the lightbox
