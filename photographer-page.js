@@ -5,8 +5,6 @@ const params = (new URL(window.location)).searchParams;
 const pageId = parseInt(params.get('id'), 10);
 const pageWrapper = document.getElementById('page-wrapper');
 const mediaGallery = document.getElementById('media-gallery');
-const lightboxContainer = document.querySelector('.lightbox-container');
-const closeLightbox = document.getElementById('lightbox__close-lightbox');
 
 let activeTagsArray = [];
 let nbOfLikes = 0;
@@ -30,6 +28,14 @@ const filterContainer = document.getElementById('order-by__container');
 const filterArrow = document.getElementById('order-by__arrow');
 const filterSelected = document.getElementById('order-by__selected');
 const filterOptions = document.querySelectorAll('.option');
+
+// Lightbox selectors
+const lightboxContainer = document.querySelector('.lightbox-container');
+const closeLightbox = document.getElementById('lightbox__close-lightbox');
+const lightboxMediaContainer = document.getElementById('lightbox__media-container');
+const lightboxLeftArrow = document.getElementById('lightbox__left-arrow');
+const lightboxRightArrow = document.getElementById('lightbox__arrow-arrow');
+let selectedMedia = '';
 
 /* -- Photographer banner -- */
 function fillPhotographerBanner(element) {
@@ -184,6 +190,21 @@ function filterByTag(element) {
   });
 }
 
+// Lighbox relevant media display
+function lightboxMedia(element) {
+  let result = '';
+  if (element.image) {
+    result = `<img src="assets/${element.photographerId}/${element.image}" alt="${element['alt-text']}" class="lightbox__media">
+              <p class="lightbox__description">${element.title}</p>`;
+  } else if (element.video) {
+    result = `<video controls="" class="lightbox__media">
+                <source src="assets/${element.photographerId}/${element.video}" type="video/mp4">
+              </video>
+              <p class="lightbox__description">${element.title}</p>`;
+  }
+  lightboxMediaContainer.innerHTML = result;
+}
+
 // The photographer ID enables us to load the data for similar ID JSON object only
 fetch('fisheye_data.json')
   .then((response) => response.json())
@@ -265,7 +286,7 @@ fetch('fisheye_data.json')
 
     // Lightbox
     // Making lightbox appear and hiding page wrapper
-    const mediaImage = document.querySelectorAll('.media__container img');
+    const mediaImage = document.querySelectorAll('.media__container img, .media__container video');
 
     mediaImage.forEach((image) => {
       image.addEventListener('click', () => {
@@ -277,6 +298,10 @@ fetch('fisheye_data.json')
         ], 300, 'ease-in-out');
         pageWrapper.setAttribute('aria-hidden', 'true');
         pageWrapper.style.position = 'fixed';
+
+        // Finding and displaying relevant media
+        selectedMedia = chosenOption.find((m) => m.id === parseInt(image.dataset.id, 10));
+        lightboxMedia(selectedMedia);
       });
     });
 
@@ -293,6 +318,3 @@ fetch('fisheye_data.json')
     });
   })
   .catch((err) => (err));
-
-            // FIX PHOTOGRAPHER BANNER INDEX ISSUE
-            

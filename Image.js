@@ -5,7 +5,7 @@ export default class Image {
 
   display() {
     return `<div class="media__container" data-tag-name="${this.tags}">
-              <img src="assets/${this.photographerId}/${this.image}" alt="${this['alt-text']}" class="media">
+              <img src="assets/${this.photographerId}/${this.image}" alt="${this['alt-text']}" data-id="${this.id}" class="media">
               <div class="media__description">
                 <p class="media__title">${this.title}</p>
                 <div class="media__likes" aria-label="likes">
