@@ -572,6 +572,7 @@ h1 {
 #lightbox {
   margin: auto;
   width: 75vw; height: 80vh;
+  max-width: 1080px;
   gap: 1rem;
 
   @include flex(flex, row, space-between, center, nowrap);
@@ -917,4 +918,50 @@ h1 {
   .header__nav { padding-top: 1.2rem; }
 
   .photographer__taglist { line-height: 2.1; }
+}
+
+// Lightbox media description
+@media screen and (max-width: 1024px) {
+  #lightbox {
+    width: 85vw;
+    height: 60vh;
+    gap: .7rem;
+
+    &__close-lightbox img,
+    &__right-arrow img,
+    &__left-arrow img { width: 18px; height: 18px; }
+  }
+}
+// Lightbox media description
+@media screen and (max-width: 800px) {
+  #lightbox {
+    width: 85vw;
+    height: 50vh;
+    gap: .7rem;
+
+    &__close-lightbox img,
+    &__right-arrow img,
+    &__left-arrow img { width: 18px; height: 18px; }
+
+    .lightbox__media { border: none; }
+
+    .lightbox__description { font-size: 1rem; }
+  }
+}
+
+// Lightbox media description
+@media screen and (max-width: 500px) {
+  #lightbox {
+    width: 85vw;
+    height: 33vh;
+    gap: .5rem;
+
+    &__close-lightbox img,
+    &__right-arrow img,
+    &__left-arrow img { width: 15px; height: 15px; }
+
+    .lightbox__media { border: none; }
+
+    .lightbox__description { font-size: .9rem; }
+  }
 }

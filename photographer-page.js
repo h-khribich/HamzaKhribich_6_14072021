@@ -205,6 +205,27 @@ function lightboxMedia(element) {
   lightboxMediaContainer.innerHTML = result;
 }
 
+function lightboxClickEvent() {
+  // Making lightbox appear and hiding page wrapper
+  const mediaImage = document.querySelectorAll('.media__container img, .media__container video');
+  mediaImage.forEach((image) => {
+    image.addEventListener('click', () => {
+      lightboxContainer.classList.toggle('hidden');
+      lightboxContainer.animate([
+        { opacity: '0' },
+
+        { opacity: '1' },
+      ], 300, 'ease-in-out');
+      pageWrapper.setAttribute('aria-hidden', 'true');
+      pageWrapper.style.position = 'fixed';
+
+      // Finding and displaying relevant media
+      selectedMedia = chosenOption.find((m) => m.id === parseInt(image.dataset.id, 10));
+      lightboxMedia(selectedMedia);
+    });
+  });
+}
+
 // The photographer ID enables us to load the data for similar ID JSON object only
 fetch('fisheye_data.json')
   .then((response) => response.json())
@@ -279,37 +300,25 @@ fetch('fisheye_data.json')
           totalLikes += media.likes;
           photographerTotalLikes.innerHTML = `${totalLikes} <i class='fas fa-heart'></i>`;
         });
-        // Likes function has to be called again as elements were redisplayed
+        // Functions has to be called again as elements were redisplayed on sorting
         animateAndIncrementLikes();
+        lightboxClickEvent();
       });
     });
 
     /* -- LIGHTBOX -- */
-    // Making lightbox appear and hiding page wrapper
-    const mediaImage = document.querySelectorAll('.media__container img, .media__container video');
-    mediaImage.forEach((image) => {
-      image.addEventListener('click', () => {
-        lightboxContainer.classList.toggle('hidden');
-        lightboxContainer.animate([
-          { opacity: '0' },
-
-          { opacity: '1' },
-        ], 300, 'ease-in-out');
-        pageWrapper.setAttribute('aria-hidden', 'true');
-        pageWrapper.style.position = 'fixed';
-
-        // Finding and displaying relevant media
-        selectedMedia = chosenOption.find((m) => m.id === parseInt(image.dataset.id, 10));
-        lightboxMedia(selectedMedia);
-      });
-    });
+    lightboxClickEvent();
 
     // Navigating media
     // Left arrow
     lightboxLeftArrow.addEventListener('click', () => {
       for (let i = chosenOption.length - 1; i >= 0; i -= 1) {
         if (chosenOption[i].id === selectedMedia.id) {
-          selectedMedia = chosenOption[i -= 1];
+          if (i === 0) {
+            selectedMedia = chosenOption[chosenOption.length - 1];
+          } else {
+            selectedMedia = chosenOption[i -= 1];
+          }
         }
       }
       lightboxMedia(selectedMedia);
@@ -317,9 +326,13 @@ fetch('fisheye_data.json')
 
     // Right arrow
     lightboxRightArrow.addEventListener('click', () => {
-      for (let i = 0; i < chosenOption.length; i += 1) {
+      for (let i = 0; i <= chosenOption.length - 1; i += 1) {
         if (chosenOption[i].id === selectedMedia.id) {
-          selectedMedia = chosenOption[i += 1];
+          if (i === chosenOption.length - 1) {
+            [selectedMedia] = chosenOption;
+          } else {
+            selectedMedia = chosenOption[i += 1];
+          }
         }
       }
       lightboxMedia(selectedMedia);
