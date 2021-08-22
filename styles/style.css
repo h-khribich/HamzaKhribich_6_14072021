@@ -1433,6 +1433,12 @@ h1 {
   .header__logo-container {
     margin: 0;
   }
+  #photographer-page__header {
+    height: auto;
+  }
+  #photographer-page__header .header__logo-container img {
+    margin-left: -.5rem;
+  }
   #main-title {
     top: -8.4rem;
     left: 1.7rem;

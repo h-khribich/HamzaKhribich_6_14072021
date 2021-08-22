@@ -908,6 +908,12 @@ h1 {
       &__logo-container { margin: 0; }
   }
 
+  #photographer-page__header { 
+    height: auto; 
+
+    .header__logo-container img { margin-left: -.5rem; }
+  }
+
   #main-title { top: -8.4rem; left: 1.7rem; }
 
   #main-grid { margin: 0; }
