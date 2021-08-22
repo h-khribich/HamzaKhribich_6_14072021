@@ -522,6 +522,7 @@ h1 {
   }
 
   &__likes {
+    position: relative;
     font-size: 1.2rem;
     font-weight: 500;
     @include flex(flex, row, center, center, nowrap);
@@ -552,11 +553,17 @@ h1 {
         100% { transform: scale(1); }
       }
     }
+
+    .likes {
+      padding-right: 1.4rem;
+      font-size: 1.2rem; 
+    }
   }
 }
 
 .heart {
-  margin-left: .3rem;
+  position: absolute;
+  top: .1rem; right: 0;
   cursor: pointer;
 }
 
@@ -668,17 +675,11 @@ h1 {
   #main-grid { justify-content: space-evenly; }
 }
 
-@media screen and (max-width: 1160px){
-  #media-gallery { justify-content: space-evenly; }
-}
+@media screen and (max-width: 1160px){ #media-gallery { justify-content: space-evenly; } }
 
-@media screen and (max-width: 1160px){
-  .photographer-banner__name-block { width: 330px; }
-}
+@media screen and (max-width: 1160px){ .photographer-banner__name-block { width: 330px; } }
 
-@media screen and (max-width: 978px){
-  .photographer-banner__name-block { padding: 0 }
-}
+@media screen and (max-width: 978px){ .photographer-banner__name-block { padding: 0 } }
 
 @media screen and (max-width: 865px){
   .contact-button__container {
@@ -690,6 +691,11 @@ h1 {
 }
 
 @media screen and (max-width: 790px){
+  #photographer-page__header {
+    margin-bottom: 1rem;
+    .header__logo-container img { width: 150px; }
+  }
+
   .media {
     width: 280px; height: 230px;
 
@@ -697,10 +703,13 @@ h1 {
 
     &__title { font-size: 1.15rem; }
 
-    &__likes { font-size: 1rem; }
+    &__likes { 
+      .likes { font-size: 1rem; }
+    }
   }
 
   .heart { 
+    top: 0;
     transform: scale(.9);
   }
 
@@ -768,6 +777,10 @@ h1 {
 }
 
 @media screen and (max-width: 636px){
+  #photographer-page__header {
+    .header__logo-container img { margin-left: .3rem; }
+  }
+
   .media {
     width: 100%; height: 300px;
 
@@ -776,7 +789,7 @@ h1 {
 
   .photographer-banner {
     padding: 0 1.2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 3.5rem;
     background-color: #fff;
   }
 }
@@ -842,6 +855,10 @@ h1 {
 }
 
 @media screen and (max-width: 500px){
+  #photographer-page__header { 
+    padding-left: 0; 
+  }
+
   #media-gallery { row-gap: .5rem; }
   .media {
     width: 100%; height: 190px;
@@ -850,10 +867,13 @@ h1 {
 
     &__title { font-size: .9rem; }
 
-    &__likes { font-size: .8rem; }
+    &__likes {
+      .likes { font-size: .8rem; }
+     }
   }
 
-  .heart { 
+  .heart {
+    top: -6px;
     margin: .2rem;
     transform: scale(.8);
   }
