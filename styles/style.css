@@ -1256,9 +1256,9 @@ h1 {
   }
   #modal-padding {
     padding: 0;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
+    min-height: -webkit-fit-content;
+    min-height: -moz-fit-content;
+    min-height: fit-content;
   }
 }
 
@@ -1315,9 +1315,6 @@ h1 {
   .photographer-banner {
     -ms-flex-wrap: nowrap;
         flex-wrap: nowrap;
-  }
-  #modal-padding {
-    height: 100%;
   }
   .opened__contact-modal .modal__label {
     font-size: 1.5rem;
@@ -1449,6 +1446,9 @@ h1 {
 }
 
 @media screen and (max-width: 345px) {
+  #modal-padding {
+    height: 100%;
+  }
   .opened__contact-modal #modal__contact-me {
     padding: 2.8rem 0 .5rem;
   }
