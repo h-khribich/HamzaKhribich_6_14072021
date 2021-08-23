@@ -5,8 +5,8 @@ export default class Video {
 
   display() {
     return `<div class="media__container" data-tag-name="${this.tags}" role="button" aria-haspopup="dialog">
-              <video data-id="${this.id}" class="media media__video">
-                <source src="assets/${this.photographerId}/${this.video}" type="video/mp4">
+              <video preload="metadata" data-id="${this.id}" class="media media__video">
+                <source src="assets/${this.photographerId}/${this.video}#t=0.1" type="video/mp4">
               </video>
               <div class="media__description">
                 <p class="media__title">${this.title}</p>
