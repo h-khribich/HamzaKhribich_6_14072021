@@ -210,8 +210,9 @@ function lightboxClickEvent() {
   const mediaImage = document.querySelectorAll('.media__container img, .media__container video');
   mediaImage.forEach((image) => {
     image.addEventListener('click', () => {
-      lightboxContainer.classList.toggle('hidden');
+      lightboxContainer.classList.remove('hidden');
       lightboxContainer.setAttribute('aria-expanded', 'true');
+      lightboxContainer.dataset.status = 'open';
       lightboxContainer.animate([
         { opacity: '0' },
 
@@ -223,27 +224,29 @@ function lightboxClickEvent() {
       // Finding and displaying relevant media
       selectedMedia = chosenOption.find((m) => m.id === parseInt(image.dataset.id, 10));
       lightboxMedia(selectedMedia);
+
+      // Lightbox navigation
+      if (lightboxContainer.dataset.status === 'open') {
+        document.addEventListener('keydown', (event) => {
+          const isEscapePressed = event.key === 'Escape' || event.code === 'Escape';
+          if (isEscapePressed) {
+            closeLightbox.click();
+          }
+
+          // Left arrow
+          const isLeftArrowPressed = event.key === 'ArrowLeft' || event.code === 'ArrowLeft';
+          if (isLeftArrowPressed) {
+            lightboxLeftArrow.click();
+          }
+
+          // Right arrow
+          const isRightArrowPressed = event.key === 'ArrowRight' || event.code === 'ArrowRight';
+          if (isRightArrowPressed) {
+            lightboxRightArrow.click();
+          }
+        });
+      }
     });
-  });
-
-  // Lightbox navigation
-  document.addEventListener('keydown', (event) => {
-    const isEscapePressed = event.key === 'Escape' || event.code === 'Escape';
-    if (isEscapePressed) {
-      closeLightbox.click();
-    }
-
-    // Left arrow
-    const isLeftArrowPressed = event.key === 'ArrowLeft' || event.code === 'ArrowLeft';
-    if (isLeftArrowPressed) {
-      lightboxLeftArrow.click();
-    }
-
-    // Right arrow
-    const isRightArrowPressed = event.key === 'ArrowRight' || event.code === 'ArrowRight';
-    if (isRightArrowPressed) {
-      lightboxRightArrow.click();
-    }
   });
 
   // Left arrow event
@@ -281,8 +284,9 @@ function lightboxClickEvent() {
 
       { opacity: '1' },
     ], 300, 'ease-in-out');
-    lightboxContainer.classList.toggle('hidden');
+    lightboxContainer.classList.add('hidden');
     lightboxContainer.setAttribute('aria-expanded', 'false');
+    lightboxContainer.dataset.status = 'closed';
     pageWrapper.removeAttribute('aria-hidden', 'true');
     pageWrapper.style.position = 'relative';
   });

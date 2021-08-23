@@ -52,7 +52,8 @@
                   aria-haspopup="listbox" 
                   aria-expanded="false" 
                   aria-label="Order by"
-                  aria-controls="order-by__options">
+                  aria-controls="order-by__options"
+                  aria-labelledby="order-by__title">
                   <span id="order-by__selected"></span>
                   <div id="order-by__img-container">
                     <img src="assets/svg-assets/arrow.svg" alt="" id="order-by__arrow">
@@ -81,7 +82,7 @@
       </div>
 
       <!-- LIGHTBOX -->
-      <div class="lightbox-container hidden" aria-expanded="false">
+      <div class="lightbox-container hidden" aria-expanded="false" data-status="closed">
         <div id="lightbox" role="dialog" aria-label="image closeup view">
           <!-- Left side -->
           <div id="lightbox__left-side">
