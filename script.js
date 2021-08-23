@@ -129,20 +129,10 @@ fetch('fisheye_data.json')
     tags.forEach((tag) => {
       filterPhotographers(tag);
     });
-
-    // If a tag is clicked on the photographer's page, it leads back to the main page
-    // then clicks on the corresponding tag
-    // crossPageFiltering();
   })
   .catch((err) => (err));
 
-// FIX SKIP TO CONTENT BUTTON
-
 /* -- Skip to content button -- */
-// Making the navlink button focus on main content and preventing page reload
-// const displayedSections = document.querySelector('section:not(.hidden)');
-
-/*
 // Making the nav link visible as soon as the user scrolls down
 window.addEventListener('scroll', () => {
   const sticky = navLink.offsetTop;
@@ -157,4 +147,3 @@ navLink.addEventListener('click', (event) => {
   const focusOnFirstElement = document.querySelector('.photographer__link-container');
   focusOnFirstElement.focus();
 });
-*/

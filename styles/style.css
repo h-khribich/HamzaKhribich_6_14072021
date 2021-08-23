@@ -85,6 +85,7 @@ h1 {
 .header__link {
   visibility: hidden;
   position: absolute;
+  z-index: 2;
   top: 5px;
   left: 50vw;
   transform: translate(-50%, 0);
