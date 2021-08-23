@@ -615,9 +615,11 @@ h1 {
     color: $primary-color;
   }
 
-  &__right-side,
-  &__left-side {
+  &__left-arrow,
+  &__right-arrow {
     cursor: pointer;
+    border: none;
+    background: transparent;
   }
 
   &__left-arrow img { 

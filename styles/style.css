@@ -1052,8 +1052,10 @@ h1 {
   color: #901c1c;
 }
 
-#lightbox__right-side, #lightbox__left-side {
+#lightbox__left-arrow, #lightbox__right-arrow {
   cursor: pointer;
+  border: none;
+  background: transparent;
 }
 
 #lightbox__left-arrow img {

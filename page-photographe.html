@@ -81,13 +81,13 @@
       </div>
 
       <!-- LIGHTBOX -->
-      <div class="lightbox-container hidden">
+      <div class="lightbox-container hidden" aria-expanded="false">
         <div id="lightbox" role="dialog" aria-label="image closeup view">
           <!-- Left side -->
           <div id="lightbox__left-side">
-            <a id="lightbox__left-arrow" aria-label="Previous image">
+            <button id="lightbox__left-arrow" aria-label="Previous image" role="link">
               <img src="assets/svg-assets/red_arrow.svg" alt="">
-            </a>
+            </button>
           </div>         
 
           <!-- Media -->
@@ -101,9 +101,9 @@
               aria-label="Close dialog">
               <img src="assets/svg-assets/red_close_button.svg" alt="">
             </button>
-            <a id="lightbox__right-arrow" aria-label="Next image">
+            <button id="lightbox__right-arrow" aria-label="Next image" role="link">
               <img src="assets/svg-assets/red_arrow.svg" alt="">
-            </a>
+            </button>
           </div>
 
         </div>

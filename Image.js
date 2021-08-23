@@ -4,7 +4,7 @@ export default class Image {
   }
 
   display() {
-    return `<div class="media__container" data-tag-name="${this.tags}">
+    return `<div class="media__container" data-tag-name="${this.tags}" role="button" aria-haspopup="dialog">
               <img src="assets/${this.photographerId}/${this.image}" alt="${this['alt-text']}" data-id="${this.id}" class="media">
               <div class="media__description">
                 <p class="media__title">${this.title}</p>
