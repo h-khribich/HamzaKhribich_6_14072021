@@ -470,10 +470,11 @@ h1 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   margin-left: -5px;
   padding-top: 1.7rem;
+  line-height: 2;
 }
 
 .name-block__taglist a {
@@ -813,6 +814,7 @@ h1 {
   cursor: pointer;
   -webkit-animation: fade-in 2s forwards;
           animation: fade-in 2s forwards;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @keyframes fade-in {
@@ -1375,7 +1377,7 @@ h1 {
     padding-left: 0;
   }
   #media-gallery {
-    row-gap: .5rem;
+    row-gap: 1rem;
   }
   .media {
     width: 100%;
@@ -1393,8 +1395,8 @@ h1 {
   .heart {
     top: -6px;
     margin: .2rem;
-    -webkit-transform: scale(0.8);
-            transform: scale(0.8);
+    -webkit-transform: scale(0.7);
+            transform: scale(0.7);
   }
   .photographer-banner__img-container img {
     margin: 0;

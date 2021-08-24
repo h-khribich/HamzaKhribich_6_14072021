@@ -279,9 +279,11 @@ h1 {
   }
 
   &__taglist { 
-    @include flex(flex, row, flex-start, center, nowrap); 
+    @include flex(flex, row, flex-start, center, wrap); 
 
     margin-left: -5px; padding-top: 1.7rem;
+
+    line-height: 2;
 
     a { font-size: 1rem; }
   }
@@ -498,6 +500,8 @@ h1 {
     width: 350px;
     cursor: pointer;
     animation: fade-in 2s forwards;
+    // Prevent highlight on heart child click
+    -webkit-tap-highlight-color: transparent;
 
     @keyframes fade-in {
       from { opacity: 0; }
@@ -858,7 +862,7 @@ h1 {
     padding-left: 0; 
   }
 
-  #media-gallery { row-gap: .5rem; }
+  #media-gallery { row-gap: 1rem; }
   .media {
     width: 100%; height: 190px;
 
@@ -874,7 +878,7 @@ h1 {
   .heart {
     top: -6px;
     margin: .2rem;
-    transform: scale(.8);
+    transform: scale(.7);
   }
 
   .photographer-banner__img-container img { margin: 0; }

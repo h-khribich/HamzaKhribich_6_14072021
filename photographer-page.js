@@ -365,7 +365,7 @@ fetch('fisheye_data.json')
           // Clearing previous session's likes
           totalLikes += media.likes;
           photographerTotalLikes.innerHTML = `${totalLikes} <i class='fas fa-heart'></i>`;
-          // Functions has to be called again as elements were redisplayed on sorting
+          // Functions have to be called again as elements were redisplayed on sorting
           lightboxClickEvent();
         });
         animateAndIncrementLikes();
