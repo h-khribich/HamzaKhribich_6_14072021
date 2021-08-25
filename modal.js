@@ -43,8 +43,12 @@ const lastFocusableElement = focusableContent[focusableContent.length - 1];
 
 document.addEventListener('keydown', (event) => {
   const tabIsNotPressed = null;
-  const tabIsPressed = event.key === 'Tab' || event.key === 9;
+  const isEscapePressed = event.key === 'Escape' || event.code === 'Escape';
+  const tabIsPressed = event.key === 'Tab' || event.code === 'Tab';
   if (!tabIsPressed) {
+    if (isEscapePressed) {
+      closeButton.click();
+    }
     return false;
   }
   // In case of Shift, if the active element is the first, loop back and vice-versa
@@ -186,7 +190,7 @@ function validationEvent() {
   );
 }
 
-// Both 'dialog' and 'form' close buttons behave identically
+// Both 'dialog' and 'form' close buttons behave similarly
 closeButton.addEventListener('click', (event) => {
   event.preventDefault();
   modalInputs.forEach((input) => {

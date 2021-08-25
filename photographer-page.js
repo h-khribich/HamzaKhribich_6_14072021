@@ -31,6 +31,7 @@ const filterOptions = document.querySelectorAll('.option');
 
 // Lightbox selectors
 const lightboxContainer = document.querySelector('.lightbox-container');
+const lightbox = document.getElementById('lightbox');
 const closeLightbox = document.getElementById('lightbox__close-lightbox');
 const lightboxMediaContainer = document.getElementById('lightbox__media-container');
 const lightboxLeftArrow = document.getElementById('lightbox__left-arrow');
@@ -68,12 +69,12 @@ function openAndCloseDropdown() {
     filterTrigger.setAttribute('aria-expanded', 'true');
     // Arrow animation
     filterArrow.animate([
-      { transform: 'rotate(180deg)' },
+      { transform: 'rotate(0deg)' },
     ], { duration: 300, fill: 'forwards' });
   } else {
     // Closing dropdown
     filterArrow.animate([
-      { transform: 'rotate(0deg)' },
+      { transform: 'rotate(180deg)' },
     ], { duration: 300, fill: 'forwards' });
 
     const close = function close() {
@@ -219,6 +220,7 @@ function lightboxClickEvent() {
         { opacity: '1' },
       ], 300, 'ease-in-out');
       pageWrapper.setAttribute('aria-hidden', 'true');
+      pageWrapper.setAttribute('tabindex', '-1');
       pageWrapper.style.position = 'fixed';
 
       // Finding and displaying relevant media
@@ -232,13 +234,11 @@ function lightboxClickEvent() {
           if (isEscapePressed) {
             closeLightbox.click();
           }
-
           // Left arrow
           const isLeftArrowPressed = event.key === 'ArrowLeft' || event.code === 'ArrowLeft';
           if (isLeftArrowPressed) {
             lightboxLeftArrow.click();
           }
-
           // Right arrow
           const isRightArrowPressed = event.key === 'ArrowRight' || event.code === 'ArrowRight';
           if (isRightArrowPressed) {
@@ -288,7 +288,38 @@ function lightboxClickEvent() {
     lightboxContainer.setAttribute('aria-expanded', 'false');
     lightboxContainer.dataset.status = 'closed';
     pageWrapper.removeAttribute('aria-hidden', 'true');
+    pageWrapper.removeAttribute('tabindex', '-1');
     pageWrapper.style.position = 'relative';
+  });
+
+  // Trapping focus inside the lightbox for accessibility
+  const lightboxFocusableElements = 'div > button';
+  const firstFocusableElement = lightbox.querySelectorAll(lightboxFocusableElements)[0];
+  const focusableContent = lightbox.querySelectorAll(lightboxFocusableElements);
+  const lastFocusableElement = focusableContent[focusableContent.length - 1];
+
+  document.addEventListener('keydown', (event) => {
+    const tabIsNotPressed = null;
+    const isEscapePressed = event.key === 'Escape' || event.code === 'Escape';
+    const tabIsPressed = event.key === 'Tab' || event.code === 'Tab';
+    if (!tabIsPressed) {
+      if (isEscapePressed) {
+        closeLightbox.click();
+      }
+      return false;
+    }
+    // In case of Shift, if the active element is the first, loop back and vice-versa
+    if (event.shiftKey) {
+      if (document.activeElement === firstFocusableElement) {
+        lastFocusableElement.focus();
+        event.preventDefault();
+      }
+    // If pressed key is Tab
+    } else if (document.activeElement === lastFocusableElement) {
+      firstFocusableElement.focus();
+      event.preventDefault();
+    }
+    return tabIsNotPressed;
   });
 }
 

@@ -670,7 +670,6 @@ h1 {
   border: none;
   border-radius: 5px;
   min-width: 165px;
-  padding: 1rem;
   background-color: #901c1c;
 }
 
@@ -704,6 +703,7 @@ h1 {
           align-items: center;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
+  padding: 1rem;
 }
 
 #order-by__selected {
@@ -714,14 +714,18 @@ h1 {
   margin-left: .7rem;
 }
 
+#order-by__arrow {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
 .order-by__options {
   display: none;
 }
 
 .order-by__options .option {
   width: 100%;
-  padding-top: .9rem;
-  margin-top: .9rem;
+  padding: 1rem 0;
   border-top: 1px solid #fff;
 }
 
@@ -741,6 +745,7 @@ h1 {
           align-items: flex-start;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
+  padding: 0 1rem;
   -webkit-animation: slide-down .4s ease-in-out forwards;
           animation: slide-down .4s ease-in-out forwards;
 }
@@ -1025,6 +1030,22 @@ h1 {
 #lightbox__close-lightbox {
   position: absolute;
   top: .5rem;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
   cursor: pointer;
   border: none;
   background-color: #fff;
@@ -1056,6 +1077,21 @@ h1 {
 }
 
 #lightbox__left-arrow, #lightbox__right-arrow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
   cursor: pointer;
   border: none;
   background: transparent;

@@ -427,7 +427,6 @@ h1 {
     position: absolute;
     @include small-radius();
     min-width: 165px;
-    padding: 1rem;
     background-color: $primary-color;
     
     a, #order-by__selected {
@@ -445,11 +444,16 @@ h1 {
     color: $font-black;
   }
 
-  &__trigger { @include flex(flex, row, space-between, center, nowrap); }
+  &__trigger { 
+    @include flex(flex, row, space-between, center, nowrap);
+    padding: 1rem;
+  }
 
   &__selected { padding: .2rem 0; }
 
   &__img-container { margin-left: .7rem; }
+
+  &__arrow { transform: rotate(180deg); }
 }
 
 .order-by__options {
@@ -457,14 +461,15 @@ h1 {
 
   .option {
     width: 100%;
-    padding-top: .9rem; margin-top: .9rem;
+    padding: 1rem 0;
     border-top: 1px solid #fff;
   }
 }
 
 // Making options appear and animate container
 .open { 
-  @include flex(flex, column, flex-start, flex-start, nowrap); 
+  @include flex(flex, column, flex-start, flex-start, nowrap);
+  padding: 0 1rem;
   animation: slide-down .4s ease-in-out forwards;
 
   @keyframes slide-down {
@@ -598,6 +603,8 @@ h1 {
   &__close-lightbox { 
     position: absolute;
     top: .5rem;
+    width: 100%;
+    @include flex(flex, row, center, center, nowrap);
     cursor: pointer;
     border: none;
     background-color: #fff;
@@ -622,6 +629,7 @@ h1 {
 
   &__left-arrow,
   &__right-arrow {
+    @include flex(flex, row, center, center, nowrap);
     cursor: pointer;
     border: none;
     background: transparent;
