@@ -4,8 +4,8 @@ export default class Video {
   }
 
   display() {
-    return `<div class="media__container" data-tag-name="${this.tags}" role="button" aria-haspopup="dialog">
-              <video preload="metadata" data-id="${this.id}" class="media media__video">
+    return `<div class="media__container" data-tag-name="${this.tags}" aria-haspopup="dialog">
+              <video preload="metadata" data-id="${this.id}" class="media media__video" tabindex="0" role="button">
                 <source src="assets/${this.photographerId}/${this.video}#t=0.1" type="video/mp4">
               </video>
               <div class="media__description">
@@ -14,7 +14,7 @@ export default class Video {
                   <span class="likes">
                     ${this.likes}
                   </span>
-                  <a class="heart">
+                  <a class="heart" tabindex="0">
                     <i class="fas fa-heart icon empty" aria-hidden="true"></i>
                   </a>
                 </div>

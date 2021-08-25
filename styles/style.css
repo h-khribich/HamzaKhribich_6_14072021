@@ -418,7 +418,7 @@ h1 {
 .contact-button__container .contact-button {
   -ms-flex-item-align: start;
       align-self: flex-start;
-  margin-top: 1.3rem;
+  margin-top: 1rem;
   padding: 1.4rem 1.2rem;
   font-size: 1.15rem;
   font-weight: 700;
