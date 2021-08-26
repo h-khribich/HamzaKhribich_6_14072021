@@ -70,7 +70,7 @@ contactButton.addEventListener('click', () => {
   contactModal.classList.remove('hidden');
   contactModal.classList.add('opened__contact-modal');
   modalBackground.classList.remove('hidden');
-  pageWrapper.setAttribute('aria-disabled', 'true');
+  pageWrapper.setAttribute('aria-hidden', 'true');
   firstFocusableElement.focus();
 
   // 'Required' has to be added dynamically to prevent errors when required inputs are hidden
@@ -199,7 +199,7 @@ closeButton.addEventListener('click', (event) => {
   contactModal.classList.remove('opened__contact-modal');
   contactModal.classList.add('hidden');
   modalBackground.classList.add('hidden');
-  pageWrapper.removeAttribute('aria-disabled', 'true');
+  pageWrapper.removeAttribute('aria-hidden', 'true');
 });
 
 [closeValidationMsg, confirmButton].forEach((button) => {
@@ -207,7 +207,7 @@ closeButton.addEventListener('click', (event) => {
     modalPadding.style.height = 'auto';
     validationModal.classList.add('hidden');
     modalBackground.classList.add('hidden');
-    pageWrapper.removeAttribute('aria-disabled', 'true');
+    pageWrapper.removeAttribute('aria-hidden', 'true');
   });
 });
 
