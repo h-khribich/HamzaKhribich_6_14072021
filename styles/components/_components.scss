@@ -1,0 +1,150 @@
+/*-- TAG --*/
+.tag {
+  margin: 0 3px; padding: 4px 7px;
+  font-size: .75rem; font-weight: 500;
+  color: $primary-color;
+  cursor: pointer;
+  border: 1px solid #c4c4c4; border-radius: 15px;
+  transition: .2s ease-in-out;
+}
+
+.tag:hover,
+.tag:focus,
+.active-tag { @include active-tag(); }
+
+/*-- SCREEN READER TEXT --*/
+.screen-reader-only {
+  @include screen-reader-only();
+}
+
+/*-- MAIN TITLE --*/
+#main-title { 
+  position: absolute;
+  top: -3.2rem;
+  right: 2.7rem;
+}
+
+/*-- CONTACT BUTTON --*/
+.contact-button__container {
+  align-self: baseline;
+  margin-right: auto;
+
+  .contact-button  {
+    align-self: flex-start;
+    margin-top: 1rem; padding: 1.4rem 1.2rem;
+    font-size: 1.15rem; font-weight: 700;
+    cursor: pointer;
+    color: #fafafa; background-color: $primary-color;
+    @include small-radius();
+    transition: .2s ease-in-out;
+}
+
+  .contact-button:hover,
+  .contact-button:focus {
+    color: $font-black; background-color: $secondary-background;
+    transform: scale(1.01);
+  }
+}
+
+/*-- HEARTS --*/
+.heart {
+  position: absolute;
+  top: .1rem; right: 0;
+  cursor: pointer;
+}
+
+/*--  PRICE PER DAY --*/
+#price-container {
+  position: fixed;
+  z-index: 3;
+  min-width: 265px;
+  bottom: 0; right: 2.5rem;
+  padding: 1rem 2rem .9rem;
+  color: $font-black; background-color: $secondary-background;
+  border-top-left-radius: 5px; border-top-right-radius: 5px;
+  @include flex(flex, row, space-between, baseline, nowrap);
+  gap: 2.2rem;
+}
+
+#total-likes,
+#price {
+  font-size: 1.2rem; font-weight: 500;
+}
+
+#total-likes {
+  min-width: 63px;
+  i { font-size: 1.1rem; }
+}
+
+/*--  ORDER BY --*/
+#order-by {
+  &__section { 
+    position: relative;
+    z-index: 2;
+    margin: 1rem 0 5rem; 
+  }
+
+  &__container { 
+    display: inline-block;
+    position: absolute;
+    @include small-radius();
+    min-width: 165px;
+    background-color: $primary-color;
+    
+    a, #order-by__selected {
+      font-size: 1.1rem; 
+      font-weight: 700;
+      color: #fff;
+    }
+  }
+
+  &__title {
+    display: inline-block;
+    margin-right: 1rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $font-black;
+  }
+
+  &__trigger { 
+    @include flex(flex, row, space-between, center, nowrap);
+    padding: 1rem;
+  }
+
+  &__selected { padding: .2rem 0; }
+
+  &__img-container { margin-left: .7rem; }
+
+  &__arrow { transform: rotate(180deg); }
+}
+
+.order-by__options {
+  display: none;
+
+  .option {
+    width: 100%;
+    padding: 1rem 0;
+    border-top: 1px solid #fff;
+  }
+}
+
+// Making options appear and animate container
+.open { 
+  @include flex(flex, column, flex-start, flex-start, nowrap);
+  padding: 0 1rem;
+  animation: slide-down .4s ease-in-out forwards;
+
+  @keyframes slide-down {
+    from { 
+      opacity: 0;
+      transform: translateY(-25px);
+     }
+
+    to {
+      opacity: 1;
+      transform: translateY(0); 
+    }
+  }
+}
+
+

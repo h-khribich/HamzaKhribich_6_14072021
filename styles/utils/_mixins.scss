@@ -1,0 +1,29 @@
+/*-- MIXINS --*/
+@mixin flex ($flex: flex, $flex-direction: row, $justify-content: center, $align-items: center, $flex-wrap: nowrap) {
+  display: $flex;
+  flex-direction: $flex-direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-wrap: $flex-wrap;
+}
+
+@mixin active-tag {
+  color: #fff;
+  background-color: $primary-color;
+  border: 1px solid transparent;
+  a { color: #fff }
+}
+
+@mixin screen-reader-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  white-space: nowrap; 
+  border: 0;
+}
+
+@mixin small-radius {
+border: none;
+border-radius: 5px;
+}

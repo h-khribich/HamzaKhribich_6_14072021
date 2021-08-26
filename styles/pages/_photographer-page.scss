@@ -1,0 +1,140 @@
+/*--  PHOTOGRAPHER PAGE - BANNER --*/
+.photographer-banner {
+  @include flex(flex, row, space-between, center, wrap);
+  position: relative;
+  z-index: 2;
+  height: fit-content;
+  margin: 2.2rem 0 .4rem;
+  padding: 2rem 2.5rem;
+  background-color: $background-gray;
+  @include small-radius();
+  animation: fade-in 1.5s forwards;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+
+    to { opacity: 1; }
+  }
+
+  &__name-block {
+    @include flex(flex, column, flex-start, flex-start, wrap);
+    padding: 0 2rem .3rem 0;
+  }
+
+  &__img-container {
+    @include flex(flex, row, flex-end, center, nowrap);
+
+    img { margin: 1rem };
+  }
+}
+
+/*--  PHOTOGRAPHER BANNER - NAME BLOCK --*/
+.name-block {
+  &__name {
+    font-size: 4rem;
+    color: $secondary-color;
+  }
+
+  &__location {
+    font-size: 1.5rem;
+    color: $primary-color;
+  }
+
+  &__tagline {
+    font-size: 1.1rem;
+    padding-top: 1.3rem;
+    color: $font-gray;
+  }
+
+  &__taglist { 
+    @include flex(flex, row, flex-start, center, wrap); 
+
+    margin-left: -5px; padding-top: 1.7rem;
+
+    line-height: 2;
+
+    a { font-size: 1rem; }
+  }
+}
+
+/*--  MEDIA CARD --*/
+.media {
+@include small-radius();
+width: 350px; height: 300px;
+object-fit: cover;
+transition: .2s ease-in-out;
+
+  &:hover { transform: scale(1.02); }
+
+  &__container {
+    width: 350px;
+    cursor: pointer;
+    animation: fade-in 2s forwards;
+    // Prevent highlight on heart child click
+    -webkit-tap-highlight-color: transparent;
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+
+      to { opacity: 1; }
+    }
+  }
+
+  &__description {
+    width: 100%;
+    @include flex(flex, row, space-between, baseline, nowrap);
+    line-height: 1.6;
+    color: $primary-color;
+  }
+
+  &__title {
+    max-width: 80%;
+    font-size: 1.3rem;
+    font-weight: 300;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__likes {
+    position: relative;
+    font-size: 1.2rem;
+    font-weight: 500;
+    @include flex(flex, row, center, center, nowrap);
+
+    .icon { font-size: 1.03rem; }
+
+    .empty {
+      color: transparent;
+      -webkit-text-stroke-width: 1.45px;
+      -webkit-text-stroke-color: $primary-color;
+    }
+    
+    .full {
+      color: $primary-color;
+      -webkit-text-stroke-width: 0;
+      -webkit-text-stroke-color: none;
+      animation: heart-fill .5s ease-in-out forwards;
+
+      @keyframes heart-fill {
+        0% { transform: scale(1); }
+
+        30% { transform: scale(1.3); }
+
+        50% { transform: scale(1); }
+
+        75% { transform: scale(1.3); }
+
+        100% { transform: scale(1); }
+      }
+    }
+
+    .likes {
+      padding-right: 1.4rem;
+      font-size: 1.2rem; 
+    }
+  }
+}
+
+// Does not work at the beginning of file ! Impacts whole site
+.hidden { display: none; }

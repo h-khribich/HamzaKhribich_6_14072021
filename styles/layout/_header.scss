@@ -1,0 +1,55 @@
+/*-- HEADER --*/
+.header {
+  @include flex(inline-flex, row, space-between, center, wrap);
+  width: 67%; max-width: 900px;
+  align-self: flex-start;
+
+  &__logo-container {
+      width: 200px; height: 63px;
+      margin: 0 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  &__link {
+      visibility: hidden;
+      position: absolute;
+      z-index: 2;
+      top: 5px; left: 50vw;
+      transform: translate(-50%, 0);
+      -webkit-transform: translate(-50%, 0);
+      padding: .4rem .8rem;
+      color: $font-black;
+      background-color: $secondary-background;
+      font-size: 1.1rem; font-weight: 700;
+      @include small-radius();
+      transition: visibility 2s;
+  }
+
+  .sticky { 
+      position: fixed;
+      visibility: visible;
+      animation: fade-in .6s ease-in-out forwards;
+
+      @keyframes fade-in {
+          from { visibility: hidden;
+                 opacity: 0; }
+      
+          to { visibility: visible;
+               opacity: 1; }
+      }
+  }
+  .sticky:active,
+  .sticky:focus { 
+      font-size: 1.15rem;
+      color: #fafafa;
+  }
+
+  /*-- NAV --*/
+  &__nav {
+      margin: 15px 0;
+
+      .photographer_tags-list { @include flex(flex, row, center, center, wrap); }
+  }
+}

@@ -1,0 +1,17 @@
+/*--  MAIN PAGE PROFILE GALLERY --*/
+#main-grid {
+  margin: 0 auto;
+  padding: 4.5rem 0;
+  @include flex(flex, row, space-around, center, wrap);
+  column-gap: 10rem;
+  row-gap: 5rem;
+  max-width: 1430px;
+}
+
+/*--  PHOTOGRAPHER PAGE MEDIA GALLERY --*/
+#media-gallery {
+  @include flex(flex, row, space-between, center, wrap);
+  position: relative;
+  margin: 1.5rem 0 3.5rem;
+  gap: 1.8rem;
+}

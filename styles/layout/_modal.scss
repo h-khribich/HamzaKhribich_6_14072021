@@ -1,0 +1,124 @@
+/*--  CONTACT MODAL --*/
+#modal-background {
+  position: fixed;
+  overflow: scroll;
+  z-index: 999;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #c4c4c460;
+}
+
+#modal-padding {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 2rem; 
+}
+
+.opened__contact-modal {
+  position: relative;
+  z-index: 1000;
+  margin: 0 auto; padding: 1.3rem 2.3rem;
+  width: 670px; max-width: 100%;
+  @include flex(flex, column, flex-start, flex-start, nowrap);
+  background-color: $secondary-background;
+  @include small-radius();
+
+  #modal__contact-me,
+  #modal__name {
+    display: inline-block;
+    font-size: 3.8rem;
+    line-height: 1.1;
+    color: $font-black;
+  }
+
+  #modal__name { padding-bottom: 1.8rem; }
+
+  .modal__label { 
+    font-size: 2rem;
+    color: #312e2e
+  }
+
+  .modal__input {
+    @include small-radius();
+    margin: .3rem 0;
+    width: 100%; padding: 1rem;
+    font-size: 1.7rem;
+  }
+
+  .invalid-message {
+    width: 100%;
+    color: #6f0101;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: .5rem; padding: .6rem 0;
+    border-top: 2px solid #6f0101;
+  }
+
+  #user-msg { height: 170px; }
+
+  #close-modal {
+    width: 42px; height: 42px;
+    position: absolute;
+    cursor: pointer;
+    background: none; border: none;
+    top: 2rem; right: 2rem;
+  }
+
+  #submit-button {
+    margin: 1rem 0; padding: 1.3rem 3rem;
+    font-size: 1.15rem; font-weight: 700;
+    cursor: pointer;
+    color: #fafafa; background-color: $primary-color;
+    @include small-radius();
+    transition: .2s ease-in-out;
+  }
+
+  #submit-button:hover,
+  #submit-button:focus {
+    color: $font-black; background-color: $background-gray;
+    transform: scale(1.01);
+  }
+}
+
+/*--  MODAL VALIDATION MESSAGE --*/
+#validation {
+  &__dialog {
+    position: relative;
+    max-width: 550px;
+    @include small-radius();
+    padding: 2rem;
+    background-color: $secondary-background; 
+  }
+
+  &__close { 
+    position: absolute;
+    width: 42px; height: 42px;
+    right: 2rem;
+    cursor: pointer;
+    background: none; border: none;
+  }
+
+  &__message { 
+    padding: 5rem 3rem 3rem;
+    text-align: center;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 500;
+  }
+
+  &__confirm-button {
+    display: block;
+    margin: 0 auto; padding: 1.2rem 2.5rem;
+    font-size: 1.15rem; font-weight: 700;
+    cursor: pointer;
+    color: #fafafa; background-color: $primary-color;
+    @include small-radius();
+    transition: .2s ease-in-out;
+
+    &:hover {
+      color: $font-black; background-color: #fff;
+      transform: scale(1.03);
+    }
+  }
+}
