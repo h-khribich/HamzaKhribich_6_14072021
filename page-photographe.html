@@ -16,7 +16,7 @@
       <div id="page-wrapper">
         <!-- HEADER -->
         <header class="header" id="photographer-page__header">
-            <a class="header__logo-container" href="index.html" role="">
+            <a class="header__logo-container" href="index.html">
                 <img src="assets/svg-assets/fisheye_logo.svg" alt="Fisheye Home Page">
             </a>
         </header>
@@ -24,9 +24,10 @@
         <main>
 
             <!-- PHOTOGRAPHER BANNER -->
-            <div class="photographer-banner">
+            <h1 class="screen-reader-only" id="photographer-page__title">Placeholder</h1>
+            <div class="photographer-banner" role="heading">
                 <section class="photographer-banner__name-block">
-                    <h1 class="name-block__name"></h1>
+                    <h2 class="name-block__name">Placeholder</h2>
                     <p class="name-block__location"></p>
                     <p class="name-block__tagline"></p>
                     <ul class="name-block__taglist">
@@ -36,7 +37,7 @@
                   <button type="button" aria-label="Contact Me" class="contact-button">Contactez-moi</button>
                 </div> 
                 <div class="photographer-banner__img-container">
-                  <img class="photographer__img">
+                  <img class="photographer__img" alt="" src="placeholder">
                 </div> 
             </div>
 
@@ -48,11 +49,12 @@
                 <a 
                   href="#" 
                   id="order-by__trigger" 
-                  role="button" 
+                  role="button"
+                  title="Order-by"
                   aria-haspopup="listbox" 
                   aria-expanded="false" 
-                  aria-label="Order by"
-                  aria-controls="order-by__options"
+                  aria-label="Order-by"
+                  aria-controls="dropdown"
                   aria-labelledby="order-by__title">
                   <span id="order-by__selected"></span>
                   <div id="order-by__img-container">
@@ -60,7 +62,7 @@
                   </div>
                 </a>
                 <!-- FILTER OPTIONS -->
-                <div class="order-by__options" role="listbox">
+                <div class="order-by__options" role="listbox" id="dropdown">
                   <a href="#" class="option" data-value="popularite" aria-selected="true" role="option">Popularité</a>
                   <a href="#" class="option" data-value="date" aria-selected="false" role="option">Date</a>
                   <a href="#" class="option" data-value="titre" aria-selected="false" role="option">Titre</a>
@@ -82,8 +84,8 @@
       </div>
 
       <!-- LIGHTBOX -->
-      <div class="lightbox-container hidden" aria-expanded="false" data-status="closed">
-        <div id="lightbox" role="dialog" aria-label="image closeup view">
+      <div class="lightbox-container hidden" aria-expanded="false" data-status="closed" role="dialog" aria-label="image closeup view">
+        <div id="lightbox">
           <!-- Left side -->
           <div id="lightbox__left-side">
             <button id="lightbox__left-arrow" aria-label="Previous image" role="link">
@@ -112,9 +114,9 @@
 
         
       <!-- CONTACT MODAL -->
-        <div id="modal-background" class="hidden">
+        <div id="modal-background" class="hidden" role="dialog">
           <div id="modal-padding">
-            <form action="" method="GET" id="contact-modal" aria-labelledby="modal__contact-me" class="hidden" role="dialog">
+            <form method="GET" id="contact-modal" aria-labelledby="modal__contact-me" class="hidden">
               <h1 id="modal__contact-me">Contactez-moi</h1>
               <p id="modal__name"></p>
               <!-- First name -->

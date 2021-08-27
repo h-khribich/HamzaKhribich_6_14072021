@@ -20,6 +20,7 @@ const photographerTagList = document.querySelector('.name-block__taglist');
 const photographerImage = document.querySelector('.photographer__img');
 const photographerPrice = document.getElementById('price');
 const photographerTotalLikes = document.getElementById('total-likes');
+const photographerPageTitle = document.getElementById('photographer-page__title');
 
 // 'Order-by' selectors
 const filterTrigger = document.getElementById('order-by__trigger');
@@ -43,8 +44,9 @@ function fillPhotographerBanner(element) {
   photographerName.innerText = element.name;
   photographerLocation.innerText = `${element.city}, ${element.country}`;
   photographerTagline.innerText = element.tagline;
-  photographerImage.setAttribute('src', `assets/Photographers ID Photos/${element.portrait}`);
+  photographerImage.src = `assets/Photographers ID Photos/${element.portrait}`;
   photographerImage.alt = element.name;
+  photographerPageTitle.innerText = `Page profile de ${element.name}`;
 
   // For each tag, HTML elements are created and classes are added
   element.tags.forEach((tag) => {

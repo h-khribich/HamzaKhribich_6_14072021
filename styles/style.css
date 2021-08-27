@@ -33,7 +33,8 @@ ul {
   list-style: none;
 }
 
-h1 {
+h1,
+h2 {
   font-size: 2.1rem;
   font-weight: 400;
   color: #901c1c;
