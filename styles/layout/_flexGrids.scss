@@ -10,7 +10,7 @@
 
 /*--  PHOTOGRAPHER PAGE MEDIA GALLERY --*/
 #media-gallery {
-  @include flex(flex, row, space-between, center, wrap);
+  @include flex(flex, row, space-around, center, wrap);
   position: relative;
   margin: 1.5rem 0 3.5rem;
   gap: 1.8rem;

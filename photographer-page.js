@@ -220,15 +220,19 @@ function lightboxClickEvent() {
         { opacity: '1' },
       ], 300, 'ease-in-out');
       pageWrapper.setAttribute('aria-hidden', 'true');
-      pageWrapper.setAttribute('tabindex', '-1');
       pageWrapper.style.position = 'fixed';
 
       // Finding and displaying relevant media
       selectedMedia = chosenOption.find((m) => m.id === parseInt(image.dataset.id, 10));
       lightboxMedia(selectedMedia);
 
+      // Bringing focus away from background elements
+      lightboxLeftArrow.focus();
+      lightboxLeftArrow.blur();
+
       // Lightbox navigation
       if (lightboxContainer.dataset.status === 'open') {
+        // Arrow and escape key navigation
         document.addEventListener('keydown', (event) => {
           const isEscapePressed = event.key === 'Escape' || event.code === 'Escape';
           if (isEscapePressed) {
@@ -288,7 +292,6 @@ function lightboxClickEvent() {
     lightboxContainer.setAttribute('aria-expanded', 'false');
     lightboxContainer.dataset.status = 'closed';
     pageWrapper.removeAttribute('aria-hidden', 'true');
-    pageWrapper.removeAttribute('tabindex', '-1');
     pageWrapper.style.position = 'relative';
   });
 
